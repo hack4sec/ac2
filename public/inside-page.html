@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+	<title>Аналитический центр</title>
+ 
+    <link rel="stylesheet" type="text/css" href="css/style.css" />  
+    <link rel="stylesheet" type="text/css" href="css/fonts.css" />  
+    <link rel="stylesheet" type="text/css" href="css/modal.css" />  
+ 
+    <link rel="stylesheet" type="text/css" href="css/remodal.css" />
+    <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
+    
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+	<link rel="shortcut icon" href="/favicon.png" type="image/x-icon">
+    
+    <script type="text/javascript" src="js/jquery.js"></script>    
+    <script type="text/javascript" src="js/remodal.js"></script> 
+    <script type="text/javascript" src="js/form.js"></script> 
+    <script type="text/javascript" src="js/accordion.js"></script>
+</head>
+	<body>
+    	<header id="header">
+            <section class="top clear">
+                <a href="#" class="logo"><img src="images/logo.png"/></a>
+                <ul class="bread_crumbs">
+                    <li>——</li>
+                    <li><a href="#">Все проекты</a></li>
+                    <li>→</li>
+                    <li> Демонстрационный проект</li>
+                </ul>
+            </section><!--End .top-->
+        </header><!--End header-->
+        
+        <section id="main" class="clear">
+        	<div id="servers" class="demo-y">
+            <div class="servers">
+                <h2 class="error">Непроверенные сервера проекта</h2>
+                <a href="#" class="icon-addserver"></a>
+                <div class="clear"></div>
+                <!--Item Begin--->
+                <a class="server-block clear active" href="#">
+                    <h3>mainserver.demo.zone<i class="icon-edit"></i> </h3>             
+                    <span><b>IP:</b> 0.0.0.1</span>         
+                    <span><b>ОС:</b> FreeBSD</span>
+                    <p>Скрипт прочтения писем не фильтрует</p>
+                    <img src="images/arrow.png" class="active-ico">
+                </a>
+                <!--Item End--->
+                <!--Item Begin--->
+                <a class="server-block clear" href="#">
+                    <h3>mainserver.demo.zone<i class="icon-edit"></i> </h3>             
+                    <span><b>IP:</b> 0.0.0.1</span>         
+                    <span><b>ОС:</b> FreeBSD</span>
+                    <p>Скрипт прочтения писем не фильтрует принимаемый параметр id, что позволяет нарушить целостность ...</p>
+                    
+                </a>
+                <!--Item End--->
+                <!--Item Begin--->
+                <a class="server-block clear" href="#">
+                    <h3>mainserver.demo.zone<i class="icon-edit"></i> </h3>             
+                    <span><b>IP:</b> 0.0.0.1</span>         
+                    <span><b>ОС:</b> FreeBSD</span>
+                    <p>Скрипт прочтения писем не фильтрует принимаемый параметр id, что позволяет нарушить целостность ...</p>
+                </a>
+                <!--Item End--->
+                <hr>
+                <h2>проверенные сервера проекта</h2>
+                <!--Item Begin--->
+                <a class="server-block clear" href="#">
+                    <h3>mainserver.demo.zone<i class="icon-edit"></i> </h3>             
+                    <span><b>IP:</b> 0.0.0.1</span>         
+                    <span><b>ОС:</b> FreeBSD</span>
+                    <p>Скрипт прочтения писем не фильтрует принимаемый параметр id, что позволяет нарушить целостность ...</p>
+                </a>
+                <!--Item End--->
+                <!--Item Begin--->
+                <a class="server-block clear" href="#">
+                    <h3>mainserver.demo.zone<i class="icon-edit"></i> </h3>             
+                    <span><b>IP:</b> 0.0.0.1</span>         
+                    <span><b>ОС:</b> FreeBSD</span>
+                    <p>Не такой важный сервер </p>
+                </a>
+                <!--Item End--->
+        	</div><!--End Servers-->
+        </div><!--End #Servers-->
+        
+        	<div id="work-space">
+            <div class="top-block clear">
+        		<h2>mainserver.demo.zone (0.0.0.1)<i class="icon-edit"></i></h2>
+                
+                <div class="left">
+        			<h3>Описание сервера</h3>
+        			<p>Скрипт прочтения писем не фильтрует принимаемый параметр id, что позволяет нарушить целостность SQL-запроса, занимающегося выборкой писем из БД</p>
+        			<h3 class="m-t15">ОС сервера</h3>
+        			<p>FreeBSD 8.1</p>
+        			<p>Алгоритм хеширования: DES(Unix)</p>
+        		</div>
+                
+        		<div class="right">
+        			<h3>Данные n-map сканирования:<i class="icon-edit"></i></h3>
+                    <p>PORT STATE SERVICE VERSION</p>
+                    <p>21/tcp open ftp vsftpd 2.0.5</p>
+                    <p>25/tcp open smtp Exim smtpd</p>
+                    <p>110/tcp open pop3</p>
+                    <p>443/tcp open ssl/http Apache httpd 2.2.3</p>
+        		</div>
+                </div>
+        		
+                <div id="tabs">
+                    <!--TABS-->
+                    <ul class="tabs">
+                        <!-------------------------------->
+                        <!--------      Tab 1      ------->
+                        <!-------------------------------->
+                        <li class="tab-1">
+                            <input type="radio" name="tabs" id="tab-1" checked>
+                            <label for="tab-1">Доменные имена <span>5</span></label>
+                            <div class="tab-content">
+                                <div class="tab-content-all demo-y">
+                                    <div id='report-modal' class="clear">
+                                        <ul class="demo-y">
+                                            <!--Item Begin--->
+                                            <li class='has-sub'>
+                                                <a class="tab-block clear">
+                                                    <div class="tittle"><i class="icon-accept"></i>Название задачи</div>
+                                                    <p class="info width-2">Описание задачи</p>
+                                                    <div class="ico-block">                           
+                                                        <div id="change" class="icon-edit icon" href="#"><p>Изменить<span></span></p></div>
+                                                        <div id="close" class="icon-cross icon" href="#"><p>Удалить<span></span></p></div>
+                                                    </div>
+                                                </a>
+                                                <ul>                        
+                                                    <div class="tab-block clear inside"><!--Item Begin--->
+                                                        <div class="tittle">
+                                                        <div class="ico-block-inside">
+                                                        <i class="ico icon-accept"></i>
+                                                        <i class="ico icon-refresh"></i>
+                                                        <i class="ico icon-enter"></i>
+                                                        </div>   
+                                                        Название задачи</div>
+                                                        <a href="#" class="link">http://demo.com</a>
+                                                        <p class="info">Описание задачи</p>
+                                                        <div class="ico-block">                           
+                                                            <div id="change" class="icon-edit icon"><p>Изменить<span></span></p></div>
+                                                            <div id="close" class="icon-cross icon"><p>Удалить<span></span></p></div>
+                                                        </div>
+                                                    </div><!--Item End--->
+                                                    <div class="tab-block clear inside"><!--Item Begin--->
+                                                        <div class="tittle">
+                                                        <div class="ico-block-inside">
+                                                            <i class="ico icon-accept"></i>
+                                                            <i class="ico icon-enter"></i>
+                                                        </div>   
+                                                        Название задачи</div>
+                                                        <a href="#" class="link">http://demo.com</a>
+                                                        <p class="info">Написанный на Ruby веб-интерфейс для работы с почтой</p>
+                                                        <div class="ico-block">                           
+                                                            <div id="change" class="icon-edit icon"><p>Изменить<span></span></p></div>
+                                                            <div id="close" class="icon-cross icon"><p>Удалить<span></span></p></div>
+                                                        </div>
+                                                    </div><!--Item End--->
+                                                </ul>
+                                            </li>
+                                            <!--Item End---> 
+                                            
+                                            <!--Item Begin--->
+                                            <li class='has-sub'>
+                                                <div class="tab-block clear">
+                                                    <div class="tittle"><i class="icon-accept"></i>Название задачи</div>
+                                                    <p class="info width-2">Веб-интерфейс для работы с почтой</p>
+                                                    <div class="ico-block">                           
+                                                        <div id="change" class="icon-edit icon" href="#"><p>Изменить<span></span></p></div>
+                                                        <div id="close" class="icon-cross icon" href="#"><p>Удалить<span></span></p></div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <!--Item End---> 
+                                            <!--Item Begin--->
+                                            <li class='has-sub'>
+                                                <div class="tab-block clear">
+                                                    <div class="tittle"><i class="icon-accept"></i>Название задачи</div>
+                                                    <p class="info width-2">Веб-интерфейс для работы с почтой</p>
+                                                    <div class="ico-block">                           
+                                                        <div id="change" class="icon-edit icon" href="#"><p>Изменить<span></span></p></div>
+                                                        <div id="close" class="icon-cross icon" href="#"><p>Удалить<span></span></p></div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <!--Item End--->      
+                                        </ul>
+                                    </div><!--End report-modal-->
+                                </div>
+                                <div class="button-block clear">     
+                                	<button><i class="icon-add"></i>Добавить задачу</button>
+                                </div>
+                            </div><!--End tab-content-all-->
+                        </li>
+                        <!-------------------------------->
+                        <!--------      Tab 2      ------->
+                        <!-------------------------------->
+                        <li>
+                            <input type="radio" name="tabs" id="tab-2">
+                            <label for="tab-2">Обнаруженое ПО <span>5</span></label>
+                             
+                            <div class="tab-content">
+                                <div class="tab-content-all demo-y">
+                                    <!--Item Begin--->
+                                    <div class="tab-block clear">
+                                        <div class="tittle">Apache <span class="gray">2.2.3 (2.2.17)</span></div>
+                                        <a href="#" target="_blank" class="link"><i class="icon-link"></i>http://httpd.apache.org</a>
+                                        <p class="info">Веб-сервер, работает только через https </p>
+                                        <div class="ico-block">                           
+                                            <a id="change" class="icon-edit icon" href="#"><p>Изменить<span></span></p></a>
+                                            <a id="close" class="icon-cross icon" href="#"><p>Удалить<span></span></p></a>
+                                        </div>
+                                    </div>
+                                    <!--Item End--->
+                                    <!--Item Begin--->
+                                    <div class="tab-block clear">
+                                        <div class="tittle"><i class="icon-chost"></i>Apache <span class="gray">2.2.3 (2.2.17)</span></div>
+                                        <a href="#" target="_blank" class="link"><i class="icon-link"></i>http://httpd.apache.org</a>
+                                        <p class="info">Веб-сервер, работает только через https </p>
+                                        <div class="ico-block">                           
+                                            <a id="change" class="icon-edit icon" href="#"><p>Изменить<span></span></p></a>
+                                            <a id="close" class="icon-cross icon" href="#"><p>Удалить<span></span></p></a>
+                                        </div>
+                                    </div>
+                                    <!--Item End--->
+                                    <!--Item Begin--->
+                                    <div class="tab-block clear">
+                                        <div class="tittle">Apache <span class="gray">2.2.3 (2.2.17)</span></div>
+                                        <a href="#" target="_blank" class="link"><i class="icon-link"></i>http://httpd.apache.org</a>
+                                        <p class="info">Веб-сервер, работает только через https </p>
+                                        <div class="ico-block">                           
+                                            <a id="change" class="icon-edit icon" href="#"><p>Изменить<span></span></p></a>
+                                            <a id="close" class="icon-cross icon" href="#"><p>Удалить<span></span></p></a>
+                                        </div>
+                                    </div>
+                                    <!--Item End--->
+                                    <!--Item Begin--->
+                                    <div class="tab-block clear">
+                                        <div class="tittle">Apache <span class="gray">2.2.3 (2.2.17)</span></div>
+                                        <a href="#" target="_blank" class="link"><i class="icon-link"></i>http://httpd.apache.org</a>
+                                        <p class="info">Веб-сервер, работает только через https </p>
+                                        <div class="ico-block">                           
+                                            <a id="change" class="icon-edit icon" href="#"><p>Изменить<span></span></p></a>
+                                            <a id="close" class="icon-cross icon" href="#"><p>Удалить<span></span></p></a>
+                                        </div>
+                                    </div>
+                                    <!--Item End--->
+                                    
+                                     <!--Item Begin--->
+                                    <div class="tab-block clear">
+                                        <div class="tittle">Apache <span class="gray">2.2.3 (2.2.17)</span></div>
+                                        <a href="#" target="_blank" class="link"><i class="icon-link"></i>http://httpd.apache.org</a>
+                                        <p class="info">Веб-сервер, работает только через https </p>
+                                        <div class="ico-block">                           
+                                            <a id="change" class="icon-edit icon" href="#"><p>Изменить<span></span></p></a>
+                                            <a id="close" class="icon-cross icon" href="#"><p>Удалить<span></span></p></a>
+                                        </div>
+                                    </div>
+                                    <!--Item End--->
+                                    
+                                     <!--Item Begin--->
+                                    <div class="tab-block clear">
+                                        <div class="tittle">Apache <span class="gray">2.2.3 (2.2.17)</span></div>
+                                        <a href="#" target="_blank" class="link"><i class="icon-link"></i>http://httpd.apache.org</a>
+                                        <p class="info">Веб-сервер, работает только через https </p>
+                                        <div class="ico-block">                           
+                                            <a id="change" class="icon-edit icon" href="#"><p>Изменить<span></span></p></a>
+                                            <a id="close" class="icon-cross icon" href="#"><p>Удалить<span></span></p></a>
+                                        </div>
+                                    </div>
+                                    <!--Item End--->
+                                </div><!--End tab-content-all-->
+                                <div class="button-block clear">
+                                	<button><i class="icon-add"></i>Новый домен</button>
+                                </div>
+                            </div>
+                        </li>
+                        <!-------------------------------->
+                        <!--------      Tab 3      ------->
+                        <!-------------------------------->
+                        <li>
+                            <input type="radio" name="tabs" id="tab-3">
+                            <label for="tab-3">Файлы <span>12</span></label>
+                            <div class="tab-content">
+                                <div class="tab-content-all demo-y">
+                                    <!--Item Begin--->
+                                    <div class="tab-block clear">
+                                        <div class="tittle">white-hat1.jpg</div>
+                                        <p class="info">Тестовая картинка</p>
+                                        <div class="ico-block">                           
+                                            <a id="close" class="icon-cross icon" href="#"><p>Удалить<span></span></p></a>
+                                        </div>
+                                    </div>
+                                    <!--Item End--->  
+                                     <!--Item Begin--->
+                                    <div class="tab-block clear">
+                                        <div class="tittle">white-hat1.jpg</div>
+                                        <p class="info">Тестовая картинка</p>
+                                        <div class="ico-block">                           
+                                            <a id="close" class="icon-cross icon" href="#"><p>Удалить<span></span></p></a>
+                                        </div>
+                                    </div>
+                                    <!--Item End--->                         
+                                </div><!--End tab-content-all-->
+                                <div class="button-block clear">
+                                	<button><i class="icon-add"></i>Новый домен</button>
+                                </div>
+                            </div>
+                        </li>
+                        <!-------------------------------->
+                        <!--------      Tab 4      ------->
+                        <!-------------------------------->
+                        <li>
+                            <input type="radio" name="tabs" id="tab-4">
+                            <label for="tab-4">Пользователи <span>11</span></label>
+                            <div class="tab-content">
+                            <div class="tab-content-all demo-y">
+                            	<fieldset>
+                                    <legend>TestGroup</legend>
+                                </fieldset>
+                                <div class="ico-block-top clear">
+                                    <a href="#" class="icon-dwload icon"><p>Вниз<span></span></p></a>
+                                    <a href="#" class="icon-upload icon"><p>Наверх<span></span></p></a>
+                                    <a href="#" class="icon-edit icon"><p>Изменить<span></span></p></a>
+                                    <a href="#" class="icon-cross icon"><p>Удалить<span></span></p></a>
+                                </div>
+                                <table>
+                                    <tr>
+                                        <th></th>
+                                        <th style="min-width:120px;">Логин /пароль</th>
+                                        <th>Хэш</th>
+                                        <th>E-mail</th>
+                                        <th>Оболочка</th>
+                                        <th>Директория</th>
+                                        <th>Дополнительно</th>
+                                        <th></th>
+                                    </tr>
+                                    
+                                    <!--Item Begin--->
+                                    <tr class="t-block">
+                                        <td class="t-ico">
+                                            <i class="ico icon-chost"></i>
+                                            <i class="ico icon-jail"></i>
+                                        </td>
+                                        <td style="min-width:120px;" class="t-tittle">Junior<span class="gray">pass2</span></td>
+                                        <td class="t-info">c1572d05424d0ecb2a65ec6a82aeacbf</td>
+                                        <td class="t-email">aaa@bbb2.com</td>
+                                        <td class="t-shell"></td>
+                                        <td class="t-directory"></td>
+                                        <td class="t-additionally"></td>
+                                        <td class="t-ico-r"> 
+                                            <a class="change icon-edit icon" href="#"><p>Изменить<span></span></p></a>
+                                            <a class="close icon-cross icon" href="#"><p>Удалить<span></span></p></a>
+                                        </td>
+                                    </tr>
+                                    <!--Item End---> 
+                                    <!--Item Begin--->
+                                    <tr class="t-block">
+                                        <td class="t-ico">
+                                            <i class="ico icon-chost"></i>
+                                            <i class="ico icon-jail"></i>
+                                        </td>
+                                        <td style="min-width:120px;" class="t-tittle">Junior<span class="gray">pass2</span></td>
+                                        <td class="t-info">c1572d05424d0ecb2a65ec6a82aeacbf</td>
+                                        <td class="t-email">aaa@bbb2.com</td>
+                                        <td class="t-shell">c6a82aeacbf</td>
+                                        <td class="t-directory"></td>
+                                        <td class="t-additionally"></td>
+                                        <td class="t-ico-r"> 
+                                            <a class="change icon-edit icon" href="#"><p>Изменить<span></span></p></a>
+                                            <a class="close icon-cross icon" href="#"><p>Удалить<span></span></p></a>
+                                        </td>
+                                    </tr>
+                                    <!--Item End---> 
+                                    <!--Item Begin--->
+                                    <tr class="t-block">
+                                        <td class="t-ico">
+                                            <i class="ico icon-chost"></i>
+                                            <i class="ico icon-jail"></i>
+                                        </td>
+                                        <td style="min-width:120px;" class="t-tittle">Junior<span class="gray">pass2</span></td>
+                                        <td class="t-info">c1572d05424d0ecb2a65ec6a82aeacbf</td>
+                                        <td class="t-email">aaa@bbb2.com</td>
+                                        <td class="t-shell">c1572d05424d0e</td>
+                                        <td class="t-directory">c1572d4d0e</td>
+                                        <td class="t-additionally">4d0e</td>
+                                        <td class="t-ico-r"> 
+                                            <a class="change icon-edit icon" href="#"><p>Изменить<span></span></p></a>
+                                            <a class="close icon-cross icon" href="#"><p>Удалить<span></span></p></a>
+                                        </td>
+                                    </tr>
+                                    <!--Item End---> 
+                                </table>
+                               
+                                </div>
+                                <div class="button-block clear">
+                                    <button class="loading-pairs">Загрузка пар</button>
+                                    <div class="right">
+                                        <button class="add-group">Создать группу</button>
+                                        <button class="new-user"><i class="icon-add"></i>Новый пользователь</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <!-------------------------------->
+                        <!--------      Tab 5      ------->
+                        <!-------------------------------->
+                        <li class="tab-5">
+                            <input type="radio" name="tabs" id="tab-5">
+                            <label for="tab-5">Задачи <span>1</span></label>
+                            <div class="tab-content">
+                                <div class="tab-content-all demo-y">
+                                    <!--Item Begin--->
+                                    <div class="tab-block clear">
+                                        <div class="tittle">Название задачи</div>
+                                        <p class="info">Описание задачи</p>
+                                        <div class="ico-block">                           
+                                            <a id="close" class="icon-cross icon" href="#"><p>Удалить<span></span></p></a>
+                                        </div>
+                                    </div>
+                                    <!--Item End--->  
+                                     <!--Item Begin--->
+                                    <div class="tab-block clear">
+                                        <div class="tittle">Название задачи</div>
+                                        <p class="info">Описание задачи</p>
+                                        <div class="ico-block">                           
+                                            <a id="close" class="icon-cross icon" href="#"><p>Удалить<span></span></p></a>
+                                        </div>
+                                    </div>
+                                    <!--Item End--->                         
+                                </div><!--End tab-content-all-->
+                                <div class="button-block clear">
+                                	<button><i class="icon-add"></i>Добавить задачу</button>
+                                </div>
+                            </div>
+                        </li>
+                         <div class="clear"></div>
+                    </ul><!---End tabs-->
+                    <div class="clear"></div>
+        		</div><!---End #tab-->
+       
+        </div>
+        </section>
+        
+			
+			
+			
+       <!-- custom scrollbar plugin -->
+	<script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+	
+	<script>
+		(function($){
+			$(window).load(function(){
+				
+				$.mCustomScrollbar.defaults.theme="light-2"; //set "light-2" as the default theme
+				
+				$(".demo-y").mCustomScrollbar();
+				
+				$(".demo-x").mCustomScrollbar({
+					axis:"x",
+					advanced:{autoExpandHorizontalScroll:true}
+				});
+				
+				$(".demo-yx").mCustomScrollbar({
+					axis:"yx"
+				});
+				
+				$(".scrollTo a").click(function(e){
+					e.preventDefault();
+					var $this=$(this),
+						rel=$this.attr("rel"),
+						el=rel==="content-y" ? ".demo-y" : rel==="content-x" ? ".demo-x" : ".demo-yx",
+						data=$this.data("scroll-to"),
+						href=$this.attr("href").split(/#(.+)/)[1],
+						to=data ? $(el).find(".mCSB_container").find(data) : el===".demo-yx" ? eval("("+href+")") : href,
+						output=$("#info > p code"),
+						outputTXTdata=el===".demo-yx" ? data : "'"+data+"'",
+						outputTXThref=el===".demo-yx" ? href : "'"+href+"'",
+						outputTXT=data ? "$('"+el+"').find('.mCSB_container').find("+outputTXTdata+")" : outputTXThref;
+					$(el).mCustomScrollbar("scrollTo",to);
+					output.text("$('"+el+"').mCustomScrollbar('scrollTo',"+outputTXT+");");
+				});
+				
+			});
+		})(jQuery);
+	</script>
+	</body>
+</html>

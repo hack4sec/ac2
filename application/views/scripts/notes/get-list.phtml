@@ -1,0 +1,8 @@
+<?foreach ($this->notes as $note):?>
+    <div class="txt-block clear" id="note<?=$note['id']?>">
+        <div id="spanNote<?=$note['id']?>"><?=htmlspecialchars($note['content'])?></div>
+        <textarea class="noteTextarea" id="textareaNote<?=$note['id']?>" onblur="editNoteDone(<?=$note['id']?>);"><?=htmlspecialchars($note['content'])?></textarea>
+        <a class="icon-cross icon close" href="#" onclick="deleteNote(<?=$note['id']?>);return false;" id="deleteNote<?=$note['id']?>"></a>
+        <a class="icon-edit icon change" href="#" onclick="editNote(<?=$note['id']?>);return false;" id="editNote<?=$note['id']?>"><p><?=$this->translate('L_CHANGE');?><span></span></p></a>
+    </div>
+<?endforeach;?>

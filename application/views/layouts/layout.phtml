@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title><?=$this->translate('L_AC_TITLE')?> <?=Zend_Registry::get('config')->version?></title>
+
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="/css/fonts.css" />
+    <link rel="stylesheet" type="text/css" href="/css/modal.css" />
+
+    <link rel="stylesheet" type="text/css" href="/css/remodal.css" />
+    <link rel="stylesheet" href="/css/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="/js/jquery-ui.min.css">
+    <link rel="stylesheet" href="/js/jquery-ui.theme.min.css">
+    <link rel="stylesheet" href="/js/jquery-ui.structure.min.css">
+
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/favicon.png" type="image/x-icon">
+
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="/js/jquery-ui.min.js"></script>
+
+    <script type="text/javascript" src="/js/remodal.js"></script>
+    <script type="text/javascript" src="/js/form.js"></script>
+    <script type="text/javascript" src="/js/accordion.js"></script>
+
+    <script type="text/javascript" src="/js/funcs.js?t=<?=time()?>"></script>
+</head>
+<body>
+    <header id="header-index">
+        <section class="top clear">
+            <a href="/" class="logo"><img src="/images/logo_<?=Zend_Registry::get('config')->locale?>.png"/></a>
+            <ul class="bread_crumbs">
+                <li>——</li>
+                <li><a href="/">Все проекты</a></li>
+
+                <?if (isset($this->upMenuData['project'])):?>
+                <li>→</li>
+                <li>
+                    <a href="/servers/index/project_id/<?=$this->upMenuData['project']->id?>"><?=$this->upMenuData['project']->name?></a>
+                </li>
+                <?endif?>
+            </ul>
+            <div class="notes"><span>Заметки</span></div>
+        </section><!--End .top-->
+    </header><!--End header-->
+
+    <div class="notes-active">
+        <div class="demo-y">
+            <div class="txt-block clear">
+                Скрипт прочтения писем не фильтрует принимаемый параметр id, что позволяет нарушить целостность структуры
+                <a class="icon-cross icon close" href="#"></a>
+                <a class="icon-edit icon change" href="#"><p>Изменить<span></span></p></a>
+            </div>
+            <div class="txt-block clear">
+                Скрипт прочтения писем не фильтрует принимаемый параметр id, что позволяет нарушить целостность структуры
+                <a class="icon-cross icon close" href="#"></a>
+                <a class="icon-edit icon change" href="#"><p>Изменить<span></span></p></a>
+            </div>
+            <div class="txt-block clear">
+                Скрипт прочтения писем не фильтрует принимаемый параметр id, что позволяет нарушить целостность структуры
+                <a class="icon-cross icon close" href="#"></a>
+                <a class="icon-edit icon change" href="#"><p>Изменить<span></span></p></a>
+            </div>
+            <div class="txt-block clear">
+                Скрипт прочтения писем не фильтрует принимаемый параметр id, что позволяет нарушить целостность структуры
+                <a class="icon-cross icon close" href="#"></a>
+                <a class="icon-edit icon change" href="#"><p>Изменить<span></span></p></a>
+            </div>
+            <div class="txt-block clear">
+                Скрипт прочтения писем не фильтрует принимаемый параметр id, что позволяет нарушить целостность структуры
+                <a class="icon-cross icon close" href="#"></a>
+                <a class="icon-edit icon change" href="#"><p>Изменить<span></span></p></a>
+            </div>
+            <div class="txt-block clear">
+                Скрипт прочтения писем не фильтрует принимаемый параметр id, что позволяет нарушить целостность структуры
+                <a class="icon-cross icon close" href="#"></a>
+                <a class="icon-edit icon change" href="#"><p>Изменить<span></span></p></a>
+            </div>
+        </div>
+        <div id="bottom">
+            <form method="post">
+                <textarea placeholder="Текст новой заметки"></textarea>
+                <button>Добавить заметку</button>
+            </form>
+        </div><!--End #bottom-->
+    </div><!--End notes-active-->
+
+    <section id="main" class="clear">
+        <div id="servers" class="demo-y">
+            <ul id="menu">
+                <li><a href="#">Сервера <sup>(26)</sup></a></li>
+                <li><a href="#">Домены <sup>(26)</sup> </a></li>
+                <li><a href="#">Веб-Приложения <sup>(26)</sup></a></li>
+                <li><a href="#">Программное обеспечение <sup>(122)</sup></a></li>
+                <li><a href="#">Файлы <sup>(67)</sup></a></li>
+                <li><a href="#">Пользователи <sup>(12)</sup></a></li>
+            </ul>
+        </div>
+
+        <?php echo $this->layout()->content ?>
+    </section>
+
+    <!-- custom scrollbar plugin -->
+    <script src="/js/jquery.mCustomScrollbar.concat.min.js"></script>
+</body>
+</html>

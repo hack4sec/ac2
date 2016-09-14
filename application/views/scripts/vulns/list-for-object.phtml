@@ -1,0 +1,16 @@
+<?foreach($this->vulns as $vuln):?>
+<div id="vulnInView<?=$vuln->id?>">
+    <!--Item Begin--->
+    <div class="tab-block clear"  style="border-left:10px solid <?=$this->risksModel->get($vuln->risk_level_id)->color?>;">
+        <!--div class="tittle"><?=$vuln->name?></div-->
+
+<div class="tittle"><?=$vuln->name?> <br/><!--span class="gray">SQL-инъекция при прочтении собщения</span--></div>
+<p class="info"><?=nl2br(htmlspecialchars($vuln->description))?></p>
+        <div class="ico-block">
+            <div id="editVuln<?=$vuln['id']?>" class="tab-block-change icon-edit icon-edit2 icon" onclick="openVulnEditForm(<?=$vuln['id']?>)""><p><?=$this->translate('L_CHANGE');?><span></span></p></div>
+            <div id="deleteVuln<?=$vuln['id']?>" class="icon-cross icon tab-block-close close-id" onclick="vulnDelete(<?=$vuln['id']?>, '<?=$vuln['name']?>')""><p><?=$this->translate('L_DELETE');?><span></span></p></div>
+        </div>
+    </div>
+    <!--Item End--->
+</div>
+<?endforeach?>

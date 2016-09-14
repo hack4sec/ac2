@@ -1,0 +1,22 @@
+<form action="/files/edit/" method="POST" id="fileEditForm" enctype="multipart/form-data">
+    <?=$this->element->id?>
+    <?=$this->element->object_id?>
+    <?=$this->element->type?>
+    <table>
+        <tr>
+            <td colspan="2">
+                <?=$this->element->comment->getLabel()?>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <?=$this->element->comment?>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <?=$this->element->button?>
+            </td>
+        </tr>
+    </table>
+</form>

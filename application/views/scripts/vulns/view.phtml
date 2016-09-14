@@ -1,0 +1,21 @@
+<style>
+    #content {
+        top: 20px;
+    }
+    #content .top-block{
+        padding: 30px 40px;
+    }
+</style>
+<div id="content">
+    <div class="top-block clear">
+        <h2> <?=$this->vuln['name']?>
+            <i class="icon-edit cursor" id="vulnEdit<?=$this->vuln['id']?>" onclick="openVulnEditForm(<?=$this->vuln['id']?>)"></i>
+        </h2>
+        <h3 class="m-t-20"><?=$this->translate('L_DESCRIPTION')?></h3>
+        <p><?=$this->vuln['description']?></p>
+        <h3 class="m-t-20"><?=$this->translate('L_EXP_LINK')?></h3>
+        <p>
+            <a target="_blank" href="<?=$this->vuln['exploit_link']?>"><?=$this->vuln['exploit_link']?></a>
+        </p>
+    </div><!--End .top-block-->
+</div><!--End #content-->

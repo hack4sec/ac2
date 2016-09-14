@@ -1,0 +1,53 @@
+<style>
+    #content {
+        top: 20px;
+    }
+    #content .top-block{
+        padding: 30px 40px;
+    }
+</style>
+<div id="content">
+    <div class="top-block clear">
+        <h2> <?=$this->spo['name']?> (<?=$this->spo['proto']?>/<?=$this->spo['port']?>)
+            <i class="icon-edit cursor" id="spoEdit<?=$this->spo['id']?>" onclick="openSoftwareEditForm(<?=$this->spo['id']?>)"></i>
+        </h2>
+        <p class="iconsViewBlock">
+            <?if ($this->spo['checked']):?>
+                <span class="fa fa-check-circle serverCheckedIcon"  title="<?=$this->translate('L_CHECKED');?>"></span>
+            <?endif?>
+            <?if ($this->spo['ghost']):?>
+                <span class="fa fa-cloud serverCheckedIcon"  title="<?=$this->translate('L_GHOST');?>"></span>
+            <?endif?>
+        </p>
+        <h3 class="m-t-20">Версия</h3>
+        <p>
+            <?if ($this->spo['version']):?>
+                <?if ($this->spo['version_old']):?>
+                    <font color="red" title="<?=$this->translate('L_OLD_VERSION');?>"><?=$this->spo['version']?></font>
+                <?else:?>
+                    <font color="green" title="<?=$this->translate('L_LAST_VERSION');?>"><?=$this->spo['version']?></font>
+                <?endif?>
+
+            <?else:?>
+                <div title="<?=$this->translate('L_VERSION_UNKNOWN');?>">v.?</div>
+            <?endif?>
+        </p>
+        <h3 class="m-t-20"><?=$this->translate('L_DEVELOPER')?></h3>
+        <p><?=$this->spo['vendor_site']?></p>
+
+        <h3 class="m-t-20"><?=$this->translate('L_BANNER')?></h3>
+        <p><?=$this->spo['banner']?></p>
+
+        <h3 class="m-t-20"><?=$this->translate('L_COMMENT')?></h3>
+        <p><?=$this->spo['comment']?></p>
+
+        <br/>
+        <a id="childUsers" href="#user-openlist-FILTER-server-software/<?=$this->server['id']?>/<?=$this->spo['id']?>/0"><?=$this->translate('L_USERS')?> (<?=$this->usersCount?>)</a>
+        &nbsp;&nbsp;&nbsp;
+        <a id="childVulns" href="#vuln-openlist-FILTER-server-software/<?=$this->server['id']?>/<?=$this->spo['id']?>"><?=$this->translate('L_VULNS')?> (<?=$this->vulnsCount?>)</a>
+        &nbsp;&nbsp;&nbsp;
+        <a id="childTasks" href="#task-openlist-FILTER-server-software/<?=$this->server['id']?>/<?=$this->spo['id']?>"><?=$this->translate('L_TASKS')?> (<?=$this->tasksCount?>)</a>
+        &nbsp;&nbsp;&nbsp;
+        <a id="childFiles" href="#file-openlist-FILTER-server-software/<?=$this->server['id']?>/<?=$this->spo['id']?>"><?=$this->translate('L_FILES')?> (<?=$this->filesCount?>)</a>
+    </div><!--End .top-block-->
+</div><!--End #content-->

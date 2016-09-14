@@ -1,0 +1,64 @@
+<form action="/users/export/" method="POST" id="usersExportForm">
+    <?=$this->element->group_id?>
+    <table>
+        <tr>
+            <td><?=$this->element->login->getLabel()?></td>
+            <td><?=$this->element->login?></td>
+        </tr>
+        <tr>
+            <td><?=$this->element->email->getLabel()?></td>
+            <td><?=$this->element->email?></td>
+        </tr>
+        <?if (isset($this->element->home_dir)):?>
+        <tr>
+            <td><?=$this->element->home_dir->getLabel()?></td>
+            <td><?=$this->element->home_dir?></td>
+        </tr>
+        <?endif?>
+        <?if (isset($this->element->shell)):?>
+        <tr>
+            <td><?=$this->element->shell->getLabel()?></td>
+            <td><?=$this->element->shell?></td>
+        </tr>
+        <?endif?>
+        <tr>
+            <td><?=$this->element->vip->getLabel()?></td>
+            <td><?=$this->element->vip?></td>
+        </tr>
+        <tr>
+            <td><?=$this->element->alg->getLabel()?></td>
+            <td><?=$this->element->alg?></td>
+        </tr>
+        <tr>
+            <td><?=$this->element->hash->getLabel()?></td>
+            <td><?=$this->element->hash?></td>
+        </tr>
+        <tr>
+            <td><?=$this->element->salt->getLabel()?></td>
+            <td><?=$this->element->salt?></td>
+        </tr>
+        <tr>
+            <td><?=$this->element->password->getLabel()?></td>
+            <td><?=$this->element->password?></td>
+        </tr>
+        <tr>
+            <td><?=$this->element->delimiter->getLabel()?></td>
+            <td><?=$this->element->delimiter?></td>
+        </tr>
+        <tr>
+            <td><?=$this->element->wpasswords->getLabel()?></td>
+            <td><?=$this->element->wpasswords?></td>
+        </tr>
+        <tr>
+            <td><?=$this->element->wopasswords->getLabel()?></td>
+            <td><?=$this->element->wopasswords?></td>
+        </tr>
+        <tr>
+            <td><?=$this->element->only_vip->getLabel()?></td>
+            <td><?=$this->element->only_vip?></td>
+        </tr>
+        <tr>
+            <td colspan="2"><?=$this->element->submit?></td>
+        </tr>
+    </table>
+</form>

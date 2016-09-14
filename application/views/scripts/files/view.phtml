@@ -1,0 +1,17 @@
+<style>
+    #content {
+        top: 20px;
+    }
+    #content .top-block{
+        padding: 30px 40px;
+    }
+</style>
+<div id="content">
+    <div class="top-block clear">
+        <h2> <?=$this->file['name']?>
+            <i class="icon-edit cursor" id="fileEdit<?=$this->file['id']?>" onclick="openFileEditForm(<?=$this->file['id']?>)"></i>
+        </h2>
+        <h3 class="m-t-20"><?=$this->translate('L_COMMENT')?></h3>
+        <p><?=$this->file['comment']?></p>
+    </div><!--End .top-block-->
+</div><!--End #content-->

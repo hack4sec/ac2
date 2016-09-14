@@ -1,0 +1,38 @@
+<div class="<?=$this->server->getCssClassByVulns()?> status"></div>
+<div class="clear info-block">
+    <table class="serverRowTable">
+        <tr>
+            <td class="serverIconsCol">
+                <?if ($this->server['checked']):?>
+                    <span class="fa fa-check-circle serverCheckedIcon"  title="<?=$this->translate('L_CHECKED');?>"></span>
+                <?endif?>
+            </td>
+            <td class="serverRowTableName">
+                <a href="#server-view-<?=$this->server['id']?>" id="serverLink<?=$this->server['id']?>" class="tittle cursor">
+                    <?=$this->server['name']?>
+                </a>
+            </td>
+            <td class="serverRowTableIp">
+                <?=$this->server['ip']?>
+            </td>
+            <td>
+                <?if ($this->server['os_id']):?>
+                    <?=$this->os[$this->server['os_id']]?> <?=$this->server['os_version']?></p>
+                <?endif?>
+            </td>
+            <?if (strlen($this->server['comment']) > Zend_Registry::get('config')->str_tables_limits->comments):?>
+                <td class="serverRowTableComment" title="<?=htmlspecialchars($this->server['comment'], ENT_QUOTES)?>">
+                    <?=mb_substr($this->server['comment'], 0, Zend_Registry::get('config')->str_tables_limits->comments)?>...
+                </td>
+            <?else:?>
+                <td class="serverRowTableComment">
+                    <?=$this->server['comment']?>
+                </td>
+            <?endif?>
+        </tr>
+    </table>
+</div>
+<div class="ico-block clear">
+    <a id="serverEdit<?=$this->server['id']?>" class="icon-edit icon change" href="#" onclick="openServerEditForm(<?=$this->projectId?>, <?=$this->server['id']?>);return false;"><p><?=$this->translate('L_CHANGE');?><span></span></p></a>
+</div>
+<a class="icon-cross icon close" id="deleteServer<?=$this->server['id']?>"  onclick="serverDelete(<?=$this->server['id']?>, '<?=$this->server['name']?>');return false;"></a>

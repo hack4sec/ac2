@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+	<title>Аналитический центр</title>
+ 
+    <link rel="stylesheet" type="text/css" href="css/style.css" />  
+    <link rel="stylesheet" type="text/css" href="css/fonts.css" />  
+    <link rel="stylesheet" type="text/css" href="css/modal.css" />  
+ 
+    <link rel="stylesheet" type="text/css" href="css/remodal.css" />
+    
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+	<link rel="shortcut icon" href="/favicon.png" type="image/x-icon">
+    
+    <script type="text/javascript" src="js/jquery.js"></script>    
+    <script type="text/javascript" src="js/remodal.js"></script> 
+    <script type="text/javascript" src="js/form.js"></script> 
+    <script type="text/javascript" src="js/accordion.js"></script>
+</head>
+	<body>
+    	<header id="header-index">
+            <section class="top clear">
+                <a href="#" class="logo"><img src="images/logo.png"/></a>
+                <ul class="bread_crumbs">
+                    <li>——</li>
+                    <li>Все проекты</li>
+                </ul>
+            </section><!--End .top-->
+            
+            <section class="bottom clear">
+            	<div class="search">
+            		<span class="icon-search"></span>
+            		<input onblur="this.value=(this.value=='')?this.title:this.value;" onfocus="this.value=(this.value==this.title)?'':this.value;" value="Поиск проектов" title="Поиск проектов" type="text" />
+            	</div><!--End .search-->
+            
+            	<div class="button-block">
+            		<div class="fileform">
+                         <a href="#modal"><span class="icon-dwload"></span> Загрузить хэш</a>
+    				</div>
+    				<div class="fileform import">
+    					<input id="import" class="upload" type="file" name="import" />
+                        <span class="icon-import"></span>
+                        Импорт
+    				</div>
+    				<button><span class="icon-new"></span>Новый проект</button>
+            	</div><!--End .button-block-->
+            </section><!--End .bottom-->
+        </header><!--End header-->
+        
+        <section id="index-content" class="clear">
+            <fieldset>
+                <legend>Последние проекты</legend>
+            </fieldset>
+            
+            <!--Item Begin--->
+            <div class="project clear">
+            	<div href="#" class="clear info-block">
+                    <a href="#" class="tittle">Демонстрационный проект</a>
+                    <p class="info">Исследование вымышленной компании Demo</p>
+                </div>
+                <div class="ico-block clear">
+                    <a id="report" class="icon-doc icon" href="#report"><p>Отчет<span></span></p></a>
+                    <a id="change" class="icon-edit icon"><p>Изменить<span></span></p></a>
+                    <a id="download" class="icon-dload icon"><p>Скачать<span></span></p></a>
+                </div>
+                 <a id="close" class="icon-cross icon"></a>
+            </div>
+            <!--Item End--->
+            
+            <!--Item Begin--->
+            <div class="project clear">
+            	<div href="#" class="clear info-block">
+                    <a href="#" class="tittle">Демонстрационный проект</a>
+                    <p class="info">Исследование вымышленной компании Demo</p>
+                </div>
+                <div class="ico-block clear">
+                    <a id="report" class="icon-doc icon" href="#report"><p>Отчет<span></span></p></a>
+                    <a id="change" class="icon-edit icon" href="#"><p>Изменить<span></span></p></a>
+                    <a id="download" class="icon-dload icon" href="#"><p>Скачать<span></span></p></a>
+                </div>
+                 <a id="close" class="icon-cross icon" href="#"></a>
+            </div>
+            <!--Item End--->
+            
+            <fieldset>
+                <legend>май 2015</legend>
+            </fieldset>
+            <!--Item Begin--->
+            <div class="project clear">
+            	<div href="#" class="clear info-block">
+                    <a class="tittle" href="#">Третий демо-проект, название тоже может быть на несколько строк</a>
+                    <p class="info">Исследование вымышленной компании Demo Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
+                </div>
+                <div class="ico-block clear">
+                    <a id="report" class="icon-doc icon"  href="#report"><p>Отчет<span></span></p></a>
+                    <a id="change" class="icon-edit icon" href="#"><p>Изменить<span></span></p></a>
+                    <a id="download" class="icon-dload icon" href="#"><p>Скачать<span></span></p></a>
+                </div>
+                 <a id="close" class="icon-cross icon" href="#"></a>
+            </div>
+            <!--Item End--->
+            
+            <!--Item Begin--->
+            <div class="project clear">
+            	<div href="#" class="clear info-block">
+                    <a href="#" class="tittle">Демонстрационный проект</a>
+                    <p class="info">Исследование вымышленной компании Demo</p>
+                </div>
+                <div class="ico-block clear">
+                    <a id="report" class="icon-doc icon" href="#report"><p>Отчет<span></span></p></a>
+                    <a id="change" class="icon-edit icon" href="#"><p>Изменить<span></span></p></a>
+                    <a id="download" class="icon-dload icon" href="#"><p>Скачать<span></span></p></a>
+                </div>
+                 <a id="close" class="icon-cross icon" href="#"></a>
+            </div>
+            <!--Item End--->
+            <!--Item Begin--->
+            <div class="project clear">
+            	<div href="#" class="clear info-block">
+                    <a href="#" class="tittle">Демонстрационный проект</a>
+                    <p class="info">Исследование вымышленной компании Demo</p>
+                </div>
+                <div class="ico-block clear">
+                    <a id="report" class="icon-doc icon"  href="#report"><p>Отчет<span></span></p></a>
+                    <a id="change" class="icon-edit icon" href="#"><p>Изменить<span></span></p></a>
+                    <a id="download" class="icon-dload icon" href="#"><p>Скачать<span></span></p></a>
+                </div>
+                 <a id="close" class="icon-cross icon" href="#"></a>
+            </div>
+            <!--Item End--->
+            
+            <!--Item Begin--->
+            <div class="project clear">
+            	<div href="#" class="clear info-block">
+                    <a href="#" class="tittle">Демонстрационный проект</a>
+                    <p class="info">Исследование вымышленной компании Demo</p>
+                </div>
+                <div class="ico-block clear">
+                    <a id="report" class="icon-doc icon" href="#report"><p>Отчет<span></span></p></a>
+                    <a id="change" class="icon-edit icon" href="#"><p>Изменить<span></span></p></a>
+                    <a id="download" class="icon-dload icon" href="#"><p>Скачать<span></span></p></a>
+                </div>
+                 <a id="close" class="icon-cross icon" href="#"></a>
+            </div>
+            <!--Item End--->
+        </section>
+        
+        <!--------Mobal--------->
+        <div style="text-align: left;" class="remodal" data-remodal-id="modal">
+		   <button data-remodal-action="close" class="remodal-close float:right"></button>
+		   <h2>Страница загрузки хешей или любой другой дроп с формами</h2>
+           <p>Загружаемый файл должен состоять из строк вида "хеш:(соль:)пароль", где ":" является разделителем который вы можете произвольно изменять.
+Расширение файл может иметь любое. </p>
+ 
+			<div class="form-container">
+     			<form class="form" method="post" >
+                      <div id="field5-container" class="field f_100 clear">
+                           <label for="field5">
+                                Текстовая строка
+                           </label>
+                           <input type="text" name="field5" id="field5" required>
+                      </div>
+           
+                      <div id="field2-container" class="field f_100 clear">
+                           <label for="field2">
+                                Выбор значения
+                           </label>
+                           
+                           <div class="select clear">
+                                <a href="#" class="slct">Значение не выбрано</a>
+                                <ul class="drop">
+                                    <li>Значение 1</li>
+                                    <li>Значение 2</li>
+                                    <li>Значение 3</li>
+                                </ul>
+                                <input type="hidden" id="select" />
+                            </div>	 
+                        </div>
+           
+                        <div id="field3-container" class="field f_100 clear">
+                           <label for="field3">
+                                Загрузка файла
+                           </label>
+                           <div class="type_file">
+                                <input type="file" size="28" class="inputFile" onchange='document.getElementById("fileName").value=this.value' />
+                                <div class="fonTypeFile"><span>Обзор</span></div>
+                                <input type="text" class="inputFileVal" readonly id="fileName" placeholder="Файл не выбран" />
+                            </div>
+                        </div>
+                        
+                        <div id="field1-container" class="field f_100 clear">
+                               <label for="field1">
+                                    Текстовое поле
+                               </label>
+                               <textarea rows="5" cols="20" name="field1" id="field1" required placeholder=""></textarea>
+                         </div>
+                         
+          				 <div id="field6-container" class="field f_100 clear">
+               				<div class="checkbox clear">
+               					<div class="clear">
+                                    <input id="check1" type="checkbox" name="check" value="check1">
+                                    <label for="check1">Пассивный чек бокс</label>
+                                </div>
+								<div class="clear">
+                                    <input id="check2" type="checkbox" name="check" value="check2">
+                                    <label for="check2">Наведенный чек бокс</label>
+                                </div>
+                                <div class="clear">
+                                    <input id="check3" type="checkbox" name="check" value="check3">
+                                    <label for="check3">Нажатый чек бокс</label>
+                                </div>
+                            </div>
+          				</div>
+           
+                        <div id="form-submit" class="field f_100 clear">
+                               <input type="submit" value="Добавить">
+                        </div>
+                    </form>
+             </div>
+		</div><!--------End Mobal--------->
+
+
+        <!--------Report Modal--------->
+        <div style="text-align: left;" class="remodal report-modal" data-remodal-id="report">
+		   <button data-remodal-action="close" class="remodal-close float:right"></button>
+		   <h2>Отчёт по проекту "Демонстрационный проект"</h2>
+           <p>СЕРВЕРА</p>
+           
+           <div id='report-modal'>
+                <ul>
+                    <!--Item Begin--->
+                    <li class='has-sub tittle-1'><a href='#'>secondary.demo.zone <div class="c"></div></a>
+                        <ul class="level-1">
+                           <p>secondary.demo.zone</p>
+                           <p>secondary.demo.zone</p>
+                        </ul>
+                   </li>
+                   <!--Item End--->
+                   
+                    <!--Item Begin--->
+                    <li class='has-sub tittle-1'><a href='#'>mainserver.demo.zone <div class="c"></div></a>
+                        <ul class="level-1">
+                            <p>
+                                <b>IP:</b> 0.0.0.1         
+                                <b>ОС:</b> FreeBSD
+                            </p>
+                            <p>    
+                                Cкрипт прочтения писем не фильтрует принимаемый параметр id, что позволяет нарушить целостность SQL-запроса, занимающегося выборкой писем из БД 
+                            </p>
+                            
+                            <!----item--Второй пункт вложенность 1--->
+                             <li class='has-sub tittle-2'>
+                             	<a href='#'>
+                                	<fieldset>
+                                        <legend>Отчёт сканера nmap</legend>
+                                    </fieldset>
+            						<div class="c"></div>
+            					</a>
+                                <ul class="level-3">
+                                   <p>Отчёт сканера nmap</p>
+                                </ul>
+                             </li>
+                             <!----/item----->
+                             
+                             <!----item--Второй пункт вложенность 1--->
+                             <li class='has-sub tittle-2'>
+                             <a href='#'>
+                                	<fieldset>
+                                        <legend>Обнаруженные пользователи</legend>
+                                    </fieldset>
+            						<div class="c"></div>
+            					</a>
+                                <ul class="level-3">
+                                   <p>Обнаруженные пользователи</p>
+                                </ul>
+                             </li>
+                             <!----/item----->
+                             
+                             <!----item--Второй пункт вложенность 1--->
+                             <li class='has-sub tittle-2'>
+                                 <a href='#'>
+                                	<fieldset>
+                                        <legend>Доменные имена</legend>
+                                    </fieldset>
+            						<div class="c"></div>
+            					</a>
+                                
+                                <!--Второй пункт вложенность 1.1-->
+                                <ul class="level-3">
+                                   <li>
+                                       <p class="tittle-3">mail.demo.com</p>
+                                       <p>Веб-интерфейс для работы с почтой</p>
+                                   </li>
+                                   
+                                   <!--Второй пункт вложенность 1.1-->
+                                   <li class='has-sub tittle-3'>
+                                   <a href='#'>
+                                        <fieldset>
+                                            <legend>mail.demo.com </legend>
+                                        </fieldset>
+                                        <p>Веб-интерфейс для работы с почтой</p>
+                                        <div class="c"></div>
+                                    </a>
+                                     <ul class="level-3">
+                                        <li>
+                                            <p class="tittle-3">Основное приложение</p>
+                                            <p>Сайт производителя: http://demo.com</p>
+                                            <p>Версия:</p>
+                                            <p>Для доступа требуется авторизация: Да</p>
+                                            <p>Использует перезапись URL: Да</p>
+                                            <p>Алгоритм хеширования: MD5</p>
+                                            <p>Описание: Написанный на Ruby веб-интерфейс для работы с почтой</p>
+                                        </li>
+                                      </ul>
+                                    </li>
+                                    
+                                    <!--Второй пункт вложенность 1.1-->
+                                    <li class='has-sub tittle-3'>
+                                    <a href="#">
+                                        <fieldset>
+                                            <legend>mail.demo.com  </legend>
+                                        </fieldset>
+                                        <p>Сайт производителя: http://demo.com</p>
+                                        <p>Веб-интерфейс для работы с почтой</p>
+                                        <div class="c"></div>
+                                    </a>
+                                    
+                                    <!--Второй пункт вложенность 1.1.1-->
+                                     <ul class="level-3">
+                                        <li class="has-sub">
+                                             <a href='#'>
+                                                <fieldset>
+                                                    <legend>Основное приложение </legend>
+                                                </fieldset>
+                                                <p>Сайт производителя: http://demo.com</p>
+                                                <p>Версия:</p>
+                                                <p>Для доступа требуется авторизация: Да</p>
+                                                <p>Использует перезапись URL: Да</p>
+                                                <p>Алгоритм хеширования: MD5</p>
+                                                <p>Описание: Написанный на Ruby веб-интерфейс для работы с почтой</p>
+                                                <div class="c"></div>
+                                            </a>
+                                            <!--Второй пункт вложенность 1.1.1.1-->
+                                            <ul class="level-3">
+                                               <li><p>Обнаруженные пользователи</p></li>
+                                            </ul>
+                                        </li><!--End .level-3-->
+                                      </ul>
+                                    </li><!--End .level-3-->
+                                 </ul>
+                              </li><!--End .level-2-->
+                          </ul>
+                      </li><!--End .level-1-->
+                      <!--Item End--->
+               
+                    <!--Item Begin--->
+                    <li class="tittle-1 level-1">secondary.demo.zone</li>
+                    <!--Item End--->
+                    
+                </ul>
+            </div>
+ 
+			
+		</div><!--------End Mobal--------->
+	</body>
+</html>

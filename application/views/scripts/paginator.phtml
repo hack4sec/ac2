@@ -1,0 +1,47 @@
+<?php if ($this->pageCount): ?>
+<ul id="pagination" class="clear">
+
+        <li>
+            <?php if (isset($this->previous)): ?>
+                <a href="<?php echo $this->url(array('page' => $this->previous)); ?>" onclick="changePage(<?=$this->previous?>);return false;">
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                </a>
+            <?else:?>
+                <a href="#" onclick="return false;">
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                </a>
+            <?php endif; ?>
+        </li>
+
+
+
+    <!-- Нумерованные ссылки на страницы -->
+    <?php foreach ($this->pagesInRange as $page): ?>
+        <?php if ($page != $this->current): ?>
+            <li>
+                <a href="<?php echo $this->url(array('page' => $page)); ?>"  onclick="changePage(<?=$page?>);return false;" id="page<?=$page?>">
+                    <?php echo $page; ?>
+                </a>
+            </li>
+        <?php else: ?>
+            <?php echo $page; ?>
+        <?php endif; ?>
+    <?php endforeach; ?>
+
+
+    <?php if (isset($this->next)): ?>
+        <li>
+            <a href="<?php echo $this->url(array('page' => $this->next)); ?>"  onclick="changePage(<?=$this->next?>);return false;">
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+            </a>
+        </li>
+    <?else:?>
+        <li>
+            <a href="#"  onclick="return false;">
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+            </a>
+        </li>
+    <?endif; ?>
+</ul>
+<?php endif; ?>
+

@@ -1,0 +1,7 @@
+<? if ($this->loaded):?>
+    <?=$this->translate('L_FOUND')?>: <?=$this->results['founded']?><br />
+    <?=$this->translate('L_NOT_FOUND')?>: <?=$this->results['not_founded']?><br />
+    <?=$this->translate('L_STRINGS_PARSING_ERRORS')?>: <?=$this->results['bad_strings']?><br />
+<? else: ?>
+    <?=$this->form->render()?>
+<? endif ?>

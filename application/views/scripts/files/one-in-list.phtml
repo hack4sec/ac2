@@ -1,0 +1,17 @@
+<!--div class="status-green status"></div-->
+<div class="clear info-block">
+    <a id="fileLink<?=$this->file['id']?>" href="#file-view-<?=$this->file['id']?>"  onclick="fileDownload(<?=$this->file['id']?>);return false;" class="tittle"><?=$this->file['name']?></a>
+    <?if (strlen($this->file['comment']) > Zend_Registry::get('config')->str_tables_limits->comments):?>
+        <p class="info" title="<?=htmlspecialchars($this->file['comment'], ENT_QUOTES)?>">
+            <?=mb_substr($this->file['comment'], 0, Zend_Registry::get('config')->str_tables_limits->comments)?>...
+        </p>
+    <?else:?>
+        <p class="info"><?=$this->file['comment']?></p>
+    <?endif?>
+</div>
+<div class="ico-block clear">
+    <a id="editFile<?=$this->file['id']?>" class="icon-edit icon change" href="#" onclick="openFileEditForm(<?=$this->file['id']?>);return false;">
+        <p><?=$this->translate('L_CHANGE');?><span></span></p>
+    </a>
+</div>
+<a id="deleteFile<?=$this->file['id']?>" class="icon-cross icon close" onclick="fileDelete(<?=$this->file['id']?>, '<?=$this->file['name']?>');return false;"></a>

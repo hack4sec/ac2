@@ -1,0 +1,8 @@
+
+
+        <div id="spanNote<?=$this->note['id']?>"><?=htmlspecialchars($this->note['content'])?></div>
+        <textarea class="noteTextarea" id="textareaNote<?=$this->note['id']?>" onblur="editNoteDone(<?=$this->note['id']?>);"><?=htmlspecialchars($this->note['content'])?></textarea>
+        <a class="icon-cross icon close" href="#" onclick="deleteNote(<?=$this->note['id']?>);return false;"></a>
+        <a class="icon-edit icon change" href="#" onclick="editNote(<?=$this->note['id']?>);return false;"><p><?=$this->translate('L_CHANGE');?><span></span></p></a>
+
+

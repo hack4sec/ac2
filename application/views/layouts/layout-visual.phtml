@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title><?=$this->translate('L_AC_TITLE')?> <?=Zend_Registry::get('config')->version?></title>
+
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/jquery-ui.js"></script>
+    <script src="/js/jquery.tree.js"></script>
+    <link rel="stylesheet" href="/css/tree-style.css">
+    <link rel="stylesheet" href="/css/visual.css">
+    <script>
+        $(document).ready(function() {
+            $('.tree').tree_structure({
+                'add_option': true,
+                'edit_option': true,
+                'delete_option': true,
+                'confirm_before_delete': true,
+                'animate_option': false,
+                'fullwidth_option': true,
+                'align_option': 'center',
+                'draggable_option': true
+            });
+        });
+    </script>
+    <style>
+
+    </style>
+</head>
+<body>
+
+
+<?php echo $this->layout()->content ?>
+
+
+<script>
+    $(".accordion-header").click(function() {
+        $(this).toggleClass("active").next(".accordion-content").slideToggle();
+    });
+</script>
+</body>
+</html>

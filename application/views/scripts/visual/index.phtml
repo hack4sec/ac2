@@ -1,0 +1,48 @@
+<div class="overflow">
+    <div>
+        <ul class="tree">
+            <li>
+                <div><?=htmlspecialchars($this->project->name)?></div>
+                <ul>
+                    <?foreach ($this->subnets as $subnet => $ips):?>
+                        <li>
+                            <div title="<?=$this->translate('L_SUBNET')?>">
+                                <img src="/images/subnet.png" class="visualImage"/>
+                                <div><?=$subnet?></div>
+                            </div>
+                            <ul>
+                            <?foreach ($ips as $ip):?>
+                                <li>
+                                    <div title="<?=$this->translate('L_IP')?>">
+                                        <img src="/images/ip.png" class="visualImage"/>
+                                        <div><?=$ip?></div>
+                                    </div>
+                                    <?if (isset($this->domains[$ip]) && $this->domains[$ip]):?>
+                                        <ul>
+                                            <?foreach (Utils::getDomainsFromSubdomains($this->domains[$ip]) as $domain => $subdomains):?>
+                                                <li>
+                                                    <div title="<?=$this->translate('L_ZONE')?>&nbsp;<?=$domain?>">
+                                                        <img src="/images/domain.png" class="visualImage"/>
+                                                        <div><?=$domain?></div>
+                                                    </div>
+                                                    <br />
+                                                    <?foreach ($subdomains as $subdomain):?>
+                                                        <span><?=$subdomain?></span><br/>
+                                                    <?endforeach;?>
+
+                                                </li>
+                                            <?endforeach;?>
+                                        </ul>
+                                    <?endif?>
+                                </li>
+                            <?endforeach;?>
+                            </ul>
+                        </li>
+                    <?endforeach;?>
+
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+

@@ -1,0 +1,33 @@
+<form action="/vulns/add/" method="POST" id="vulnAddForm">
+    <?=$this->element->type?>
+    <?=$this->element->object_id?>
+    <table>
+        <tr>
+            <td><?=$this->element->name->getLabel()?></td>
+            <td><?=$this->element->name?></td>
+        </tr>
+        <tr>
+            <td><?=$this->element->vuln_type_id->getLabel()?></td>
+            <td><?=$this->element->vuln_type_id?></td>
+        </tr>
+        <tr>
+            <td><?=$this->element->risk_level_id->getLabel()?></td>
+            <td><?=$this->element->risk_level_id?></td>
+        </tr>
+        <tr>
+            <td><?=$this->element->exploit_link->getLabel()?></td>
+            <td><?=$this->element->exploit_link?></td>
+        </tr>
+        <tr>
+            <td colspan="2"><?=$this->element->description->getLabel()?></td>
+        </tr>
+        <tr>
+            <td colspan="2"><?=$this->element->description?></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <?=$this->element->button?>
+            </td>
+        </tr>
+    </table>
+</form>

@@ -1,0 +1,58 @@
+<form action="/users/edit/" method="POST" id="userEditForm">
+    <?=$this->element->id?>
+
+    <table>
+        <tr>
+            <td><?=$this->element->group_id->getLabel()?></td>
+            <td><?=$this->element->group_id?></td>
+        </tr>
+        <tr>
+            <td><?=$this->element->login->getLabel()?></td>
+            <td><?=$this->element->login?></td>
+        </tr>
+        <tr>
+            <td><?=$this->element->email->getLabel()?></td>
+            <td><?=$this->element->email?></td>
+        </tr>
+        <?if(isset($this->element->home_dir)):?>
+        <tr>
+            <td><?=$this->element->home_dir->getLabel()?></td>
+            <td><?=$this->element->home_dir?></td>
+        </tr>
+        <?endif?>
+        <?if(isset($this->element->shell_id)):?>
+        <tr>
+            <td><?=$this->element->shell_id->getLabel()?></td>
+            <td><?=$this->element->shell_id?></td>
+        </tr>
+        <?endif?>
+        <tr>
+            <td><?=$this->element->ghost->getLabel()?></td>
+            <td><?=$this->element->ghost?></td>
+        </tr>
+        <tr>
+            <td><?=$this->element->vip->getLabel()?></td>
+            <td><?=$this->element->vip?></td>
+        </tr>
+        <tr>
+            <td valign="top"><?=$this->element->hash->getLabel()?></td>
+            <td><?=$this->element->hash?></td>
+        </tr>
+        <tr>
+            <td valign="top"><?=$this->element->alg_id->getLabel()?></td>
+            <td><?=$this->element->alg_id?></td>
+        </tr>
+        <tr>
+            <td><?=$this->element->salt->getLabel()?></td>
+            <td><?=$this->element->salt?></td>
+        </tr>
+        <tr>
+            <td><?=$this->element->password->getLabel()?></td>
+            <td><?=$this->element->password?></td>
+        </tr>
+        <tr>
+            <td colspan="2"><?=$this->element->button?></td>
+        </tr>
+    </table>
+
+</form>

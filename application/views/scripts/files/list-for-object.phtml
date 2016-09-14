@@ -1,0 +1,14 @@
+<?foreach($this->files as $file):?>
+    <!--Item Begin--->
+    <div class="tab-block clear" id="fileInView<?=$file['id']?>">
+        <div class="tittle">
+            <a href="/files/download/id/<?=$file['id']?>"><?=$file['name']?></a>
+        </div>
+        <p class="info"><?=nl2br(htmlspecialchars($file['comment']))?></p>
+        <div class="ico-block">
+            <div id="editFile<?=$file['id']?>" class="tab-block-change icon-edit icon-edit2 icon" onclick="openFileEditForm(<?=$file['id']?>)"><p><?=$this->translate('L_CHANGE');?><span></span></p></div>
+            <div id="deleteFile<?=$file['id']?>" class="icon-cross icon tab-block-close close-id" onclick="fileDelete(<?=$file['id']?>, '<?=$file['name']?>')"><p><?=$this->translate('L_DELETE');?><span></span></p></div>
+        </div>
+    </div>
+    <!--Item End--->
+<?endforeach?>

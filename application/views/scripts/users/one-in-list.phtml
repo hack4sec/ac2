@@ -1,0 +1,42 @@
+
+    <div class="clear info-block">
+        <!--div class="status-green status"></div-->
+        <table class="usersRowTable">
+            <tr>
+                <td class="usersRowTableIconsCol">
+                    <?if ($this->user['vip']):?>
+                        <span class="fa fa-user serverCheckedIcon"  title="VIP"></span>
+                    <?endif?>
+                    <?if ($this->user['ghost']):?>
+                        <span class="fa fa-cloud serverCheckedIcon"  title="<?=$this->translate('L_GHOST');?>"></span>
+                    <?endif?>
+                </td>
+                <td class="usersRowTableName">
+                    <a id="userLink<?=$this->user['id']?>" href="#user-view-<?=$this->user['id']?>" class="tittle">
+                        <?=$this->user['login']?>
+                    </a>
+                </td>
+                <td class="userRowTableEmail">
+                    <?if (strlen($this->user['email'])):?>
+                        <?=$this->user['email']?>
+                    <?else:?>
+                        &lt;Нет email&gt;
+                    <?endif?>
+                </td>
+                <td class="userRowTablePassword">
+                    <?if (strlen($this->user->getPassword())):?>
+                        <?=$this->user->getPassword()?>
+                    <?else:?>
+                        &lt;Нет пароля&gt;
+                    <?endif?>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="ico-block clear">
+        <a id="editUser<?=$this->user['id']?>" class="icon-edit icon change" href="#" onclick="openUserEditForm(<?=$this->user['id']?>);return false;">
+            <p><?=$this->translate('L_CHANGE');?><span></span></p>
+        </a>
+    </div>
+    <a id="deleteUser<?=$this->user['id']?>" class="icon-cross icon close" onclick="userDelete(<?=$this->user['id']?>, '<?=$this->user['login']?>');return false;"></a>

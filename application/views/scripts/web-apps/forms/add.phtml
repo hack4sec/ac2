@@ -1,0 +1,60 @@
+<form action="/web-apps/add/" method="POST" id="webAppAddForm">
+    <?=$this->element->domain_id?>
+    <table>
+        <tr>
+            <td><?=$this->element->name->getLabel()?></td>
+            <td><?=$this->element->name?></td>
+        </tr>
+        <tr>
+            <td><?=$this->element->url->getLabel()?></td>
+            <td><?=$this->element->url?></td>
+        </tr>
+        <tr>
+            <td><?=$this->element->version->getLabel()?></td>
+            <td><?=$this->element->version?></td>
+        </tr>
+        <tr>
+            <td><?=$this->element->version_old->getLabel()?></td>
+            <td><?=$this->element->version_old?></td>
+        </tr>
+        <tr>
+            <td><?=$this->element->version_unknown->getLabel()?></td>
+            <td><?=$this->element->version_unknown?></td>
+        </tr>
+        <tr>
+            <td><?=$this->element->vendor_site->getLabel()?></td>
+            <td><?=$this->element->vendor_site?></td>
+        </tr>
+        <tr>
+            <td><?=$this->element->need_auth->getLabel()?></td>
+            <td><?=$this->element->need_auth?></td>
+        </tr>
+        <tr>
+            <td><?=$this->element->url_rewrite->getLabel()?></td>
+            <td><?=$this->element->url_rewrite?></td>
+        </tr>
+        <tr>
+            <td><?=$this->element->ghost->getLabel()?></td>
+            <td><?=$this->element->ghost?></td>
+        </tr>
+        <tr>
+            <td><?=$this->element->checked->getLabel()?></td>
+            <td><?=$this->element->checked?></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <?=$this->element->comment->getLabel()?>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <?=$this->element->comment?>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <?=$this->element->button?>
+            </td>
+        </tr>
+    </table>
+</form>

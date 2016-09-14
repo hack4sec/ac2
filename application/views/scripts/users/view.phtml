@@ -1,0 +1,55 @@
+<style>
+    #content {
+        top: 20px;
+    }
+    #content .top-block{
+        padding: 30px 40px;
+    }
+</style>
+<div id="content">
+    <div class="top-block clear">
+        <h2> <?=$this->user['login']?> (<?=$this->user->getGroup()->name?>)
+            <i class="icon-edit cursor" id="spoEdit<?=$this->user['id']?>" onclick="openUserEditForm(<?=$this->user['id']?>)"></i>
+        </h2>
+        <p class="iconsViewBlock">
+            <?if ($this->user['vip']):?>
+                <span class="fa fa-user serverCheckedIcon"  title="<?=$this->translate('L_VIP');?>"></span>
+            <?endif?>
+            <?if ($this->user['ghost']):?>
+                <span class="fa fa-cloud serverCheckedIcon"  title="<?=$this->translate('L_GHOST');?>"></span>
+            <?endif?>
+        </p>
+        <h3 class="m-t-20"><?=$this->translate('L_EMAIL')?></h3>
+        <p>
+            <?=$this->user['email']?>
+        </p>
+
+        <h3 class="m-t-20"><?=$this->translate('L_HOME_DIR')?></h3>
+        <p>
+            <?=$this->user['home_dir']?>
+        </p>
+
+        <h3 class="m-t-20"><?=$this->translate('L_SHELL')?></h3>
+        <p>
+            <?=$this->user->getShell()?>
+        </p>
+
+        <h3 class="m-t-20"><?=$this->translate('L_HASH_SALT_PASS')?></h3>
+        <p>
+            <?=$this->user->getAlg()?><br/>
+
+            <? if (strlen($this->user->getSalt())): ?>
+                <?=$this->user->getHash()?>:<?=$this->user->getSalt()?>
+            <?else:?>
+                <?=$this->user->getHash()?>
+            <?endif?>
+
+            <? if (strlen($this->user->getPassword())): ?>
+                = <?=$this->user->getPassword()?>
+            <?endif?>
+        </p>
+
+
+    </div><!--End .top-block-->
+</div><!--End #content-->
+

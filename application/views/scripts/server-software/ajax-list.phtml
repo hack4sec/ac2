@@ -1,0 +1,63 @@
+<?foreach ($this->paginator as $spo):?>
+    <!--Item Begin--->
+    <div class="project clear" id="spoRow<?=$spo['id']?>">
+        <div class="<?=$spo->getCssClassByVulns()?> status"></div>
+        <div class="clear info-block">
+            <table class="spoRowTable">
+                <tr>
+                    <td class="spoRowTableIconsCol">
+                        <?if ($spo['checked']):?>
+                            <span class="fa fa-check-circle serverCheckedIcon"  title="<?=$this->translate('L_CHECKED');?>"></span>
+                        <?endif?>
+                        <?if ($spo['ghost']):?>
+                            <span class="fa fa-cloud serverCheckedIcon"  title="<?=$this->translate('L_GHOST');?>"></span>
+                        <?endif?>
+                    </td>
+                    <td class="spoRowTableName" title="<?=$spo['vendor_site']?>">
+                        <a id="spoLink<?=$spo['id']?>" href="#spo-view-<?=$spo['id']?>" class="tittle">
+                            <?=$spo['name']?>
+                            (<?=$spo['proto']?>/<?=$spo['port']?>)
+                        </a>
+                    </td>
+                    <td class="spoRowTableVersion">
+                        <?if ($spo['version']):?>
+                            <?if ($spo['version_old']):?>
+                                <font color="red" title="<?=$this->translate('L_OLD_VERSION');?>"><?=$spo['version']?></font>
+                            <?else:?>
+                                <font color="green" title="<?=$this->translate('L_LAST_VERSION');?>"><?=$spo['version']?></font>
+                            <?endif?>
+
+                        <?else:?>
+                            <div title="<?=$this->translate('L_VERSION_UNKNOWN');?>">v.?</div>
+                        <?endif?>
+                    </td>
+                    <td class="spoRowTableBanner">
+                        <?=$spo['banner']?>
+                    </td>
+                    <?if (strlen($spo['comment']) > Zend_Registry::get('config')->str_tables_limits->comments):?>
+                        <td class="spoRowTableComment" title="<?=htmlspecialchars($spo['comment'], ENT_QUOTES)?>">
+                            <?=mb_substr($spo['comment'], 0, Zend_Registry::get('config')->str_tables_limits->comments)?>...
+                        </td>
+                    <?else:?>
+                        <td class="spoRowTableComment">
+                            <?=$spo['comment']?>
+                        </td>
+                    <?endif?>
+
+                </tr>
+            </table>
+            
+        </div>
+        <div class="ico-block clear">
+            <a id="editSpo<?=$spo['id']?>" class="icon-edit icon change" href="#" onclick="openSoftwareEditForm(<?=$spo['id']?>);return false;">
+                <p><?=$this->translate('L_CHANGE');?><span></span></p>
+            </a>
+        </div>
+        <a id="deleteSpo<?=$spo['id']?>" class="icon-cross icon close" onclick="softwareDelete(<?=$spo['id']?>, '<?=$spo['name']?>');return false;"></a>
+    </div>
+    <!--Item End--->
+<?endforeach;?>
+<? if ($this->paginator && $this->paginator->getPages()->pageCount > 1): ?>
+    <?=$this->paginationControl($this->paginator)?>
+<?endif?>
+

@@ -1,0 +1,18 @@
+<form action="/domains/list-import/" method="POST" id="listImportForm" enctype="multipart/form-data">
+    <?=$this->element->server_id?>
+    <table>
+        <tr>
+            <td><?=$this->element->file->getLabel()?></td>
+            <td><?=$this->element->file?></td>
+        </tr>
+        <tr>
+            <td><?=$this->element->lookup->getLabel()?></td>
+            <td><?=$this->element->lookup?></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <?=$this->element->button?>
+            </td>
+        </tr>
+    </table>
+</form>

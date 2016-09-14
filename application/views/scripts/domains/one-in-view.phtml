@@ -1,0 +1,16 @@
+<a class="tab-block clear" id="domainApps<?=$this->domain['id']?>Label">
+    <a href="#" class="tittle" onclick="domainLoadView(<?=$domain['id']?>);return false;"><?=$domain['name']?></a>
+    <div class="tittle cursor" id="domainLink<?=$this->domain['id']?>">
+        <i class="icon-accept"></i>
+        <?=$this->domain['name']?>
+    </div>
+    <p class="info width-2"><?=nl2br(htmlspecialchars($this->domain['comment']))?></p>
+    <div class="ico-block">
+        <div id="appAddDomain<?=$this->domain['id']?>" class="icon-add app-add" href="#" onclick="openAppAddForm(<?=$this->domain['id']?>);return false;"></div>
+        <div id="editDomain<?=$this->domain['id']?>" onclick="openDomainEditForm(<?=$this->domain['id']?>)" class="tab-block-change icon-edit icon-edit2 domains-icon-edit2 icon" href="#"><p><?=$this->translate('L_CHANGE');?><span></span></p></div>
+        <div id="deleteDomain<?=$this->domain['id']?>" onclick="domainDelete(<?=$this->domain['id']?>, '<?=$this->domain['name']?>')" class="icon-cross icon tab-block-close close-id" href="#"><p><?=$this->translate('L_DELETE');?><span></span></p></div>
+    </div>
+</a>
+<ul id="domainApps<?=$this->domain['id']?>">
+
+</ul>

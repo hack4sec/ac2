@@ -1,0 +1,14 @@
+<form action="/users/edit-group/" method="POST" id="userGroupEditForm">
+    <?=$this->element->id?>
+    <?=$this->element->object_id?>
+    <?=$this->element->type?>
+    <table>
+        <tr>
+            <td><?=$this->element->name->getLabel()?></td>
+            <td><?=$this->element->name?></td>
+        </tr>
+        <tr>
+            <td colspan="2"><?=$this->element->button?></td>
+        </tr>
+    </table>
+</form>

@@ -1,0 +1,49 @@
+    <style type="text/css">
+        #content {
+            top: 70px !important;
+        }
+    </style>
+        <div id="top-fix" class="clear">
+            <form id="filterForm" action="" method="post">
+                <input type="hidden" name="project_id" value="<?=$this->projectId?>">
+                <div id="top-m" class="clear">
+                    <div class="left">
+                        <label><?=$this->translate('L_FILTER')?></label>
+                        <input id="filterSearch" name="search" value="" title="" type="text" />
+                        <img id="searchIcon" src="/images/zoom.png" class="searchIcon cursor" onclick="goServersListLink()"/>
+                    </div>
+                    <div class="right">
+                        <a id="exportListButton" href="#" class="button newicons2" title="<?=$this->translate('L_EXPORT_LIST')?>" onclick="serversListExport(<?=$this->projectId?>);return false;">
+                            <i class="fa fa-download" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                    <div class="right">
+                        <a id="importListButton" href="#" class="button newicons2" title="<?=$this->translate('L_IMPORT_LIST')?>" onclick="openServersListImportForm(<?=$this->projectId?>);return false;">
+                            <i class="fa fa-upload" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                    <div class="right">
+                        <a id="serverAddButton" href="#" class="button newicons2" title="<?=$this->translate('L_ADD_SERVER')?>" onclick="openServerAddForm(<?=$this->projectId?>);return false;">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+        </div><!--End #top-fix-->
+
+        <div id="content">
+
+
+
+        </div><!--End #work-space #content-->
+
+
+<script>
+    function changePage(page) {
+        serversListFilter(page)
+    }
+
+    (function($){
+        serversListFilter(1);
+    })(jQuery);
+</script>
+

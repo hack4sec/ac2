@@ -1,0 +1,68 @@
+@charset "utf-8";
+/* CSS Document */
+
+* { margin:0; padding:0; }
+body { background:#eee; }
+.overflow { overflow:auto; position:relative; }
+ul.tree { display:block; font:12px Arial, Helvetica, sans-serif; color:#000; margin-bottom:250px;  }
+ul.tree li { display:inline-block; text-align:center; margin:20px; vertical-align:top; }
+ul.tree li.tnone { display:none; }
+ul.tree ul.tshow { display:block!important; }
+ul.tree li > div { display:inline-block; padding:7px 10px; text-decoration:none; position:relative; min-width:40px; z-index:2; background:#27a9e3; color:#fff; font-weight:bold; }
+ul.tree li > div span { display: inline-block; margin: 0 2px;  }
+ul.tree li > div.zindex { z-index:inherit; }
+ul.tree li form { display:block; text-align:left; padding:10px; margin-top:15px; position:absolute; z-index:4; background:#da9628; color:#fff; }
+ul.tree li form input[type=checkbox] { }
+ul.tree li form img.close { float:right; cursor:pointer; background-color:#e02222; padding:2px; border-radius:10px; -moz-border-radius:10px; -webkit-border-radius:10px; }
+ul.tree li input[type=text] { width:150px; background:#ffc; padding:4px; font:12px Arial, Helvetica, sans-serif; color:#000; border:none; margin:5px 0; display:block; }
+ul.tree li input[type=password] { width:150px; background:#ffc; padding:4px; font:12px Arial, Helvetica, sans-serif; color:#000; border:none; margin:5px 0; display:block; }
+ul.tree li select { width:150px; background:#ffc; padding:4px; font:12px Arial, Helvetica, sans-serif; color:#000; border:none; margin:5px 0; display:block; }
+ul.tree li textarea { height:35px; width:150px; background:#ffc; padding:4px; font:12px Arial, Helvetica, sans-serif; color:#000; border:none; margin:5px 0; display:block; }
+ul.tree li textarea.error { background:#d84a38; }
+ul.tree li textarea:focus { background:#ffc; }
+ul.tree li .submit, ul.tree li .edit { border:none; text-align:center; display:block; font:11px Arial, Helvetica, sans-serif; font-weight:bold; color:#fff; padding:5px 15px; cursor:pointer; margin-top:3px; background:#4d90fe; }
+ul.tree li .submit:hover, ul.tree li .edit:hover { background:#8a9ef5; }
+ul.tree li div.current { background:#28b779; }
+ul.tree li div.children { background:#ffb848; }
+ul.tree li div.parent { background:#852b99; }
+ul.tree li span.vertical, ul.tree li span.horizontal { display:inline-block; position:absolute; z-index:1; background:#bbb; }
+ul.tree li span.vertical { width:1px; }
+ul.tree li span.horizontal { height:1px; }
+ul.tree li b.thide { position:absolute; width:11px; height:12px; bottom:0; left:-17px; background:url(/images/hide.png) no-repeat; cursor:pointer; }
+ul.tree li b.thide.tshow { background:url(/images/show.png) no-repeat; }
+ul.tree li b.thide.tnone { display:none; }
+ul.tree li span.add_action, ul.tree li span.edit_action, ul.tree li span.highlight, ul.tree li span.delete_action { position:absolute; width:10px; height:10px; cursor:pointer; display:none; padding:2px; background-color:#e02222; background-position:center; background-repeat:no-repeat; border-radius:10px; -moz-border-radius:10px; -webkit-border-radius:10px; }
+ul.tree li span.add_action { top:-5px; left:-5px; background-image:url(/images/add.png); }
+ul.tree li span.edit_action { bottom:-5px; left:-5px; background-image:url(/images/edit.png); }
+ul.tree li span.highlight { bottom:-5px; right:-5px; background-image:url(/images/highlight.png); }
+ul.tree li span.delete_action { top:-5px; right:-5px; background-image:url(/images/close.png); }
+img.back_btn { position:fixed; left:15px; top:15px; cursor:pointer; z-index:3; }
+img.load { position:absolute; }
+div.drag_error, div.delete_msg, div.edit_msg, div.add_msg, div.drop_msg { position:absolute; color:#fff; position:absolute; right:10px; top:10px; padding:4px 10px; font:14px Arial, Helvetica, sans-serif; z-index:999; }
+div.drag_error { background:#b41616; }
+div.delete_msg { background:#b41616; }
+div.edit_msg { background:#17A769; }
+div.add_msg { background:#27A9E3; }
+div.drop_msg { background:#852b99; }
+
+/*-----Other-----*/
+.accordion-left { float:left; width:49%; margin-left:0.96%; margin-bottom:20px; }
+.accordion-right { float:right; width:49%; margin-right:0.97%; margin-bottom:20px; }
+.accordion-header { padding:5px 10px; background-color:#17a769; background-image:url(/images/plus.png); background-repeat:no-repeat; background-position:95% center; font-family: 'Cabin', sans-serif; color:#fff; cursor:pointer; font-weight:700; font-size:16px; outline:none; border-bottom:solid 1px #eee; }
+.accordion-header.active { background-image:url(/images/minus.png); }
+.accordion-content { padding:5px 10px; background-color:#2295c9; font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#fff; font-weight:400; max-height:300px; overflow:auto; display:none; border-bottom:solid 1px #eee; }
+.accordion-content p { margin:10px 0; }
+.accordion-content p a { color:#ffff00; text-decoration:none; font-weight:bold; }
+.accordion-content p a:hover { color:#d8d8d8; }
+.accordion-content ul { list-style:disc; margin-left:25px; line-height:18px; }
+.accordion-content textarea { width:90%; height:150px; font-size:11px; font-family:Arial, Helvetica, sans-serif; padding:5px; color:#000; outline:none; border:none; background:#fff; }
+.other_ul { font-family:Arial, Helvetica, sans-serif; font-size:13px; font-weight:bold;  list-style:none; margin-left:0.96%; margin-bottom:1px; display:block; overflow:auto; }
+.other_ul li { display:inline-block; color:#fff; float:left; margin-right:1px; }
+.other_ul li b { border:solid 1px #852b99; background:#fff; padding:0 5px; display:block; float:left; height:22px; }
+.other_ul li strong { background:#852b99; border:solid 1px #852b99; padding:0 5px; display:block; float:left; height:22px; line-height:22px; }
+.other_ul span.add_action, .other_ul span.edit_action, .other_ul span.highlight, .other_ul span.delete_action { width:10px; height:10px; padding:2px; background-color:#e02222; background-position:center; background-repeat:no-repeat; display:block; border-radius:10px; -moz-border-radius:10px; -webkit-border-radius:10px; margin-top:4px; }
+.other_ul span.add_action { background-image:url(/images/add.png); }
+.other_ul span.edit_action { background-image:url(/images/edit.png); }
+.other_ul span.highlight { background-image:url(/images/highlight.png); }
+.other_ul span.delete_action { background-image:url(/images/close.png); }
+hr { background:#58b7e1; border:none; margin:15px 0; }

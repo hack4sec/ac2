@@ -1,0 +1,28 @@
+<?foreach ($this->paginator as $task):?>
+    <!--Item Begin--->
+    <div class="project clear" id="taskRow<?=$task['id']?>">
+        <div class="<?=$this->cssClasses[$task['status']]?> status"></div>
+        <div class="clear info-block">
+            <a id="taskLink<?=$task['id']?>" href="#task-view-<?=$task['id']?>" class="tittle"><?=$task['name']?></a>
+            <?if (strlen($task['description']) > Zend_Registry::get('config')->str_tables_limits->comments):?>
+                <p class="info" title="<?=htmlspecialchars($task['description'], ENT_QUOTES)?>">
+                    <?=mb_substr($task['description'], 0, Zend_Registry::get('config')->str_tables_limits->comments)?>...
+                </p>
+            <?else:?>
+                <p class="info"><?=$task['description']?></p>
+            <?endif?>
+        </div>
+        <div class="ico-block clear">
+            <a id="editTask<?=$task['id']?>" class="icon-edit icon change" href="#" onclick="openTaskEditForm(<?=$task['id']?>);return false;">
+                <p><?=$this->translate('L_CHANGE');?><span></span></p>
+            </a>
+        </div>
+        <a id="deleteTask<?=$task['id']?>" class="icon-cross icon close" onclick="taskDelete(<?=$task['id']?>, '<?=$task['name']?>');return false;"></a>
+    </div>
+    <!--Item End--->
+<?endforeach;?>
+<? if ($this->paginator && $this->paginator->getPages()->pageCount > 1): ?>
+    <?=$this->paginationControl($this->paginator)?>
+<?endif?>
+
+

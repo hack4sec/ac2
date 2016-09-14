@@ -1,0 +1,14 @@
+<form action="/servers/list-import/" method="POST" id="listImportForm" enctype="multipart/form-data">
+    <?=$this->element->project_id?>
+    <table>
+        <tr>
+            <td><?=$this->element->file->getLabel()?></td>
+            <td><?=$this->element->file?></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <?=$this->element->button?>
+            </td>
+        </tr>
+    </table>
+</form>

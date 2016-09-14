@@ -1,0 +1,22 @@
+<div class="<?=$this->domain->getCssClassByVulns()?> status"></div>
+<div class="clear info-block">
+    <a id="domainLink<?=$this->domain['id']?>" href="#domain-view-<?=$this->domain['id']?>" class="tittle">
+        <?if ($this->domain['checked']):?>
+            <span class="fa fa-check-circle checkedTableIcon"  title="<?=$this->translate('L_CHECKED');?>"></span>
+        <?endif?>
+        <?=$this->domain['name']?>
+    </a>
+    <?if (strlen($this->domain['comment']) > Zend_Registry::get('config')->str_tables_limits->comments):?>
+        <p class="info" title="<?=htmlspecialchars($this->domain['comment'], ENT_QUOTES)?>">
+            <?=mb_substr($this->domain['comment'], 0, Zend_Registry::get('config')->str_tables_limits->comments)?>...
+        </p>
+    <?else:?>
+        <p class="info"><?=$this->domain['comment']?></p>
+    <?endif?>
+</div>
+<div class="ico-block clear">
+    <a id="editDomain<?=$this->domain['id']?>" class="icon-edit icon change" href="#" onclick="openDomainEditForm(<?=$this->domain['id']?>);return false;">
+        <p><?=$this->translate('L_CHANGE');?><span></span></p>
+    </a>
+</div>
+<a id="deleteDomain<?=$this->domain['id']?>" class="icon-cross icon close" onclick="domainDelete(<?=$this->domain['id']?>, '<?=$this->domain['name']?>');return false;"></a>

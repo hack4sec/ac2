@@ -1,0 +1,38 @@
+<style>
+    #content {
+        top: 20px;
+    }
+    #content .top-block{
+        padding: 30px 40px;
+    }
+</style>
+<div id="content">
+    <div class="top-block clear">
+        <h2> <?=$this->server['name']?> (<?=$this->server['ip']?>)
+            <i class="icon-edit cursor" id="serverEdit<?=$this->server['id']?>" onclick="openServerEditForm(<?=$this->server['project_id']?>, <?=$this->server['id']?>)"></i>
+        </h2>
+        <p class="iconsViewBlock">
+            <?if ($this->server['checked']):?>
+                <span class="fa fa-check-circle serverCheckedIcon"  title="<?=$this->translate('L_CHECKED');?>"></span>
+            <?endif?>
+        </p>
+        <?if ($this->server['os_id']):?>
+            <h3 class="m-t-20"><?=$this->translate('L_SERVER_OS')?></h3>
+            <p><?=$this->os[$this->server['os_id']]?> <?=$this->server['os_version']?></p>
+        <?endif?>
+        <h3 class="m-t-20"><?=$this->translate('L_COMMENT')?></h3>
+        <p><?=$this->server['comment']?></p>
+        <br />
+        <a id="childDomains" href="#domain-openlist-FILTER-<?=$this->server['id']?>"><?=$this->translate('L_DOMAINS')?> (<?=$this->domainsCount?>)</a>
+        &nbsp;&nbsp;&nbsp;
+        <a id="childSpo" href="#spo-openlist-FILTER-<?=$this->server['id']?>"><?=$this->translate('L_SPO')?> (<?=$this->spoCount?>)</a>
+        &nbsp;&nbsp;&nbsp;
+        <a id="childUsers" href="#user-openlist-FILTER-server/0/<?=$this->server['id']?>"><?=$this->translate('L_USERS')?> (<?=$this->usersCount?>)</a>
+        &nbsp;&nbsp;&nbsp;
+        <a id="childTasks" href="#task-openlist-FILTER-server/0/<?=$this->server['id']?>"><?=$this->translate('L_TASKS')?> (<?=$this->tasksCount?>)</a>
+        &nbsp;&nbsp;&nbsp;
+        <a id="childFiles" href="#file-openlist-FILTER-server/0/<?=$this->server['id']?>"><?=$this->translate('L_FILES')?> (<?=$this->filesCount?>)</a>
+        <br /><br />
+        <a href="#" onclick="openNmapImportForm(<?=$this->server['id']?>);return false;" id="nmapImport"><?=$this->translate('L_NMAP_XML_IMPORT')?></a>
+    </div><!--End .top-block-->
+</div><!--End #content-->

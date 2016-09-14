@@ -1,0 +1,62 @@
+<div class="<?=$this->webApp->getCssClassByVulns()?> status"></div>
+<div class="clear info-block">
+    <table class="webAppsRowTable">
+        <tr>
+            <td class="webappsRowTableIconsCol">
+                <?if ($this->webApp['checked']):?>
+                    <span class="fa fa-check-circle serverCheckedIcon"  title="<?=$this->translate('L_CHECKED');?>"></span>
+                <?endif?>
+                <?if ($this->webApp['need_auth']):?>
+                    <span class="fa fa-key serverCheckedIcon"  title="<?=$this->translate('L_NEED_AUTH');?>"></span>
+                <?endif?>
+                <?if ($this->webApp['ghost']):?>
+                    <span class="fa fa-cloud serverCheckedIcon"  title="<?=$this->translate('L_GHOST');?>"></span>
+                <?endif?>
+                <?if ($this->webApp['url_rewrite']):?>
+                    <span class="fa fa-refresh serverCheckedIcon"  title="<?=$this->translate('L_URL_REWRITE');?>"></span>
+                <?endif?>
+            </td>
+            <td class="webAppsRowTableName" title="<?=$this->webApp['vendor_site']?>">
+                <a id="webAppLink<?=$this->webApp['id']?>" class="tittle cursor" href="#webapp-view-<?=$this->webApp['id']?>">
+                    <?=$this->webApp['name']?>
+                </a>
+            </td>
+            <td class="webAppsRowTableVersion">
+                <?if ($this->webApp['version']):?>
+                    <?if ($this->webApp['version_old']):?>
+                        <font color="red" title="<?=$this->translate('L_OLD_VERSION');?>а"><?=$this->webApp['version']?></font>
+                    <?else:?>
+                        <font color="green" title="<?=$this->translate('L_LAST_VERSION');?>"><?=$this->webApp['version']?></font>
+                    <?endif?>
+
+                <?else:?>
+                    <div title="<?=$this->translate('L_VERSION_UNKNOWN');?>">v.?</div>
+                <?endif?>
+            </td>
+            <?if (strlen($this->webApp['url']) > Zend_Registry::get('config')->str_tables_limits->webapps_urls):?>
+                <td class="webAppsRowTableUrl" title="<?=$this->webApp['url']?>">
+                    <?=mb_substr($this->webApp['url'], 0, Zend_Registry::get('config')->str_tables_limits->webapps_urls)?>...
+                </td>
+            <?else:?>
+                <td class="webAppsRowTableUrl">
+                    <?=$this->webApp['url']?>
+                </td>
+            <?endif?>
+            <?if (strlen($this->webApp['comment']) > Zend_Registry::get('config')->str_tables_limits->comments):?>
+                <td class="webAppsRowTableComment" title="<?=htmlspecialchars($this->webApp['comment'], ENT_QUOTES)?>">
+                    <?=mb_substr($this->webApp['comment'], 0, Zend_Registry::get('config')->str_tables_limits->comments)?>...
+                </td>
+            <?else:?>
+                <td class="webAppsRowTableComment">
+                    <?=$this->webApp['comment']?>
+                </td>
+            <?endif?>
+        </tr>
+    </table>
+</div>
+<div class="ico-block clear">
+    <a id="webAppEdit<?=$this->webApp['id']?>" class="icon-edit icon change" href="#" onclick="openWebAppEditForm(<?=$this->webApp['id']?>);return false;">
+        <p><?=$this->translate('L_CHANGE');?><span></span></p>
+    </a>
+</div>
+<a id="deleteWebApp<?=$this->webApp['id']?>" class="icon-cross icon close" onclick="webAppDelete(<?=$this->webApp['id']?>, '<?=$this->webApp['name']?>');return false;"></a>

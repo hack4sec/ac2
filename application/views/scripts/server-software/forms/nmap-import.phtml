@@ -1,0 +1,22 @@
+<form action="/server-software/nmap-import/" method="POST" id="nmapImportForm" enctype="multipart/form-data">
+    <?=$this->element->server_id?>
+    <table>
+        <tr>
+            <td><?=$this->element->file->getLabel()?></td>
+            <td><?=$this->element->file?></td>
+        </tr>
+        <tr>
+            <td><?=$this->element->all->getLabel()?></td>
+            <td><?=$this->element->all?></td>
+        </tr>
+        <tr>
+            <td><?=$this->element->ignore_blank->getLabel()?></td>
+            <td><?=$this->element->ignore_blank?></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <?=$this->element->button?>
+            </td>
+        </tr>
+    </table>
+</form>

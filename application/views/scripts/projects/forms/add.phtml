@@ -1,0 +1,23 @@
+<form action="/projects/add/" method="POST" id="projectAddForm">
+    <table>
+        <tr>
+            <td><?=$this->element->name->getLabel()?></td>
+            <td><?=$this->element->name?></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <?=$this->element->comment->getLabel()?>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <?=$this->element->comment?>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <?=$this->element->button?>
+            </td>
+        </tr>
+    </table>
+</form>

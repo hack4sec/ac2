@@ -1,0 +1,29 @@
+<form action="/domains/edit/" method="POST" id="domainEditForm">
+    <?=$this->element->id?>
+    <?=$this->element->server_id?>
+    <table>
+        <tr>
+            <td><?=$this->element->name->getLabel()?></td>
+            <td><?=$this->element->name?></td>
+        </tr>
+        <tr>
+            <td><?=$this->element->checked->getLabel()?></td>
+            <td><?=$this->element->checked?></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <?=$this->element->comment->getLabel()?>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <?=$this->element->comment?>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <?=$this->element->button?>
+            </td>
+        </tr>
+    </table>
+</form>

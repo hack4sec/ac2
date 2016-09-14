@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title><?=$this->translate('L_AC_TITLE')?> <?=Zend_Registry::get('config')->version?></title>
+
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="/css/fonts.css" />
+    <link rel="stylesheet" type="text/css" href="/css/modal.css" />
+
+    <link rel="stylesheet" type="text/css" href="/css/remodal.css" />
+    <link rel="stylesheet" href="/css/jquery.mCustomScrollbar.min.css">
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="/js/jquery-ui.min.css">
+    <link rel="stylesheet" href="/js/jquery-ui.theme.min.css">
+    <link rel="stylesheet" href="/js/jquery-ui.structure.min.css">
+
+
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/favicon.png" type="image/x-icon">
+
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="/js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="/js/remodal.js"></script>
+    <script type="text/javascript" src="/js/form.js"></script>
+    <script type="text/javascript" src="/js/accordion.js"></script>
+
+    <script type="text/javascript" src="/js/functions/common.js?t=<?=time()?>"></script>
+    <script type="text/javascript" src="/js/functions/domains.js?t=<?=time()?>"></script>
+    <script type="text/javascript" src="/js/functions/files.js?t=<?=time()?>"></script>
+    <script type="text/javascript" src="/js/functions/projects.js?t=<?=time()?>"></script>
+    <script type="text/javascript" src="/js/functions/server-software.js?t=<?=time()?>"></script>
+    <script type="text/javascript" src="/js/functions/servers.js?t=<?=time()?>"></script>
+    <script type="text/javascript" src="/js/functions/tasks.js?t=<?=time()?>"></script>
+    <script type="text/javascript" src="/js/functions/users.js?t=<?=time()?>"></script>
+    <script type="text/javascript" src="/js/functions/users-groups.js?t=<?=time()?>"></script>
+    <script type="text/javascript" src="/js/functions/vulns.js?t=<?=time()?>"></script>
+    <script type="text/javascript" src="/js/functions/web-apps.js?t=<?=time()?>"></script>
+    <script type="text/javascript" src="/js/functions/notes.js?t=<?=time()?>"></script>
+    <script>
+        var translates = {}
+        <?
+        $tMessages = Zend_Registry::get('Zend_Translate')->getAdapter()->getMessages();
+        foreach ($tMessages as $tKey => $tMessage) {
+            echo "translates['$tKey'] = '" . addslashes($tMessage) . "';\n";
+        }
+        ?>
+    </script>
+</head>
+<body>
+<header id="header-index">
+    <section class="top clear">
+        <a href="/" class="logo"><img src="/images/logo_<?=Zend_Registry::get('config')->locale?>.png"/></a>
+        <ul class="bread_crumbs">
+            <li>——</li>
+            <li><a href="/"><?=$this->translate('L_ALL_PROJECTS')?></a></li>
+            <li>→</li>
+            <li><?=$this->project->name?></li>
+        </ul>
+        <div class="notes" id="notes-button"><span id="notesLogo"><?=$this->translate('L_NOTES')?> (<span id="notesCount"></span>)</span></div>
+    </section><!--End .top-->
+</header><!--End header-->
+
+<div class="notes-active">
+    <div class="demo-y" id="notesBlock">
+
+    </div>
+    <div id="bottom">
+        <form method="post">
+            <textarea placeholder="<?=$this->translate('L_NEW_NOTE_TEXT')?>" id="addNoteTextarea"></textarea>
+            <button type="button" onclick="addNote()" id="addNoteButton"><?=$this->translate('L_ADD_NOTE')?></button>
+        </form>
+    </div><!--End #bottom-->
+</div><!--End notes-active-->
+
+<section id="main" class="clear">
+    <div id="servers" class="demo-y">
+        <ul id="menu">
+
+        </ul>
+    </div><!--End #Servers-->
+
+    <?php echo $this->layout()->content ?>
+
+</section>
+<!--Блок #pagination перенести в #content-->
+
+<div id="errorlog"></div>
+
+<!-- custom scrollbar plugin -->
+<script src="/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script>
+    loadProjectMenu(<?=$this->project->id?>)
+    loadNotesOfCurrentProject()
+
+    $(window).on('hashchange', function(e){
+        hashNavigation()
+    });
+    $(document).ready(function() {
+        hashNavigation()
+        connectMenuLinks()
+    });
+    window.onerror = errfunc
+</script>
+</body>
+</html>

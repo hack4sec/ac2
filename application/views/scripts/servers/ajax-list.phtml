@@ -1,0 +1,48 @@
+<?foreach ($this->paginator as $server):?>
+    <!--Item Begin--->
+    <div class="project clear" id="serverRow<?=$server['id']?>">
+        <div class="<?=$server->getCssClassByVulns()?> status"></div>
+        <div class="clear info-block">
+            <table class="serverRowTable">
+                <tr>
+                    <td class="serverIconsCol">
+                        <?if ($server['checked']):?>
+                            <span class="fa fa-check-circle serverCheckedIcon"  title="<?=$this->translate('L_CHECKED');?>"></span>
+                        <?endif?>
+                    </td>
+                    <td class="serverRowTableName">
+                        <a href="#server-view-<?=$server['id']?>" id="serverLink<?=$server['id']?>" class="tittle cursor">
+                            <?=$server['name']?>
+                        </a>
+                    </td>
+                    <td class="serverRowTableIp">
+                        <?=$server['ip']?>
+                    </td>
+                    <td>
+                        <?if ($server['os_id']):?>
+                            <?=$this->os[$server['os_id']]?> <?=$server['os_version']?></p>
+                        <?endif?>
+                    </td>
+                    <?if (strlen($server['comment']) > Zend_Registry::get('config')->str_tables_limits->comments):?>
+                        <td class="serverRowTableComment" title="<?=htmlspecialchars($server['comment'], ENT_QUOTES)?>">
+                            <?=mb_substr($server['comment'], 0, Zend_Registry::get('config')->str_tables_limits->comments)?>...
+                        </td>
+                    <?else:?>
+                        <td class="serverRowTableComment">
+                            <?=$server['comment']?>
+                        </td>
+                    <?endif?>
+                </tr>
+            </table>
+        </div>
+        <div class="ico-block clear">
+            <a id="serverEdit<?=$server['id']?>" class="icon-edit icon change" href="#" onclick="openServerEditForm(<?=$this->projectId?>, <?=$server['id']?>);return false;"><p><?=$this->translate('L_CHANGE');?><span></span></p></a>
+        </div>
+        <a class="icon-cross icon close" id="deleteServer<?=$server['id']?>"  onclick="serverDelete(<?=$server['id']?>, '<?=$server['name']?>');return false;"></a>
+    </div>
+    <!--Item End--->
+<?endforeach;?>
+<? if ($this->paginator && $this->paginator->getPages()->pageCount > 1): ?>
+    <?=$this->paginationControl($this->paginator)?>
+<?endif?>
+

@@ -1,0 +1,71 @@
+<?foreach ($this->paginator as $webApp):?>
+    <!--Item Begin--->
+    <div class="project clear" id="webAppRow<?=$webApp['id']?>">
+        <div class="<?=$webApp->getCssClassByVulns()?> status"></div>
+        <div class="clear info-block">
+            <table class="webAppsRowTable">
+                <tr>
+                    <td class="webAppsRowTableIconsCol">
+                        <?if ($webApp['checked']):?>
+                            <span class="fa fa-check-circle serverCheckedIcon"  title="<?=$this->translate('L_CHECKED');?>"></span>
+                        <?endif?>
+                        <?if ($webApp['need_auth']):?>
+                            <span class="fa fa-key serverCheckedIcon"  title="<?=$this->translate('L_NEED_AUTH');?>"></span>
+                        <?endif?>
+                        <?if ($webApp['ghost']):?>
+                            <span class="fa fa-cloud serverCheckedIcon"  title="<?=$this->translate('L_GHOST');?>"></span>
+                        <?endif?>
+                        <?if ($webApp['url_rewrite']):?>
+                            <span class="fa fa-refresh serverCheckedIcon"  title="<?=$this->translate('L_URL_REWRITE');?>"></span>
+                        <?endif?>
+                    </td>
+                    <td class="webAppsRowTableName" title="<?=$webApp['vendor_site']?>">
+                        <a id="webAppLink<?=$webApp['id']?>" class="tittle cursor" href="#webapp-view-<?=$webApp['id']?>">
+                            <?=$webApp['name']?>
+                        </a>
+                    </td>
+                    <td class="webAppsRowTableVersion">
+                        <?if ($webApp['version']):?>
+                            <?if ($webApp['version_old']):?>
+                                <font color="red" title="<?=$this->translate('L_OLD_VERSION');?>"><?=$webApp['version']?></font>
+                            <?else:?>
+                                <font color="green" title="<?=$this->translate('L_LAST_VERSION');?>"><?=$webApp['version']?></font>
+                            <?endif?>
+
+                        <?else:?>
+                            <div title="<?=$this->translate('L_VERSION_UNKNOWN');?>">v.?</div>
+                        <?endif?>
+                    </td>
+                    <?if (strlen($webApp['url']) > Zend_Registry::get('config')->str_tables_limits->webapps_urls):?>
+                        <td class="webAppsRowTableUrl" title="<?=$webApp['url']?>">
+                            <?=mb_substr($webApp['url'], 0, Zend_Registry::get('config')->str_tables_limits->webapps_urls)?>...
+                        </td>
+                    <?else:?>
+                        <td class="webAppsRowTableUrl">
+                            <?=$webApp['url']?>
+                        </td>
+                    <?endif?>
+                    <?if (strlen($webApp['comment']) > Zend_Registry::get('config')->str_tables_limits->comments):?>
+                        <td class="webAppsRowTableComment" title="<?=htmlspecialchars($webApp['comment'], ENT_QUOTES)?>">
+                            <?=mb_substr($webApp['comment'], 0, Zend_Registry::get('config')->str_tables_limits->comments)?>...
+                        </td>
+                    <?else:?>
+                        <td class="webAppsRowTableComment">
+                            <?=$webApp['comment']?>
+                        </td>
+                    <?endif?>
+                </tr>
+            </table>
+        </div>
+        <div class="ico-block clear">
+            <a id="webAppEdit<?=$webApp['id']?>" class="icon-edit icon change" href="#" onclick="openWebAppEditForm(<?=$webApp['id']?>);return false;">
+                <p><?=$this->translate('L_CHANGE');?><span></span></p>
+            </a>
+        </div>
+        <a id="deleteWebApp<?=$webApp['id']?>" class="icon-cross icon close" onclick="webAppDelete(<?=$webApp['id']?>, '<?=$webApp['name']?>');return false;"></a>
+    </div>
+    <!--Item End--->
+<?endforeach;?>
+<? if ($this->paginator && $this->paginator->getPages()->pageCount > 1): ?>
+    <?=$this->paginationControl($this->paginator)?>
+<?endif?>

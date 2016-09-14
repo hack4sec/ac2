@@ -1,0 +1,17 @@
+<style>
+    #content {
+        top: 20px;
+    }
+    #content .top-block{
+        padding: 30px 40px;
+    }
+</style>
+<div id="content">
+    <div class="top-block clear">
+        <h2> <?=$this->task['name']?>
+            <i class="icon-edit cursor" id="taskEdit<?=$this->task['id']?>" onclick="openTaskEditForm(<?=$this->task['id']?>)"></i>
+        </h2>
+        <h3 class="m-t-20"><?=$this->translate('L_DESCRIPTION')?></h3>
+        <p><?=$this->task['description']?></p>
+    </div><!--End .top-block-->
+</div><!--End #content-->

@@ -1,0 +1,87 @@
+<section id="index-content" class="clear">
+    <fieldset>
+        <legend><?=$this->translate('L_RESULTS')?></legend>
+    </fieldset>
+
+    <? if ($this->result['err_strs']):?>
+        <!--Item Begin--->
+        <div class="project clear" id="errStrs">
+            <div class="clear info-block">
+                <span class="tittle cursor" onclick="$('#errStrsContent').toggle()">
+                    <?=$this->translate('L_STRINGS_PARSING_ERRORS')?> (<?=count($this->result['err_strs'])?>)
+                </span>
+                <div id="errStrsContent">
+                    <table style="width: 100%;">
+                        <?foreach ($this->result['err_strs'] as $str):?>
+                            <tr><td><?=$str?></td></tr>
+                        <?endforeach;?>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!--Item End--->
+    <?endif?>
+
+
+    <? if ($this->result['err_find']):?>
+        <!--Item Begin--->
+        <div class="project clear" id="hashesNotFound">
+            <div class="clear info-block">
+                <span class="tittle cursor" onclick="$('#errFindContent').toggle()">
+                    <?=$this->translate('L_NOT_FOUND')?> (<?=count($this->result['err_find'])?>)
+                </span>
+                <div id="errFindContent">
+                    <table style="width: 100%;" id="notFoundTable">
+                        <?foreach ($this->result['err_find'] as $str):?>
+                            <tr><td><?=$str?></td></tr>
+                        <?endforeach;?>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!--Item End--->
+    <?endif?>
+    <? if ($this->result['found']):?>
+        <?foreach ($this->result['found'] as $projectId => $data):?>
+            <? $project = (new Projects())->get($projectId);?>
+            <!--Item Begin--->
+            <div class="project clear" id="hashesFound<?=$projectId?>">
+                <div class="clear info-block">
+                <span class="tittle cursor" onclick="$('#foundContent<?=$projectId?>').toggle()">
+                    <?=$this->translate('L_PROJECT')?> &quot;<?=$project['name']?>&quot;
+                </span>
+                    <div id="foundContent<?=$projectId?>">
+                        <table style="width:100%" border="1"  id="foundTable<?=$projectId?>">
+                            <tr>
+                                <th>Аккаунт</th>
+                                <th>Хеш</th>
+                                <th>Соль</th>
+                                <th>Пароль</th>
+                                <th>Описание</th>
+                            </tr>
+                            <?foreach ($data as $row):?>
+                                <tr>
+                                    <td><?=$row['user']?> (<?=$row['group']?>)</td>
+                                    <td><?=$row['hash']?></td>
+                                    <td class="hashSalt"><?=$row['salt']?></td>
+                                    <td><?=$row['password']?></td>
+                                    <td><?=$row['str']?></td>
+                                </tr>
+                            <?endforeach;?>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!--Item End--->
+        <?endforeach;?>
+    <?endif?>
+
+</section>
+
+<script>
+    (function($){
+        $('#errStrsContent').hide()
+        $('#errFindContent').hide()
+        $('div[id^="foundContent"]').hide()
+    })(jQuery);
+</script>

@@ -1,0 +1,42 @@
+<div id="top-fix" class="clear">
+    <form id="filterForm" action="" method="post">
+        <div id="top-m" class="clear">
+            <div class="left">
+                <label><?=$this->translate('L_FILTER')?></label>
+                <input id="filterSearch" name="search" value="" title="" type="text" />
+                <img id="searchIcon" src="/images/zoom.png" class="searchIcon cursor" onclick="goSpoListLink(1);"/>
+            </div>
+            <div class="right">
+                <a id="addSpoLink" title="<?=$this->translate('L_ADD_SOFT')?>" href="#" data-server="" class="button newicons2" onclick="openSoftwareAddForm($(this).data('server'));return false;">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+        <div id="middle" class="clear">
+            <div>
+                <label><?=$this->translate('L_SERVER')?></label>
+                <select id="filterServer" name="server_id" onchange="setServerIdToSpoAddLink(this.value);if (!app_navigation) {goSpoListLink(1);}">
+                    <option value="0">-------</option>
+                    <?foreach ($this->servers as $server):?>
+                        <option value="<?=$server['id']?>"><?=$server['name']?></option>
+                    <?endforeach;?>
+                </select>
+            </div>
+        </div>
+</div><!--End #top-fix-->
+
+<div id="content">
+
+
+
+</div><!--End #work-space #content-->
+
+<script>
+    function changePage(page) {
+        spoListFilter(page)
+    }
+    (function($){
+        //spoListFilter(1)
+    })(jQuery);
+</script>
+

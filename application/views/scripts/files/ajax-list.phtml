@@ -1,0 +1,26 @@
+<?foreach ($this->paginator as $file):?>
+    <!--Item Begin--->
+    <div class="project clear" id="fileRow<?=$file['id']?>">
+        <!--div class="status-green status"></div-->
+        <div class="clear info-block">
+            <a id="fileLink<?=$file['id']?>" href="#file-view-<?=$file['id']?>" onclick="fileDownload(<?=$file['id']?>);return false;" class="tittle"><?=$file['name']?></a>
+            <?if (strlen($file['comment']) > Zend_Registry::get('config')->str_tables_limits->comments):?>
+                <p class="info" title="<?=htmlspecialchars($file['comment'], ENT_QUOTES)?>">
+                    <?=mb_substr($file['comment'], 0, Zend_Registry::get('config')->str_tables_limits->comments)?>...
+                </p>
+            <?else:?>
+                <p class="info"><?=$file['comment']?></p>
+            <?endif?>
+        </div>
+        <div class="ico-block clear">
+            <a id="editFile<?=$file['id']?>" class="icon-edit icon change" href="#" onclick="openFileEditForm(<?=$file['id']?>);return false;">
+                <p><?=$this->translate('L_CHANGE');?><span></span></p>
+            </a>
+        </div>
+        <a id="deleteFile<?=$file['id']?>" class="icon-cross icon close" onclick="fileDelete(<?=$file['id']?>, '<?=$file['name']?>');return false;"></a>
+    </div>
+    <!--Item End--->
+<?endforeach;?>
+<? if ($this->paginator && $this->paginator->getPages()->pageCount > 1): ?>
+    <?=$this->paginationControl($this->paginator)?>
+<?endif?>

@@ -1,0 +1,28 @@
+<style>
+    #content {
+        top: 20px;
+    }
+    #content .top-block{
+        padding: 30px 40px;
+    }
+</style>
+<div id="content">
+    <div class="top-block clear">
+        <h2> <?=$this->domain['name']?>
+            <i class="icon-edit cursor" id="domainEdit<?=$this->domain['id']?>" onclick="openDomainEditForm(<?=$this->domain['id']?>)"></i>
+        </h2>
+        <p class="iconsViewBlock">
+            <?if ($this->domain['checked']):?>
+                <span class="fa fa-check-circle checkedTableIcon"  title="<?=$this->translate('L_CHECKED');?>"></span>
+            <?endif?>
+        </p>
+        <h3 class="m-t-20"><?=$this->translate('L_COMMENT')?></h3>
+        <p><?=$this->domain['comment']?></p>
+        <br/>
+        <a id="childWebApps" href="#webapp-openlist-FILTER-<?=$this->domain['server_id']?>/<?=$this->domain['id']?>"><?=$this->translate('L_WEB_APPS');?> (<?=$this->appsCount?>)</a>
+        &nbsp;&nbsp;&nbsp;
+        <a id="childTasks" href="#task-openlist-FILTER-domain/<?=$this->domain['server_id']?>/<?=$this->domain['id']?>"><?=$this->translate('L_TASKS')?> (<?=$this->tasksCount?>)</a>
+        &nbsp;&nbsp;&nbsp;
+        <a id="childFiles" href="#file-openlist-FILTER-domain/<?=$this->domain['server_id']?>/<?=$this->domain['id']?>"><?=$this->translate('L_FILES')?> (<?=$this->filesCount?>)</a>
+    </div><!--End .top-block-->
+</div><!--End #content-->

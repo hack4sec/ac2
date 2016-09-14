@@ -1,0 +1,13 @@
+<form action="/users/add-group/" method="POST" id="userGroupAddForm">
+    <?=$this->element->object_id?>
+    <?=$this->element->type?>
+    <table>
+        <tr>
+            <td><?=$this->element->name->getLabel()?></td>
+            <td><?=$this->element->name?></td>
+        </tr>
+        <tr>
+            <td colspan="2"><?=$this->element->button?></td>
+        </tr>
+    </table>
+</form>

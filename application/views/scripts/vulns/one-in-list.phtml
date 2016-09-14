@@ -1,0 +1,30 @@
+<div class="<?=$this->risks[$this->vuln['risk_level_id']]?> status"></div>
+<div class="clear info-block">
+    <table class="vulnsRowTable">
+        <tr>
+            <td class="vulnsRowTableName">
+                <a id="vulnLink<?=$this->vuln['id']?>" href="#vuln-view-<?=$this->vuln['id']?>" class="tittle">
+                    [<?=$this->translate($this->types[$this->vuln['vuln_type_id']])?>] <?=$this->vuln['name']?>
+                </a>
+            </td>
+            <td class="vulnsRowTableLink">
+                <a href="<?=$this->vuln['exploit_link']?>" target="_blank"><?=$this->vuln['exploit_link']?></a>
+            </td>
+            <?if (strlen($this->vuln['description']) > Zend_Registry::get('config')->str_tables_limits->comments):?>
+                <td class="vulnsRowTableComment" title="<?=htmlspecialchars($this->vuln['description'], ENT_QUOTES)?>">
+                    <?=mb_substr($this->vuln['description'], 0, Zend_Registry::get('config')->str_tables_limits->comments)?>...
+                </td>
+            <?else:?>
+                <td class="vulnsRowTableComment">
+                    <?=$this->vuln['description']?>
+                </td>
+            <?endif?>            
+        </tr>
+    </table>
+</div>
+<div class="ico-block clear">
+    <a id="editVuln<?=$this->vuln['id']?>" class="icon-edit icon change" href="#" onclick="openVulnEditForm(<?=$this->vuln['id']?>);return false;">
+        <p><?=$this->translate('L_CHANGE');?><span></span></p>
+    </a>
+</div>
+<a id="deleteVuln<?=$this->vuln['id']?>" class="icon-cross icon close" onclick="vulnDelete(<?=$this->vuln['id']?>, '<?=$this->vuln['name']?>');return false;"></a>

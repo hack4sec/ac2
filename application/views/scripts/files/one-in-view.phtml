@@ -1,0 +1,8 @@
+    <div class="tittle">
+        <a href="/files/download/id/<?=$file['id']?>"><?=$this->file['name']?></a>
+    </div>
+    <p class="info"><?=nl2br(htmlspecialchars($this->file['comment']))?></p>
+    <div class="ico-block">
+        <div id="editFile<?=$this->file['id']?>" class="tab-block-change icon-edit icon-edit2 icon" onclick="openFileEditForm(<?=$this->file['id']?>)"><p><?=$this->translate('L_CHANGE');?><span></span></p></div>
+        <div id="deleteFile<?=$this->file['id']?>" class="icon-cross icon tab-block-close close-id" onclick="fileDelete(<?=$this->file['id']?>, '<?=$this->file['name']?>')"><p><?=$this->translate('L_DELETE');?><span></span></p></div>
+    </div>

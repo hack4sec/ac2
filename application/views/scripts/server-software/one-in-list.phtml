@@ -1,0 +1,52 @@
+<div class="<?=$this->spo->getCssClassByVulns()?> status"></div>
+<div class="clear info-block">
+    <table class="spoRowTable">
+        <tr>
+            <td class="spoRowTableIconsCol">
+                <?if ($this->spo['checked']):?>
+                    <span class="fa fa-check-circle serverCheckedIcon"  title="<?=$this->translate('L_CHECKED');?>"></span>
+                <?endif?>
+                <?if ($this->spo['ghost']):?>
+                    <span class="fa fa-cloud serverCheckedIcon"  title="<?=$this->translate('L_GHOST');?>"></span>
+                <?endif?>
+            </td>
+            <td class="spoRowTableName" title="<?=$this->spo['vendor_site']?>">
+                <a id="spoLink<?=$this->spo['id']?>" href="#spo-view-<?=$this->spo['id']?>" class="tittle">
+                    <?=$this->spo['name']?>
+                    (<?=$this->spo['proto']?>/<?=$this->spo['port']?>)
+                </a>
+            </td>
+            <td class="spoRowTableVersion">
+                <?if ($this->spo['version']):?>
+                    <?if ($this->spo['version_old']):?>
+                        <font color="red" title="<?=$this->translate('L_OLD_VERSION');?>"><?=$this->spo['version']?></font>
+                    <?else:?>
+                        <font color="green" title="<?=$this->translate('L_LAST_VERSION');?>"><?=$this->spo['version']?></font>
+                    <?endif?>
+
+                <?else:?>
+                    <div title="<?=$this->translate('L_VERSION_UNKNOWN');?>">v.?</div>
+                <?endif?>
+            </td>
+            <td class="spoRowTableBanner">
+                <?=$this->spo['banner']?>
+            </td>
+            <?if (strlen($this->spo['comment']) > Zend_Registry::get('config')->str_tables_limits->comments):?>
+                <td class="spoRowTableComment" title="<?=htmlspecialchars($this->spo['comment'], ENT_QUOTES)?>">
+                    <?=mb_substr($this->spo['comment'], 0, Zend_Registry::get('config')->str_tables_limits->comments)?>...
+                </td>
+            <?else:?>
+                <td class="spoRowTableComment">
+                    <?=$this->spo['comment']?>
+                </td>
+            <?endif?>            
+        </tr>
+    </table>
+
+</div>
+<div class="ico-block clear">
+    <a id="editSpo<?=$this->spo['id']?>" class="icon-edit icon change" href="#" onclick="openSoftwareEditForm(<?=$this->spo['id']?>);return false;">
+        <p><?=$this->translate('L_CHANGE');?><span></span></p>
+    </a>
+</div>
+<a id="deleteSpo<?=$this->spo['id']?>" class="icon-cross icon close" onclick="softwareDelete(<?=$this->spo['id']?>, '<?=$this->spo['name']?>');return false;"></a>

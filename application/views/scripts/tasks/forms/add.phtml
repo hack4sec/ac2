@@ -1,0 +1,29 @@
+<form action="/tasks/add/" method="POST" id="taskAddForm">
+    <?=$this->element->object_id?>
+    <?=$this->element->type?>
+    <table>
+        <tr>
+            <td><?=$this->element->name->getLabel()?></td>
+            <td><?=$this->element->name?></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <?=$this->element->description->getLabel()?>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <?=$this->element->description?>
+            </td>
+        </tr>
+        <tr>
+            <td><?=$this->element->status->getLabel()?></td>
+            <td><?=$this->element->status?></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <?=$this->element->button?>
+            </td>
+        </tr>
+    </table>
+</form>

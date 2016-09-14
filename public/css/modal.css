@@ -1,0 +1,441 @@
+/*------------------------------------------------*/
+/*                  FORM MODAL                    */
+/*------------------------------------------------*/
+#field5-container, #field2-container, #field3-container{
+    margin-bottom: 10px;
+}
+/*---select-----*/
+.select {
+	width: 380px;
+	float: right;
+	height: 50px;
+	position: relative;
+}
+.slct {
+	display: block;
+	border-radius: 4px;=:#F6F6f6;
+	width: 380px;
+	float: right;
+	height: 50px;
+	background:url(../images/select.png) no-repeat right;
+	overflow: hidden;
+	white-space:nowrap;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+	text-decoration: none;
+	background-color: #f3f3f3;
+	color: #c4c4c4;
+	font-size: 15px;
+	font-family: 'ubuntulight';
+	padding: 0 20px;
+	line-height: 50px;
+}
+.slct.active {
+	border-radius: 5px 5px 0 0;
+	border-bottom: none;
+}
+.drop {
+	margin: 0;
+	padding: 0;
+	width: 380px;
+	border-top: none;
+	display: none;
+	position: absolute;
+	background: #fff;
+	top: 50px;
+	background-color: #fff;
+	z-index: 3;
+	border: 1px solid #e8e8e8;
+	border-top: 0;
+}
+.drop li {
+	list-style: none;
+	border-top: 1px solid #e8e8e8;
+	cursor: pointer;
+	display: block;
+	color: #c4c4c4;
+	font-size: 15px;
+	font-family: 'ubuntulight';
+	padding: 10px 20px;
+	background-color: #fff;
+}
+.drop li:hover {
+	background-color: #e8e8e8;
+	color: #222;
+}
+
+.field.f_100 label{
+    font-size: 15px;
+    color: #3d464d;
+    line-height: 50px;
+    float: left;
+}
+.field.f_100 select, .field.f_100 input, .field.f_100 textarea{
+	color:#c4c4c4;
+	font-size:15px;
+	font-family: 'ubuntulight';
+}
+#field5-container input {
+    width: 380px;
+    height: 50px;
+    background: #f3f3f3;
+    border: 0;
+    float: right;
+    padding: 0 20px;
+}
+#field1-container textarea{
+    width: 380px;
+    height: 120px;
+    background: #f3f3f3;
+    border: 0;
+    float: right;
+    padding: 20px;
+}
+#form-submit input{
+    width: 190px;
+    height: 40px;
+    background-color: #399bff;
+    border: 0;
+    font-size: 16px;
+    color: #fff;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+#form-submit input:hover{
+	background-color:#50a5fc;
+}
+/*-----type_file-------*/
+.type_file {
+	position: relative;
+	height: 40px;
+	width: 380px;
+	float: right;
+	margin-top: 6px;
+}
+
+.inputFile {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 2;
+	filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0);
+	-moz-opacity: 0;
+	-khtml-opacity: 0;
+	opacity: 0;
+	width: 380px;
+}
+
+.fonTypeFile {
+	width: 380px;
+	height: 40px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
+}
+.fonTypeFile span{
+	font-size: 16px;
+	color: #9a9da2;
+	border: 1px solid #d7d7d7;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	width: 130px;
+	height: 40px;
+	display: block;
+	text-align: center;
+	line-height: 37px;
+}
+.fonTypeFile span:hover{
+	cursor:pointer;
+}
+.inputFileVal {
+	position: absolute;
+	top: 10px;
+	left: 145px;
+	z-index: 2;
+	width: 215px;
+	background: none;
+	border: none;
+}
+#field1-container{
+	margin-bottom:30px;
+}
+#form-submit{
+    width: 380px;
+    float: right;
+    margin-top: 50px;
+}
+#field6-container{
+	width: 380px;
+    float: right;
+}
+
+
+/*----.checkbox-----*/
+.checkbox{
+    position: relative;
+}
+.field.f_100 .checkbox label{
+    float: none;
+    position: relative;
+    line-height: 35px;
+    padding-left: 30px;
+    cursor: pointer;
+}
+.checkbox input[type=checkbox] {
+	display: none;
+}
+.checkbox label:before {
+	border-radius: 3px;
+}
+.checkbox input[type=checkbox]:checked + label:before {
+	background-color:#ffc000;
+}
+.checkbox>div:hover label:before {
+	background-color:#ccc;
+	cursor:pointer;
+}
+.checkbox label:before {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    background-color: #ebebeb;
+    /* content: "\f00c"; */
+    display: inline-block;
+    /* font: normal normal normal 13px/1 FontAwesome; */
+    /* font-size: inherit; */
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #fff;
+    text-align: center;
+    line-height: 18px;
+    content: "\e900";
+    font-family: 'icomoon';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/*------------------------------------------------*/
+/*                 Report Modal                    */
+/*------------------------------------------------*/
+@import url(http://fonts.googleapis.com/css?family=Raleway:400,200);
+#report-modal,
+#report-modal ul,
+#report-modal ul li,
+#report-modal ul li a {
+  border: 0;
+  list-style: none;
+  line-height: 1;
+  display: block;
+  position: relative;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;/*IE 7 AND 8 DO NOT SUPPORT BORDER RADIUS*/
+}
+#report-modal {
+  width: 100%;
+  font-family: Raleway, sans-serif;
+  color: #ffffff;
+}
+#report-modal ul ul {
+  display: none;
+}
+#report-modal > ul > li.active > ul {
+  display: block;
+}
+.align-right {
+  float: right;
+}
+#report-modal > ul > li > a {
+  padding: 17px 20px;
+  cursor: pointer;
+  z-index: 2;
+  text-decoration: none;
+  -webkit-transition: color .2s ease;
+  -o-transition: color .2s ease;
+  transition: color .2s ease;
+}
+#report-modal > ul > li > a:hover {
+  color: #000;
+}
+
+#report-modal ul ul li a {
+  padding: 14px 22px;
+  cursor: pointer;
+  z-index: 2;
+  font-size: 14px;
+  text-decoration: none;
+  -webkit-transition: color .2s ease;
+  -o-transition: color .2s ease;
+  transition: color .2s ease;
+}
+#report-modal ul ul ul li a {
+  padding-left: 32px;
+}
+#report-modal ul ul li a:hover {
+color: #000;}
+
+
+
+/*----------------------------------*/
+#report-modal  ul > li.has-sub > a .c{
+    width: 8px;
+    height: 8px;
+    border: 1px solid #d9d9d9;
+    position: absolute;
+    padding: 7px;
+    right: 20px;
+    top: 18px;
+}
+#report-modal  ul > li.has-sub > a .c:after {
+  position: absolute;
+  right: 7px;
+  top: 4px;
+  z-index: 5;
+  display: block;
+  height: 7px;
+  width: 1px;
+  background: #c7c7c7;
+  content: "";
+  -webkit-transition: all 0.1s ease-out;
+  -moz-transition: all 0.1s ease-out;
+  -ms-transition: all 0.1s ease-out;
+  -o-transition: all 0.1s ease-out;
+  transition: all 0.1s ease-out;
+}
+#report-modal ul > li.has-sub > a .c:before {
+  position: absolute;
+  right: 4px;
+  top: 7px;
+  display: block;
+  width: 7px;
+  height: 1px;
+  background: #c7c7c7;
+  content: "";
+  -webkit-transition: all 0.1s ease-out;
+  -moz-transition: all 0.1s ease-out;
+  -ms-transition: all 0.1s ease-out;
+  -o-transition: all 0.1s ease-out;
+  transition: all 0.1s ease-out;
+}
+
+#report-modal  ul > li.has-sub.open > a .c{
+	border: 1px solid #c7c7c7;
+}
+#report-modal  ul > li.has-sub.open > a .c:after{
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+
+
+#report-modal p{
+    margin: 0;
+    text-transform: none;
+    margin-bottom: 5px;
+}
+#report-modal a p{
+margin-bottom: 0;}
+
+.level-1{
+    padding: 17px 20px;
+}
+ul.level-1{
+    padding: 0 20px;
+}
+.has-sub{}
+.tittle-1, .tittle-1 a{
+    background-color: #f9f9f9;
+    color: #3d464d;
+    font-size: 18px;
+    font-family: 'ubuntumedium';
+}
+.level-1{
+    padding: 17px 20px;
+}
+#report-modal .tittle-2, #report-modal .tittle-2 a{
+	color: #3d464d;
+	font-size: 16px;
+	font-family: 'ubuntumedium';
+	text-transform:uppercase;
+	padding: 0;
+	margin-bottom: 0;
+}
+#report-modal .tittle-2 a{
+	padding: 10px 0;
+}
+#report-modal .tittle-3 a{
+	padding: 10px 0;
+	padding-bottom: 0;
+}
+.open .level-2{
+    padding-bottom: 0;
+}
+#report-modal .tittle-3, #report-modal .tittle-3 a, #report-modal .tittle-3 legend{
+	color: #3d464d;
+	font-size: 16px;
+	font-family: 'ubunturegular';
+	text-transform: none;
+}
+.open .level-3 a{
+	padding-bottom:0;
+	padding-left:40px;
+	padding-top: 10px;
+}
+.open .level-3{
+	padding-bottom:0;
+	padding-left:40px;
+
+
+}  
+.open .level-3 li{ 
+margin-top: 10px;}             
+#report-modal ul li{
+
+margin-bottom: 10px;
+
+float: none;
+
+width: 100%;
+}
+.open .level-1{
+	padding-bottom: 30px;
+}
+.open .c{
+	right: 20px;
+	top: 18px;
+}
+.level-1 .c, .level-2 .c, .level-3 .c, .level-4 .c{
+    right: 0 !important;
+    top: 10px !important;
+}
+#report-modal fieldset{
+    border-top: 1px solid #e3e3e5;
+    margin: 0;
+    width: calc(100% - 25px);
+}
+#report-modal legend{
+    text-align: left;
+    padding-left: 0;
+    color: #3d464d;
+}

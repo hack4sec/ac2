@@ -1,0 +1,17 @@
+<?foreach($this->apps as $app):?>
+    <div class="tab-block clear inside" id="webAppInView<?=$app['id']?>"><!--Item Begin--->
+        <div class="tittle">
+            <div class="ico-block-inside">
+                <?if($app['checked']):?><i class="ico icon-accept" title="<?=$this->translate('L_CHECKED');?>"></i><?endif?>
+                <?if($app['url_rewrite']):?><i class="ico icon-refresh" title="Перезапись URL"></i><?endif?>
+                <?if($app['need_auth']):?><i class="ico icon-enter" title="Требуется авторизация"></i><?endif?>
+            </div>
+            <div class="cursor" onclick="window.location.href='/web-apps/index/id/<?=$app['id']?>'"><?=$app['name']?></div></div>
+        <a href="#" class="link"><?=$app['vendor_site']?></a>
+        <p class="info"><?=nl2br(htmlspecialchars($app['comment']))?></p>
+        <div class="ico-block">
+            <div onclick="openWebAppEditForm(<?=$app['id']?>, 1)" id="editApp<?=$app['id']?>" class="tab-block-change icon-edit2 icon-edit icon"><p><?=$this->translate('L_CHANGE');?><span></span></p></div>
+            <div id="deleteApp<?=$app['id']?>" onclick="webAppDeleteInView(<?=$app['id']?>, '<?=$app['name']?>')" class="tab-block-close icon-cross icon  close-id"><p><?=$this->translate('L_DELETE');?><span></span></p></div>
+        </div>
+    </div><!--Item End--->
+<?endforeach;?>

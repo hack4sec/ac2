@@ -1,0 +1,31 @@
+<?foreach ($this->paginator as $domain):?>
+    <!--Item Begin--->
+    <div class="project clear" id="domainRow<?=$domain['id']?>">
+        <div class="<?=$domain->getCssClassByVulns()?> status"></div>
+        <div class="clear info-block">
+            <a id="domainLink<?=$domain['id']?>" href="#domain-view-<?=$domain['id']?>" class="tittle">
+                <?if ($domain['checked']):?>
+                    <span class="fa fa-check-circle checkedTableIcon"  title="<?=$this->translate('L_CHECKED');?>"></span>
+                <?endif?>
+                <?=$domain['name']?>
+            </a>
+            <?if (strlen($domain['comment']) > Zend_Registry::get('config')->str_tables_limits->comments):?>
+                <p class="info" title="<?=htmlspecialchars($domain['comment'], ENT_QUOTES)?>">
+                    <?=mb_substr($domain['comment'], 0, Zend_Registry::get('config')->str_tables_limits->comments)?>...
+                </p>
+            <?else:?>
+                <p class="info"><?=$domain['comment']?></p>
+            <?endif?>
+        </div>
+        <div class="ico-block clear">
+            <a id="editDomain<?=$domain['id']?>" class="icon-edit icon change" href="#" onclick="openDomainEditForm(<?=$domain['id']?>);return false;">
+                <p><?=$this->translate('L_CHANGE');?><span></span></p>
+            </a>
+        </div>
+        <a id="deleteDomain<?=$domain['id']?>" class="icon-cross icon close" onclick="domainDelete(<?=$domain['id']?>, '<?=$domain['name']?>');return false;"></a>
+    </div>
+    <!--Item End--->
+<?endforeach;?>
+<? if ($this->paginator && $this->paginator->getPages()->pageCount > 1): ?>
+    <?=$this->paginationControl($this->paginator)?>
+<?endif?>

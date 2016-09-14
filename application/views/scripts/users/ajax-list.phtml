@@ -1,0 +1,54 @@
+<?if ($this->paginator):?>
+
+<?foreach ($this->paginator as $user):?>
+    <!--Item Begin--->
+    <div class="project clear" id="userRow<?=$user['id']?>">
+        <div class="clear info-block">
+        <!--div class="status-green status"></div-->
+        <table class="usersRowTable">
+            <tr>
+                <td class="usersRowTableIconsCol">
+                    <?if ($user['vip']):?>
+                        <span class="fa fa-user serverCheckedIcon"  title="VIP"></span>
+                    <?endif?>
+                    <?if ($user['ghost']):?>
+                        <span class="fa fa-cloud serverCheckedIcon"  title="<?=$this->translate('L_GHOST');?>"></span>
+                    <?endif?>
+                </td>
+                <td class="usersRowTableName">
+                    <a id="userLink<?=$user['id']?>" href="#user-view-<?=$user['id']?>" class="tittle">
+                        <?=$user['login']?>
+                    </a>
+                </td>
+                <td class="userRowTableEmail">
+                    <?if (strlen($user['email'])):?>
+                        <?=$user['email']?>
+                    <?else:?>
+                        &lt;Нет email&gt;
+                    <?endif?>
+                </td>
+                <td class="userRowTablePassword">
+                    <?if (strlen($user->getPassword())):?>
+                        <?=$user->getPassword()?>
+                    <?else:?>
+                        &lt;Нет пароля&gt;
+                    <?endif?>
+                </td>
+            </tr>
+        </table>
+        </div>
+
+        <div class="ico-block clear">
+            <a id="editUser<?=$user['id']?>" class="icon-edit icon change" href="#" onclick="openUserEditForm(<?=$user['id']?>);return false;">
+                <p><?=$this->translate('L_CHANGE');?><span></span></p>
+            </a>
+        </div>
+        <a id="deleteUser<?=$user['id']?>" class="icon-cross icon close" onclick="userDelete(<?=$user['id']?>, '<?=$user['login']?>');return false;"></a>
+    </div>
+    <!--Item End--->
+<?endforeach;?>
+<? if ($this->paginator && $this->paginator->getPages()->pageCount > 1): ?>
+    <?=$this->paginationControl($this->paginator)?>
+<?endif?>
+
+<?endif?>

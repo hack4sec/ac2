@@ -1,0 +1,83 @@
+<div id="top-fix" class="clear">
+    <form id="filterForm" action="" method="post">
+        <div id="top-m" class="clear">
+            <div class="left">
+                <label><?=$this->translate('L_FILTER')?></label>
+                <input id="filterSearch" name="search" value="" title="" type="text" />
+                <img id="searchIcon" src="/images/zoom.png" class="searchIcon cursor" onclick="goUsersListLink(1);"/>
+            </div>
+            <div class="right">
+                <a id="delGroupLink" href="#" data-id="" data-name="" class="button newicons" onclick="userGroupDelete($(this).data('id'), $(this).data('name'));return false;" title="<?=$this->translate('L_GROUP_DEL')?>">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                    <i class="fa fa-users" aria-hidden="true"></i>
+                </a>
+                <a id="editGroupLink" href="#" data-id="" class="button newicons" onclick="openUserGroupEditForm($(this).data('id'));return false;" title="<?=$this->translate('L_GROUP_EDIT')?>">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                    <i class="fa fa-users" aria-hidden="true"></i>
+                </a>
+                <a id="addGroupLink" href="#" data-type="" data-object="" class="button newicons" onclick="openUserGroupAddForm($(this).data('type'), $(this).data('object'));return false;" title="<?=$this->translate('L_ADD_GROUP')?>">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                    <i class="fa fa-users" aria-hidden="true"></i>
+                </a>
+                <a id="addUserLink" href="#" data-type="" data-object="" data-group="" class="button newicons" onclick="openUserAddForm($(this).data('type'), $(this).data('object'), $(this).data('group'));return false;" title="<?=$this->translate('L_ADD_USER')?>">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                </a>
+                <a id="importUserLink" href="#" data-group="" class="button newicons" onclick="openImportForm($(this).data('group'));return false;" title="<?=$this->translate('L_USERS_LIST_IMPORT')?>">
+                    <i class="fa fa-upload" aria-hidden="true"></i>
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                </a>
+                <a id="exportUserLink" href="#" data-group="" class="button newicons" onclick="openExportForm($(this).data('group'));return false;" title="<?=$this->translate('L_USERS_LIST_EXPORT')?>">
+                    <i class="fa fa-download" aria-hidden="true"></i>
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+        <div id="middle" class="clear">
+            <div>
+                <label><?=$this->translate('L_USER_TYPE')?></label>
+                <select id="filterType" name="type" onchange="usersFilterTypeChange(this.value)">
+                    <option value="0">-------</option>
+                    <option value="server"><?=$this->translate('L_SERVER')?></option>
+                    <option value="web-app"><?=$this->translate('L_WEB_APPS');?></option>
+                    <option value="server-software"><?=$this->translate('L_SPO');?></option>
+                </select>
+            </div>
+            <div id="parentDiv">
+                <label><?=$this->translate('L_PARENT')?></label>
+                <select id="filterParent" name="parent" onchange="usersFilterParentChange(this.value)">
+                    <option value="0">-------</option>
+                </select>
+            </div>
+            <div id="objectDiv">
+                <label><?=$this->translate('L_OBJECT')?></label>
+                <select id="filterObject" name="object_id" onchange="usersFilterObjectChange(this.value)">
+                    <option value="0">-------</option>
+                </select>
+            </div>
+            <div id="groupDiv">
+                <label><?=$this->translate('L_GROUP')?></label>
+                <select id="filterGroup" name="group_id" onchange="usersFilterGroupChange(this.value);if (!app_navigation) {goUsersListLink(1)}">
+                    <option value="0">-------</option>
+                </select>
+            </div>
+        </div>
+</div><!--End #top-fix-->
+
+<div id="content">
+
+
+
+</div><!--End #work-space #content-->
+
+<script>
+    function changePage(page) {
+        usersListFilter(page)
+    }
+    (function($){
+        $("#editGroupLink").hide()
+        $("#delGroupLink").hide()
+        //usersListFilter(1)
+    })(jQuery);
+</script>
+

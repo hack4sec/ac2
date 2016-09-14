@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title><?=$this->translate('L_AC_TITLE')?> <?=Zend_Registry::get('config')->version?></title>
+
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="/css/fonts.css" />
+    <link rel="stylesheet" type="text/css" href="/css/modal.css" />
+
+    <link rel="stylesheet" href="/css/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/remodal.css" />
+
+    <link rel="stylesheet" href="/js/jquery-ui.min.css">
+    <link rel="stylesheet" href="/js/jquery-ui.theme.min.css">
+    <link rel="stylesheet" href="/js/jquery-ui.structure.min.css">
+
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/favicon.png" type="image/x-icon">
+
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/jquery-ui.min.js"></script>
+
+    <script type="text/javascript" src="/js/remodal.js"></script>
+    <script type="text/javascript" src="/js/form.js"></script>
+    <script type="text/javascript" src="/js/accordion.js"></script>
+
+    <script type="text/javascript" src="/js/functions/common.js?t=<?=time()?>"></script>
+    <script type="text/javascript" src="/js/functions/domains.js?t=<?=time()?>"></script>
+    <script type="text/javascript" src="/js/functions/files.js?t=<?=time()?>"></script>
+    <script type="text/javascript" src="/js/functions/projects.js?t=<?=time()?>"></script>
+    <script type="text/javascript" src="/js/functions/server-software.js?t=<?=time()?>"></script>
+    <script type="text/javascript" src="/js/functions/servers.js?t=<?=time()?>"></script>
+    <script type="text/javascript" src="/js/functions/tasks.js?t=<?=time()?>"></script>
+    <script type="text/javascript" src="/js/functions/users.js?t=<?=time()?>"></script>
+    <script type="text/javascript" src="/js/functions/users-groups.js?t=<?=time()?>"></script>
+    <script type="text/javascript" src="/js/functions/vulns.js?t=<?=time()?>"></script>
+    <script type="text/javascript" src="/js/functions/web-apps.js?t=<?=time()?>"></script>
+    <script type="text/javascript" src="/js/functions/notes.js?t=<?=time()?>"></script>
+
+    <script>
+        var translates = {}
+        <?
+        $tMessages = Zend_Registry::get('Zend_Translate')->getAdapter()->getMessages();
+        foreach ($tMessages as $tKey => $tMessage) {
+            echo "translates['$tKey'] = '" . addslashes($tMessage) . "';\n";
+        }
+        ?>
+    </script>
+</head>
+<body>
+    <header id="header-index">
+        <section class="top clear">
+            <a href="/" class="logo"><img src="/images/logo_<?=Zend_Registry::get('config')->locale?>.png"/></a>
+            <ul class="bread_crumbs">
+                <li>——</li>
+                <li><?=$this->translate('L_ALL_PROJECTS')?></li>
+            </ul>
+            <!--div class="notes"><span>Заметки</span></div-->
+        </section><!--End .top-->
+
+        <section class="bottom clear">
+            <div class="search">
+                <!--span class="icon-search"></span-->
+                <!--input onblur="this.value=(this.value=='')?this.title:this.value;" onfocus="this.value=(this.value==this.title)?'':this.value;" value="Поиск проектов" title="Поиск проектов" type="text" /-->
+            </div><!--End .search-->
+
+            <div class="button-block">
+                <div class="fileform nf-el">
+                    <a href="/users/not-found-hashes-export" id="notFoundHashesLoadLink" title="<?=$this->translate('L_ALL_PROJECTS')?>"><span class="icon-dwload"></span> <?=$this->translate('L_ALL_NF_HASHES')?></a>
+                </div>
+                <div class="fileform">
+                    <a href="#modal" id="hashesLoadLink"><span class="icon-upload"></span> <?=$this->translate('L_LOAD_PAIRS')?></a>
+                </div>
+                <!--div class="fileform import">
+                    <input id="import" class="upload" type="file" name="import" />
+                    <span class="icon-import"></span>
+                    Импорт
+                </div-->
+                <button id="projectAddButton" onclick="openProjectAddForm()"><span class="icon-new"></span><?=$this->translate('L_NEW_PROJECT')?></button>
+            </div><!--End .button-block-->
+        </section><!--End .bottom-->
+    </header><!--End header-->
+
+    <?php echo $this->layout()->content ?>
+
+    <!-- custom scrollbar plugin -->
+    <script src="/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <div id="errorlog"></div>
+    <script>window.onerror = errfunc</script>
+</body>
+</html>
