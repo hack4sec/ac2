@@ -11,6 +11,12 @@ class Hash extends Zend_Db_Table_Row
 {
     protected $_tableClass = 'Hashes';
 
+    private $_foundSimilarOnSave = true;
+
+    public function setFoundSimilarOnSave($value) {
+        $this->_foundSimilarOnSave = $value;
+    }
+
     public function save() {
         $this->cracked = (int)(bool)strlen($this->password);
 
@@ -19,7 +25,7 @@ class Hash extends Zend_Db_Table_Row
 
             parent::save();
 
-            if (!$oldData->cracked and $this->cracked) {
+            if ($this->_foundSimilarOnSave and (!$oldData->cracked and $this->cracked)) {
                 $this->getTable()->markAllHashesByOne($this);
             }
         } else {

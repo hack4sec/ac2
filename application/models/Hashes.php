@@ -23,7 +23,8 @@ class Hashes extends Common
         $result = [
             'err_strs' => [],
             'err_find' => [],
-            'found' => []
+            'found' => [],
+            'yet_exists' => [],
         ];
         $list = array_map(
             'trim',
@@ -49,10 +50,7 @@ class Hashes extends Common
             }
 
             $hashes = $this->fetchAll(
-                "`hash` = {$this->getAdapter()->quote($hash)}
-                 AND `salt` = {$this->getAdapter()->quote($salt)}
-                 AND `password` = ''
-                 AND !`cracked`"
+                "`hash` = {$this->getAdapter()->quote($hash)} AND `salt` = {$this->getAdapter()->quote($salt)}"
             );
 
             if (!count($hashes)) {
@@ -60,9 +58,15 @@ class Hashes extends Common
                 continue;
             }
 
+            // Not in one update query, we must see all found hashes from all projects in results
             foreach ($hashes as $hashRow) {
+                if ($hashRow->cracked) {
+                    continue;
+                }
+
                 $hashRow->password = $pass;
                 $hashRow->cracked = 1;
+                $hashRow->setFoundSimilarOnSave(false);
                 $hashRow->save();
 
                 $textData = $hashRow->getDataForTextPathImplementation();
