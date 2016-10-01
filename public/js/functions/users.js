@@ -259,22 +259,6 @@ function sendImportForm() {
     )
     form_data.append('group_id', $('#importForm_group_id').val());
     form_data.append('delimiter', $('#importForm_delimiter').val());
-    /*form_data.append('login', $('#importForm_login').val());
-     form_data.append('email', $('#importForm_email').val());
-     if ($('#importForm_home_dir').val() != undefined) {
-     form_data.append('home_dir', $('#importForm_home_dir').val());
-     }
-     if ($('#importForm_shell').val() != undefined) {
-     form_data.append('shell', $('#importForm_shell').val());
-     }
-     form_data.append('vip', $('#importForm_vip').val());
-     form_data.append('hash', $('#importForm_hash').val());
-     form_data.append('password', $('#importForm_password').val());
-     form_data.append('salt', $('#importForm_salt').val());*/
-
-
-    //form_data.append('wpasswords', $('#importForm_wpasswords').val());
-    //form_data.append('wopasswords', $('#importForm_wpasswords').val());
 
     $.ajax({
         url: '/users/import/',
@@ -291,6 +275,7 @@ function sendImportForm() {
                 $('#dialogbox').dialog('close')
                 $('#dialogbox').remove()
                 usersListFilter(1)
+                loadProjectMenu(projectId)
             }
         }
     });
