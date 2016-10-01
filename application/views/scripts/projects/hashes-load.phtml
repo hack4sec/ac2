@@ -48,7 +48,7 @@
             <div class="project clear" id="hashesFound<?=$projectId?>">
                 <div class="clear info-block">
                 <span class="tittle cursor" onclick="$('#foundContent<?=$projectId?>').toggle()">
-                    <?=$this->translate('L_PROJECT')?> &quot;<?=$project['name']?>&quot;
+                    <?=$this->translate('L_PROJECT')?> &quot;<?=$project['name']?>&quot; (<?=count($data)?>)
                 </span>
                     <div id="foundContent<?=$projectId?>">
                         <table style="width:100%" border="1"  id="foundTable<?=$projectId?>">
