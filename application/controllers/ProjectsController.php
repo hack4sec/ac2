@@ -65,6 +65,7 @@ class ProjectsController extends Zend_Controller_Action {
             $_FILES['file']['tmp_name']
         );
         $this->view->result = $result;
+        $this->_helper->layout->setLayout('layout-pairsload');
     }
 
     public function viewAction() {
