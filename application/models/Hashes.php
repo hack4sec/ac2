@@ -78,18 +78,11 @@ class Hashes extends Common
     }
 
     public function markAllHashesByOne($hash) {
-        $hashes = $this->fetchAll(
-            "`hash` = {$this->getAdapter()->quote($hash->hash)}
+        $where = "`hash` = {$this->getAdapter()->quote($hash->hash)}
                  AND `salt` = {$this->getAdapter()->quote($hash->salt)}
                  AND `alg_id` = '{$hash->alg_id}'
                  AND `password` = ''
-                 AND !`cracked`"
-        );
-
-        foreach ($hashes as $hashRow) {
-            $hashRow->password = $hash->password;
-            $hashRow->cracked = 1;
-            $hashRow->save();
-        }
+                 AND !`cracked`";
+        $this->update(['password' => $hash->password, 'cracked' => 1], $where);
     }
 }
