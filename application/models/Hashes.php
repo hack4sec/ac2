@@ -50,7 +50,9 @@ class Hashes extends Common
             }
 
             $hashes = $this->fetchAll(
-                "`hash` = {$this->getAdapter()->quote($hash)} AND `salt` = {$this->getAdapter()->quote($salt)}"
+                "`hash` = {$this->getAdapter()->quote($hash)} AND
+                 `salt` = {$this->getAdapter()->quote($salt)} AND
+                 `alg_id` = {$this->getAdapter()->quote($algId)}"
             );
 
             if (!count($hashes)) {
