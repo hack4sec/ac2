@@ -1,0 +1,10 @@
+New:
+On load pairs (hash/pass) result page now show count of hashes found in projects
+
+Fixed:
+In import users list process, in menu their count is not updated
+Users without hashes display error in common list
+Wrong server set in mass domain import process
+In pairs hash/pass import process not consider hash-alg
+Critical error by max_nesting_level in pairs (hash/pass) import process (thousands)
+Already founded hashes in not found list
