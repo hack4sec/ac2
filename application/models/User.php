@@ -22,7 +22,7 @@ class User extends Zend_Db_Table_Row
             $hash = $Hashes->fetchRow("user_id = {$this->id}");
             $alg = $HashAlgs->fetchRow("id = {$hash['alg_id']}");
             $this->_hashData = $hash->toArray();
-            $this->_hashData['alg'] = $alg->toArray();
+            $this->_hashData['alg'] = $alg ? $alg->toArray() : false;
         }
         return $this->_hashData;
     }
