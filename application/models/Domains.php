@@ -71,7 +71,6 @@ class Domains extends Common {
             if (strlen($domain)) {
                 if ($lookup) {
                     if (($serverIp = gethostbyname($domain)) AND $serverIp != $domain) {
-
                         if ($Servers->existsByIp($origServer->project_id, $serverIp)) {
                             $serverId = $Servers->getByIp($origServer->project_id, $serverIp)->id;
                         } else {

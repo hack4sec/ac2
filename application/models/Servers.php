@@ -73,7 +73,9 @@ class Servers extends Common {
     }
 
     public function getByIp($projectId, $ip) {
-        return $this->find(['project_id' => $projectId,'ip' => $ip])->current();
+        return $this->fetchRow(
+            $this->select()->where('project_id = ?', $projectId)->where('ip = ?', $ip)
+        );
     }
 
     public function getFullListIpsOnly($projectId, $order="id") {
