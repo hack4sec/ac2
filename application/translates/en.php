@@ -156,7 +156,7 @@ return [
     'L_ALL_NF_HASHES' => 'All not found hashes',
     'L_LAST_PROJECTS' => 'Last projects',
     'L_HASHES_LOAD_PAGE' => 'Hashes upload page',
-    'L_HASHES_LOAD_DESC' => 'Uploading file must be text file and contains strings in format "hash:(salt:)password", where ":" - delimiter which you can change.',
+    'L_HASHES_LOAD_DESC' => 'Uploading file must be text file and contains unique strings in format "hash:(salt:)password", where ":" - delimiter which you can change.',
     'L_HASHES_LOAD_LIST_TYPE' => 'List type',
     'L_HASHES_LOAD_LIST_TYPE_HASH_PASS' => 'hash:password',
     'L_HASHES_LOAD_LIST_TYPE_HASH_PASS_SALT' => 'hash:salt:password',
