@@ -1,4 +1,6 @@
-<?foreach ($this->paginator as $domain):?>
+<?$Domains = new Domains();?>
+<?foreach ($this->paginator as $domainRow):?>
+    <?$domain = $Domains->get($domainRow['id'])?>
     <!--Item Begin--->
     <div class="project clear" id="domainRow<?=$domain['id']?>">
         <div class="<?=$domain->getCssClassByVulns()?> status"></div>

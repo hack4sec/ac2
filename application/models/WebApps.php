@@ -36,10 +36,17 @@ class WebApps extends Common
         );
     }
 
-    public function getListPaginator($domainId, $search, $page) {
-        $select = $this->select()->where("domain_id = $domainId")->order(["checked DESC", "name ASC"]);
+    public function getListPaginator($projectId, $parent, $domainId, $search, $page) {
+        if (!$parent and !$domainId) {
+            $select = $this->_getListAll($projectId);
+        } elseif ($parent and !$domainId) {
+            $select = $this->_getListByParent($projectId, $parent);
+        } else {
+            $select = $this->_getListByDomainId($projectId, $domainId);
+        }
+        $select->order(["checked DESC", "name ASC"]);
         if (strlen($search)) {
-            $select->where("name LIKE ? OR comment LIKE ?", "%$search%", "%$search%");
+            $select->where("w.name LIKE ? OR w.comment LIKE ?", "%$search%", "%$search%");
         }
 
         $paginator = Zend_Paginator::factory(
@@ -53,5 +60,21 @@ class WebApps extends Common
         );
         $paginator->setView($view);
         return $paginator;
+    }
+
+    private function _getListByDomainId($projectId, $domainId) {
+        return $this->_getListAll($projectId)->where('domain_id = ?', $domainId);
+    }
+
+    private function _getListByParent($projectId, $parent) {
+        return $this->_getListAll($projectId)->where("s.id = $parent");
+    }
+
+    private function _getListAll($projectId) {
+        $select = $this->getAdapter()->select()
+            ->from(['w' => 'web_apps'], ['*'])
+            ->join(['d' => 'domains'], 'w.domain_id = d.id', [])
+            ->join(['s' => 'servers'], "d.server_id = s.id AND s.project_id = $projectId", []);
+        return $select;
     }
 }

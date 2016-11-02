@@ -12,7 +12,10 @@ class Servers extends Common {
     protected $_rowClass = 'Server';
 
     public function getListPaginator($projectId, $search, $page) {
-        $select = $this->select()->where("project_id = $projectId")->order(["checked DESC", "name ASC"]);
+        $select = $this->getAdapter()->select()
+            ->from('servers')
+            ->where("project_id = $projectId")
+            ->order(["checked DESC", "name ASC"]);
         if (strlen($search)) {
             $select->where("name LIKE ? OR comment LIKE ?", "%$search%", "%$search%");
         }

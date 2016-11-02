@@ -32,6 +32,9 @@ function vulnsFilterTypeChange(type) {
         option.innerHTML = '-------'
         $('#filterObject').append(option)
     })
+    if (!app_navigation) {
+        vulnsListFilter(1)
+    }
 }
 
 function vulnsFilterObjectChange(object) {
@@ -57,16 +60,15 @@ function vulnsFilterParentChange(parent) {
             $('#filterObject').append(option)
         }
     })
+    if (!app_navigation) {
+        vulnsListFilter(1)
+    }
 }
 
 function vulnsListFilter(page) {
-    if (!parseInt($('#filterObject').val())) {
-        alert(_t('L_SELECT_OBJECT_FIRST'));
-        return false;
-    }
     var type = $('#filterType').val()
     var obj = $('#filterObject').val()
-    $.post('/vulns/ajax-list/type/' + type + '/object_id/' + obj + '/page/' + page, $( "#filterForm" ).serialize(), function (htmlData) {
+    $.post('/vulns/ajax-list/project_id/' + projectId + '/type/' + type + '/object_id/' + obj + '/page/' + page, $( "#filterForm" ).serialize(), function (htmlData) {
         $('#content').html(htmlData)
     })
 }
@@ -161,9 +163,6 @@ function vulnLoadView(id) {
 
 
 function goVulnsListLink() {
-    if ($('#filterObject').val() == "0") {
-        return alert(_t('L_SELECT_OBJECT_FIRST'))
-    }
     var filterData = []
     filterData[filterData.length] = $('#filterType').val()
     filterData[filterData.length] = $('#filterParent').val()

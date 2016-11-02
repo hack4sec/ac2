@@ -46,6 +46,9 @@ function usersFilterTypeChange(type) {
             option.innerHTML = '-------'
             $('#filterGroup').append(option)
         })
+        if (!app_navigation) {
+            usersListFilter(1)
+        }
     } else if(type == 'project') {
         $('#parentDiv').hide()
         $('#objectDiv').hide()
@@ -83,6 +86,9 @@ function usersFilterParentChange(parent) {
             $('#filterObject').append(option)
         }
     })
+    if (!app_navigation) {
+        usersListFilter(1)
+    }
 }
 
 function usersFilterGroupChange(group_id) {
@@ -121,16 +127,17 @@ function usersFilterObjectChange(object_id) {
             $('#filterGroup').append(option)
         }
     })
+    if (!app_navigation) {
+        usersListFilter(1)
+    }
 }
 
 function usersListFilter(page) {
-    if (!parseInt($('#filterObject').val())) {
-        alert(_t('L_SELECT_OBJECT_FIRST'));
-        return false;
-    }
     var type = $('#filterType').val()
     var group = $('#filterGroup').val()
-    $.post('/users/ajax-list/group_id/' + group + '/page/' + page, $( "#filterForm" ).serialize(), function (htmlData) {
+    var obj = $('#filterObject').val()
+    var parent = $('#filterParent').val()
+    $.post('/users/ajax-list/project_id/' + projectId + '/group_id/' + group + '/page/' + page, $( "#filterForm" ).serialize(), function (htmlData) {
         $('#content').html(htmlData)
     })
 }

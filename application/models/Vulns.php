@@ -16,8 +16,18 @@ class Vulns extends Common
         parent::add($data);
     }
 
-    public function getListPaginator($type, $objectId, $search, $page) {
-        $select = $this->select()->where("type = {$this->getAdapter()->quote($type)} AND object_id = $objectId")->order("sort DESC");
+    public function getListPaginator($projectId, $type, $parent, $objectId, $search, $page) {
+        if (!$type) {
+            $select = $this->_getListAll($projectId);
+        } elseif ($type and !$parent and !$objectId) {
+            $select = $this->_getListAllByType($projectId, $type);
+        } elseif ($type and $parent and !$objectId) {
+            $select = $this->_getListByTypeAndParent($projectId, $type, $parent);
+        } else {
+            $select = $this->_getListByObjectId($projectId, $type, $objectId);
+        }
+
+        $select->order("sort DESC");
         if (strlen($search)) {
             $select->where("name LIKE ? OR description LIKE ?", "%$search%", "%$search%");
         }
@@ -31,7 +41,59 @@ class Vulns extends Common
             'paginator.phtml'
         );
         $paginator->setView($view);
+
         return $paginator;
+    }
+
+    private function _getListByObjectId($projectId, $type, $objectId) {
+        return $this->_getListAllByType($projectId, $type)->where('object_id = ?', $objectId);
+    }
+
+    private function _getListByTypeAndParent($projectId, $type, $parent) {
+        $select = $this->_getListAllByType($projectId, $type);
+        switch ($type) {
+            case 'web-app':
+                $select->where("d.id = ?", $parent);
+                break;
+            case 'server-software':
+                $select->where("s.id = ?", $parent);
+                break;
+            default:
+                throw new Exception("Unknown list type '{$type}'");
+        }
+        return $select;
+    }
+
+    private function _getListAllByType($projectId, $type) {
+        switch ($type) {
+            case 'web-app':
+                $select = $this->getAdapter()->select()
+                    ->from(['v' => 'vulns'], ['*'])
+                    ->join(['w' => 'web_apps'], 'v.object_id = w.id', [])
+                    ->join(['d' => 'domains'], 'w.domain_id = d.id', [])
+                    ->join(['s' => 'servers'], "d.server_id = s.id AND s.project_id = $projectId", [])
+                    ->where("v.type = 'web-app'");
+                break;
+            case 'server-software':
+                $select = $this->getAdapter()->select()
+                    ->from(['v' => 'vulns'], ['*'])
+                    ->join(['s' => 'servers'], "s.project_id = $projectId", [])
+                    ->join(['ss' => 'servers_software'], 'ss.server_id = s.id AND ss.id = v.object_id', [])
+                    ->where("v.type = 'server-software'");
+                break;
+            default:
+                throw new Exception("Unknown list type '{$type}'");
+        }
+        return $select;
+    }
+
+    private function _getListAll($projectId) {
+        return $this->getAdapter()->select()->union(
+            [
+                $this->_getListAllByType($projectId, 'web-app'),
+                $this->_getListAllByType($projectId, 'server-software'),
+            ]
+        );
     }
 
     public function getObjectsPairsList($type, $parentId) {

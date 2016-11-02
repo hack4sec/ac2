@@ -35,14 +35,20 @@ function filesFilterTypeChange(type) {
             option.innerHTML = '-------'
             $('#filterObject').append(option)
         })
+        if (!app_navigation) {
+            filesListFilter(1)
+        }
     } else if(type == 'project') {
         $('#parentDiv').hide()
         $('#objectDiv').hide()
         filesFilterObjectChange(projectId)
+        filesListFilter(1)
 
     } else if(type == 'server') {
         $('#parentDiv').hide()
         filesFilterParentChange(projectId)
+    } else {
+        filesListFilter(1)
     }
 }
 
@@ -65,7 +71,9 @@ function filesFilterParentChange(parent) {
             $('#filterObject').append(option)
         }
     })
-}
+    if (!app_navigation) {
+        filesListFilter(1)
+    }}
 
 function filesFilterObjectChange(object) {
     $("#addFileLink").data('object', object)
@@ -73,7 +81,17 @@ function filesFilterObjectChange(object) {
 
 
 function filesListFilter(page) {
-    if ($('#filterType').val() == 'project') {
+    var type = $('#filterType').val()
+    var obj = $('#filterObject').val()
+    var parent = $('#filterParent').val()
+
+    $.post(
+        '/files/ajax-list/type/' + type + '/object_id/' + obj + '/parent/' + parent +  '/project_id/' + projectId + '/page/' + page,
+        $( "#filterForm" ).serialize(), function (htmlData) {
+            $('#content').html(htmlData)
+        }
+    )
+    /*if ($('#filterType').val() == 'project') {
         var type = $('#filterType').val()
         var obj  = projectId
 
@@ -90,7 +108,7 @@ function filesListFilter(page) {
         $.post('/files/ajax-list/type/' + type + '/object_id/' + obj + '/page/' + page, $( "#filterForm" ).serialize(), function (htmlData) {
             $('#content').html(htmlData)
         })
-    }
+    }*/
 
 }
 

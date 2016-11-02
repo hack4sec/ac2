@@ -87,132 +87,128 @@ function hashNavigation() {
         if (controller == 'webapp') {
             openWebAppsList(projectId)
 
-            if (filterData.length) {
-                $('#filterServer').val(filterData[0]).triggerHandler('change')
-                $('#filterDomain').val(filterData[1]).triggerHandler('change')
-                if (filterData[2] != undefined) {
-                    $('#filterSearch').val(filterData[2])
-                }
-                webAppsListFilter(1);
+
+            $('#filterServer').val(filterData[0]).triggerHandler('change')
+            $('#filterDomain').val(filterData[1]).triggerHandler('change')
+            if (filterData[2] != undefined) {
+                $('#filterSearch').val(filterData[2])
             }
+            webAppsListFilter(1);
+
         }
 
         if (controller == 'spo') {
             openSpoList(projectId)
 
-            if (filterData.length) {
-                $('#filterServer').val(filterData[0]).trigger('change')
-                if (filterData[1] != undefined) {
-                    $('#filterSearch').val(filterData[1])
-                }
-                spoListFilter(1);
+
+            $('#filterServer').val(filterData[0]).trigger('change')
+            if (filterData[1] != undefined) {
+                $('#filterSearch').val(filterData[1])
             }
+            spoListFilter(1);
+
         }
 
         if (controller == 'server') {
             loadServersList(projectId)
 
-            if (filterData.length) {
-                $('#filterSearch').val(filterData[0])
-                serversListFilter(1)
-            }
+            $('#filterSearch').val(filterData[0])
+            serversListFilter(1)
+
         }
 
         if (controller == 'domain') {
             openDomainsList(projectId)
 
-            if (filterData.length) {
-                $('#filterServer').val(filterData[0]).trigger('change')
-                if (filterData[1] != undefined) {
-                    $('#filterSearch').val(filterData[1])
-                }
-                domainsListFilter(1);
+
+            $('#filterServer').val(filterData[0]).trigger('change')
+            if (filterData[1] != undefined) {
+                $('#filterSearch').val(filterData[1])
             }
+            domainsListFilter(1);
         }
 
         if (controller == 'vuln') {
             openVulnsList(projectId)
 
-            if (filterData.length) {
-                $('#filterType').val(filterData[0]).triggerHandler('change')
-                $('#filterParent').val(filterData[1]).triggerHandler('change')
-                $('#filterObject').val(filterData[2]).triggerHandler('change')
-                if (filterData[3] != undefined) {
-                    $('#filterSearch').val(filterData[3])
-                }
-                vulnsListFilter(1);
+            $('#filterType').val(filterData[0]).triggerHandler('change')
+            $('#filterParent').val(filterData[1]).triggerHandler('change')
+            $('#filterObject').val(filterData[2]).triggerHandler('change')
+            if (filterData[3] != undefined) {
+                $('#filterSearch').val(filterData[3])
             }
+            vulnsListFilter(1);
         }
 
         if (controller == 'file') {
             openFilesList(projectId)
 
-            if (filterData.length) {
-                var type = filterData[0]
-                if (type == 'web-app' || type == 'server-software' || type == 'domain') {
-                    $('#filterType').val(filterData[0]).triggerHandler('change')
-                    $('#filterParent').val(filterData[1]).triggerHandler('change')
-                    $('#filterObject').val(filterData[2]).triggerHandler('change')
-                } else if(type == 'project') {
-                    $('#filterType').val(filterData[0]).triggerHandler('change')
-                } else if(type == 'server') {
-                    $('#filterType').val(filterData[0]).triggerHandler('change')
-                    $('#filterObject').val(filterData[2]).triggerHandler('change')
-                }
 
-                if (filterData[3] != undefined) {
-                    $('#filterSearch').val(filterData[3])
-                }
-
-                filesListFilter(1);
+            var type = filterData[0]
+            if (type == 'web-app' || type == 'server-software' || type == 'domain') {
+                $('#filterType').val(filterData[0]).triggerHandler('change')
+                $('#filterParent').val(filterData[1]).triggerHandler('change')
+                $('#filterObject').val(filterData[2]).triggerHandler('change')
+            } else if(type == 'project') {
+                $('#filterType').val(filterData[0]).triggerHandler('change')
+            } else if(type == 'server') {
+                $('#filterType').val(filterData[0]).triggerHandler('change')
+                $('#filterObject').val(filterData[2]).triggerHandler('change')
             }
+
+            if (filterData[3] != undefined) {
+                $('#filterSearch').val(filterData[3])
+            }
+
+            filesListFilter(1);
+
         }
 
         if (controller == 'task') {
             openTasksList(projectId)
 
-            if (filterData.length) {
-                var type = filterData[0]
-                if (type == 'web-app' || type == 'server-software' || type == 'domain') {
-                    $('#filterType').val(filterData[0]).triggerHandler('change')
-                    $('#filterParent').val(filterData[1]).triggerHandler('change')
-                    $('#filterObject').val(filterData[2]).triggerHandler('change')
-                } else if(type == 'project') {
-                    $('#filterType').val(filterData[0]).triggerHandler('change')
-                } else if(type == 'server') {
-                    $('#filterType').val(filterData[0]).triggerHandler('change')
-                    $('#filterObject').val(filterData[2]).triggerHandler('change')
-                }
 
-                if (filterData[3] != undefined) {
-                    $('#filterSearch').val(filterData[3])
-                }
-
-                tasksListFilter(1);
+            var type = filterData[0]
+            if (type == 'web-app' || type == 'server-software' || type == 'domain') {
+                $('#filterType').val(filterData[0]).triggerHandler('change')
+                $('#filterParent').val(filterData[1]).triggerHandler('change')
+                $('#filterObject').val(filterData[2]).triggerHandler('change')
+            } else if(type == 'project') {
+                $('#filterType').val(filterData[0]).triggerHandler('change')
+            } else if(type == 'server') {
+                $('#filterType').val(filterData[0]).triggerHandler('change')
+                $('#filterObject').val(filterData[2]).triggerHandler('change')
             }
+
+            if (filterData[3] != undefined) {
+                $('#filterSearch').val(filterData[3])
+            }
+
+            tasksListFilter(1);
+
         }
 
         if (controller == 'user') {
             openUsersList(projectId)
 
-            if (filterData.length) {
-                var type = filterData[0]
-                if (type == 'web-app' || type == 'server-software') {
-                    $('#filterType').val(filterData[0]).triggerHandler('change')
-                    $('#filterParent').val(filterData[1]).triggerHandler('change')
-                    $('#filterObject').val(filterData[2]).triggerHandler('change')
-                } else if(type == 'server') {
-                    $('#filterType').val(filterData[0]).triggerHandler('change')
-                    $('#filterObject').val(filterData[2]).triggerHandler('change')
-                }
 
-                $('#filterGroup').val(filterData[3]).triggerHandler('change')
-                if (filterData[4] != undefined) {
-                    $('#filterSearch').val(filterData[4])
-                }
-
-                usersListFilter(1);
+            var type = filterData[0]
+            if (type == 'web-app' || type == 'server-software') {
+                $('#filterType').val(filterData[0]).triggerHandler('change')
+                $('#filterParent').val(filterData[1]).triggerHandler('change')
+                $('#filterObject').val(filterData[2]).triggerHandler('change')
+            } else if(type == 'server') {
+                $('#filterType').val(filterData[0]).triggerHandler('change')
+                $('#filterObject').val(filterData[2]).triggerHandler('change')
             }
+
+            $('#filterGroup').val(filterData[3]).triggerHandler('change')
+            if (filterData[4] != undefined) {
+                    $('#filterSearch').val(filterData[4])
+            }
+
+            usersListFilter(1);
+
         }
     }
 

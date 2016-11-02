@@ -1,4 +1,6 @@
-<?foreach ($this->paginator as $webApp):?>
+<?$WebApps = new WebApps()?>
+<?foreach ($this->paginator as $webAppRow):?>
+    <?$webApp = $WebApps->get($webAppRow['id'])?>
     <!--Item Begin--->
     <div class="project clear" id="webAppRow<?=$webApp['id']?>">
         <div class="<?=$webApp->getCssClassByVulns()?> status"></div>

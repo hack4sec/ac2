@@ -21,10 +21,20 @@ class Servers_Software extends Common
         );
     }
 
-    public function getListPaginator($serverId, $search, $page) {
-        $select = $this->select()->where("server_id = $serverId")->order("name ASC");
+    public function getListPaginator($projectId, $serverId, $search, $page) {
+        if ($serverId) {
+            $select = $this->getAdapter()->select()
+                ->from(['ss' => 'servers_software'])
+                ->where("server_id = $serverId");
+        } else {
+            $select = $this->getAdapter()->select()
+                ->from(['ss' => 'servers_software'])
+                ->join(['s' => 'servers'], 'ss.server_id = s.id', [])
+                ->where("s.project_id = ?", $projectId);
+        }
+        $select->order("name ASC");
         if (strlen($search)) {
-            $select->where("name LIKE ? OR comment LIKE ?", "%$search%", "%$search%");
+            $select->where("ss.name LIKE ? OR ss.comment LIKE ?", "%$search%", "%$search%");
         }
         $paginator = Zend_Paginator::factory(
             $select

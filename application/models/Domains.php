@@ -20,10 +20,20 @@ class Domains extends Common {
         );
     }
 
-    public function getListPaginator($serverId, $search, $page) {
-        $select = $this->select()->where("server_id = $serverId")->order(["checked DESC", "name ASC"]);
+    public function getListPaginator($projectId, $serverId, $search, $page) {
+        if ($serverId) {
+            $select = $this->getAdapter()->select()
+                ->from(['d' => 'domains'])
+                ->where("server_id = $serverId");
+        } else {
+            $select = $this->getAdapter()->select()
+                ->from(['d' => 'domains'])
+                ->join(['s' => 'servers'], 'd.server_id = s.id', [])
+                ->where("s.project_id = ?", $projectId);
+        }
+        $select->order(["checked DESC", "name ASC"]);
         if (strlen($search)) {
-            $select->where("name LIKE ? OR comment LIKE ?", "%$search%", "%$search%");
+            $select->where("d.name LIKE ? OR d.comment LIKE ?", "%$search%", "%$search%");
         }
         $paginator = Zend_Paginator::factory(
             $select

@@ -1,4 +1,6 @@
-<?foreach ($this->paginator as $server):?>
+<?$Servers = new Servers()?>
+<?foreach ($this->paginator as $serverRow):?>
+    <?$server = $Servers->get($serverRow['id'])?>
     <!--Item Begin--->
     <div class="project clear" id="serverRow<?=$server['id']?>">
         <div class="<?=$server->getCssClassByVulns()?> status"></div>

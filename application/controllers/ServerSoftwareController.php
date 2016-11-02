@@ -59,16 +59,14 @@ class ServerSoftwareController extends Zend_Controller_Action
     }
 
     public function ajaxListAction() {
-        if ($this->_getParam('server_id')) {
-            $this->view->paginator = $this->_model->getListPaginator(
-                $this->_getParam('server_id'),
-                $this->_getParam('search'),
-                $this->_getParam('page', 1)
-            );
-        }
+        $this->view->paginator = $this->_model->getListPaginator(
+            $this->_getParam('project_id'),
+            $this->_getParam('server_id'),
+            $this->_getParam('search'),
+            $this->_getParam('page', 1)
+        );
 
-        $this->view->server = (new Servers())->get($this->_getParam('server_id'));
-        $this->view->serversList = (new Servers())->getFullList($this->view->server['project_id']);
+        $this->view->serversList = (new Servers())->getFullList($this->_getParam('project_id'));
         $this->_helper->layout->disableLayout();
     }
 

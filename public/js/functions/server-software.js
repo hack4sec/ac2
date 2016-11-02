@@ -12,11 +12,7 @@ function setServerIdToSpoAddLink(server_id) {
 }
 
 function spoListFilter(page) {
-    if (!parseInt($('#filterServer').val())) {
-        alert(_t('L_SELECT_SERVER_FIRST'));
-        return false;
-    }
-    $.post("/server-software/ajax-list/page/" + page, $( "#filterForm" ).serialize(), function (htmlData) {
+    $.post("/server-software/ajax-list/project_id/" + projectId + "/page/" + page, $( "#filterForm" ).serialize(), function (htmlData) {
         $('#content').html(htmlData)
     } );
 }
@@ -95,9 +91,6 @@ function sendSoftwareAddForm() {
 
 
 function goSpoListLink() {
-    if ($('#filterServer').val() == "0") {
-        return alert(_t('L_SELECT_SERVER_FIRST'))
-    }
     var filterData = []
     filterData[filterData.length] = $('#filterServer').val()
     if ($('#filterSearch').val().length) {

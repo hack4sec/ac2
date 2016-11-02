@@ -14,11 +14,7 @@ function setServerIdToLinks(server_id) {
 }
 
 function domainsListFilter(page) {
-    if (!parseInt($('#filterServer').val())) {
-        alert(_t('L_SELECT_SERVER_FIRST'));
-        return false;
-    }
-    $.post("/domains/ajax-list/page/" + page, $( "#filterForm" ).serialize(), function (htmlData) {
+    $.post("/domains/ajax-list/project_id/" + projectId + "/page/" + page, $( "#filterForm" ).serialize(), function (htmlData) {
         $('#content').html(htmlData)
     } );
 }
@@ -95,9 +91,6 @@ function domainDelete(id, title) {
 }
 
 function goDomainsListLink() {
-    if ($('#filterServer').val() == "0") {
-        return alert(_t('L_SELECT_SERVER_FIRST'))
-    }
     var filterData = []
     filterData[filterData.length] = $('#filterServer').val()
     if ($('#filterSearch').val().length) {

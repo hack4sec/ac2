@@ -1,4 +1,6 @@
-<?foreach ($this->paginator as $spo):?>
+<?$ServersSoftware = new Servers_Software()?>
+<?foreach ($this->paginator as $spoRow):?>
+    <?$spo = $ServersSoftware->get($spoRow['id'])?>
     <!--Item Begin--->
     <div class="project clear" id="spoRow<?=$spo['id']?>">
         <div class="<?=$spo->getCssClassByVulns()?> status"></div>

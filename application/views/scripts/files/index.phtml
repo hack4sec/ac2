@@ -15,7 +15,7 @@
         <div id="middle" class="clear">
             <div>
                 <label>Тип файла</label>
-                <select id="filterType" name="type" onchange="filesFilterTypeChange(this.value);if (this.value == 'project' && !app_navigation) {goFilesListLink(1)}">
+                <select id="filterType" name="type" onchange="filesFilterTypeChange(this.value);">
                     <option value="0">-------</option>
                     <option value="project"><?=$this->translate('L_PROJECT')?></option>
                     <option value="server"><?=$this->translate('L_SERVER')?></option>

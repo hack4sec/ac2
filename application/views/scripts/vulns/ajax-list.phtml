@@ -1,4 +1,6 @@
-<?foreach ($this->paginator as $vuln):?>
+<?$Vulns = new Vulns()?>
+<?foreach ($this->paginator as $vulnRow):?>
+    <?$vuln = $Vulns->get($vulnRow['id'])?>
     <!--Item Begin--->
     <div class="project clear" id="vulnRow<?=$vuln['id']?>">
         <div class="<?=$this->risks[$vuln['risk_level_id']]?> status"></div>

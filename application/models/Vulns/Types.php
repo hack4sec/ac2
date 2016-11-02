@@ -11,9 +11,9 @@ class Vulns_Types extends Common
 {
     protected $_name = 'vulns_types';
 
-    public function getListByType($type) {
+    public function getFullList() {
         return $this->getAdapter()->fetchPairs(
-            "SELECT id, name FROM {$this->_name} WHERE type='$type' ORDER BY name ASC"
+            "SELECT id, name FROM {$this->_name} ORDER BY name ASC"
         );
     }
 }

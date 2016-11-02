@@ -18,8 +18,21 @@ class Users extends Common
         );
     }
 
-    public function getListPaginator($groupId, $search, $page) {
-        $select = $this->select()->where("group_id = $groupId")->order(["vip DESC", "login ASC"]);
+    public function getListPaginator($projectId, $type, $parent, $objectId, $groupId, $search, $page) {
+        if (!$type) {
+            $select = $this->_getListAll($projectId);
+        } elseif ($type and !$parent and !$objectId) {
+            $select = $this->_getListAllByType($projectId, $type);
+        } elseif ($type and $parent and !$objectId) {
+            $select = $this->_getListByTypeAndParent($projectId, $type, $parent);
+        } else {
+            $select = $this->_getListByTypeAndObjectId($projectId, $type, $objectId);
+        }
+        if ($groupId) {
+            $select->where('ug.id = ?', $groupId);
+        }
+
+        $select->order(["vip DESC", "login ASC"]);
         if (strlen($search)) {
             $select->where("login LIKE ? OR email LIKE ?", "%$search%", "%$search%");
         }
@@ -34,6 +47,70 @@ class Users extends Common
         );
         $paginator->setView($view);
         return $paginator;
+    }
+
+    private function _getListByTypeAndObjectId($projectId, $type, $objectId) {
+        return $this->_getListAllByType($projectId, $type)->where('object_id = ?', $objectId);
+    }
+
+    private function _getListByTypeAndParent($projectId, $type, $parent) {
+        $select = $this->_getListAllByType($projectId, $type);
+        switch ($type) {
+            case 'web-app':
+                $select->where("d.id = ?", $parent);
+                break;
+            case 'server-software':
+                $select->where("s.id = ?", $parent);
+                break;
+            case 'server':
+                //$select->where("s.id = ?", $parent);
+                break;
+            default:
+                throw new Exception("Unknown list type '{$type}'");
+        }
+        return $select;
+    }
+
+    private function _getListAllByType($projectId, $type) {
+        switch ($type) {
+            case 'web-app':
+                $select = $this->getAdapter()->select()
+                    ->from(['u' => 'users'], ['*'])
+                    ->join(['ug' => 'users_groups'], 'ug.id = u.group_id', [])
+                    ->join(['w' => 'web_apps'], 'ug.object_id = w.id', [])
+                    ->join(['d' => 'domains'], 'w.domain_id = d.id', [])
+                    ->join(['s' => 'servers'], "d.server_id = s.id AND s.project_id = $projectId", [])
+                    ->where("ug.type = 'web-app'");
+                break;
+            case 'server':
+                $select = $selectServers = $this->getAdapter()->select()
+                    ->from(['u' => 'users'], ['*'])
+                    ->join(['ug' => 'users_groups'], 'ug.id = u.group_id', [])
+                    ->join(['s' => 'servers'], "s.project_id = $projectId AND s.id = ug.object_id", [])
+                    ->where("ug.type = 'server'");
+                break;
+            case 'server-software':
+                $select = $this->getAdapter()->select()
+                    ->from(['u' => 'users'], ['*'])
+                    ->join(['ug' => 'users_groups'], 'ug.id = u.group_id', [])
+                    ->join(['s' => 'servers'], "s.project_id = $projectId", [])
+                    ->join(['ss' => 'servers_software'], 'ss.server_id = s.id AND ss.id = ug.object_id', [])
+                    ->where("ug.type = 'server-software'");
+                break;
+            default:
+                throw new Exception("Unknown list type '{$type}'");
+        }
+        return $select;
+    }
+
+    private function _getListAll($projectId) {
+        return $this->getAdapter()->select()->union(
+            [
+                $this->_getListAllByType($projectId, 'web-app'),
+                $this->_getListAllByType($projectId, 'server-software'),
+                $this->_getListAllByType($projectId, 'server'),
+            ]
+        );
     }
 
     public function add($data)

@@ -15,13 +15,15 @@ class UsersController extends Zend_Controller_Action
     }
 
     public function ajaxListAction() {
-        if ($this->_getParam('group_id')) {
-            $this->view->paginator = $this->_model->getListPaginator(
-                $this->_getParam('group_id'),
-                $this->_getParam('search'),
-                $this->_getParam('page', 1)
-            );
-        }
+        $this->view->paginator = $this->_model->getListPaginator(
+            $this->_getParam('project_id'),
+            $this->_getParam('type'),
+            $this->_getParam('parent'),
+            $this->_getParam('object_id'),
+            $this->_getParam('group_id'),
+            $this->_getParam('search'),
+            $this->_getParam('page', 1)
+        );
 
         $this->_helper->layout->disableLayout();
     }
@@ -198,20 +200,30 @@ class UsersController extends Zend_Controller_Action
     }
 
     public function parentsListJsonAction() {
-        $this->_helper->json(
-            $this->_model->getParentsPairsList(
-                $this->_getParam('project_id'),
-                $this->_getParam('type')
-            )
-        );
+        if ($this->_getParam('type')) {
+            $this->_helper->json(
+                $this->_model->getParentsPairsList(
+                    $this->_getParam('project_id'),
+                    $this->_getParam('type')
+                )
+            );
+        } else {
+            $this->_helper->viewRenderer->setNoRender(true);
+            $this->_helper->layout->disableLayout();
+        }
     }
 
     public function objectsListJsonAction() {
-        $this->_helper->json(
-            $this->_model->getObjectsPairsList(
-                $this->_getParam('type'),
-                $this->_getParam('parent_id')
-            )
-        );
+        if ($this->_getParam('type')) {
+            $this->_helper->json(
+                $this->_model->getObjectsPairsList(
+                    $this->_getParam('type'),
+                    $this->_getParam('parent_id')
+                )
+            );
+        } else {
+            $this->_helper->viewRenderer->setNoRender(true);
+            $this->_helper->layout->disableLayout();
+        }
     }
 }

@@ -39,20 +39,24 @@ function tasksFilterTypeChange(type) {
             option.innerHTML = '-------'
             $('#filterObject').append(option)
         })
+        if (!app_navigation) {
+            tasksListFilter(1)
+        }
     } else if(type == 'project') {
         $('#parentDiv').hide()
         $('#objectDiv').hide()
         tasksFilterObjectChange(projectId)
+        tasksListFilter(1)
     } else if(type == 'server') {
         $('#parentDiv').hide()
         tasksFilterParentChange(projectId)
+    } else {
+        tasksListFilter(1)
     }
 }
 
 
 function tasksFilterParentChange(parent) {
-    blankContent()
-
     var type = $('#filterType').val()
 
     getJSON('/tasks/objects-list-json/parent_id/' + parent + '/type/' + type + '/project_id/' + projectId, function (data) {
@@ -69,10 +73,25 @@ function tasksFilterParentChange(parent) {
             $('#filterObject').append(option)
         }
     })
+    if (!app_navigation) {
+        tasksListFilter(1)
+    }
 }
 
 function tasksListFilter(page) {
-    if ($('#filterType').val() == 'project') {
+    var type = $('#filterType').val()
+    var obj = $('#filterObject').val()
+    var parent = $('#filterParent').val()
+
+    $.post(
+        '/tasks/ajax-list/type/' + type + '/object_id/' + obj + '/parent/' + parent +  '/project_id/' + projectId + '/page/' + page,
+        $( "#filterForm" ).serialize(), function (htmlData) {
+            $('#content').html(htmlData)
+        }
+    )
+    /*if ($('#filterType').val() == '0') {
+
+    } else if ($('#filterType').val() == 'project') {
         var type = $('#filterType').val()
         var obj  = projectId
 
@@ -89,7 +108,7 @@ function tasksListFilter(page) {
         $.post('/tasks/ajax-list/type/' + type + '/object_id/' + obj + '/page/' + page, $( "#filterForm" ).serialize(), function (htmlData) {
             $('#content').html(htmlData)
         })
-    }
+    }*/
 
 }
 

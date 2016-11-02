@@ -18,12 +18,22 @@ class Tasks extends Common {
         );
     }
 
-    public function getListPaginator($type, $objectId, $search, $page) {
-        $select = $this->select()->where("type = {$this->getAdapter()->quote($type)} AND object_id = $objectId")
-                                 ->order(["status ASC", "name ASC"]);
-        if (strlen($search)) {
-            $select->where("name LIKE ? OR description LIKE ?", "%$search%", "%$search%");
+    public function getListPaginator($projectId, $type, $parent, $objectId, $search, $page) {
+        if (!$type) {
+            $select = $this->_getListAll($projectId);
+        } elseif ($type and !$parent and !$objectId) {
+            $select = $this->_getListAllByType($projectId, $type);
+        } elseif ($type and $parent and !$objectId) {
+            $select = $this->_getListByTypeAndParent($projectId, $type, $parent);
+        } else {
+            $select = $this->_getListByObjectId($projectId, $type, $objectId);
         }
+
+        if (strlen($search)) {
+            $select->where("t.name LIKE ? OR t.description LIKE ?", "%$search%", "%$search%");
+        }
+        $select->order(["status ASC", "name ASC"]);
+
         $paginator = Zend_Paginator::factory(
             $select
         )->setItemCountPerPage(Zend_Registry::get('config')->pagination->tasks)
@@ -34,7 +44,82 @@ class Tasks extends Common {
             'paginator.phtml'
         );
         $paginator->setView($view);
+
         return $paginator;
+    }
+
+    private function _getListByObjectId($projectId, $type, $objectId) {
+        return $this->_getListAllByType($projectId, $type)->where('object_id = ?', $objectId);
+    }
+
+    private function _getListByTypeAndParent($projectId, $type, $parent) {
+        $select = $this->_getListAllByType($projectId, $type);
+        switch ($type) {
+            case 'web-app':
+                $select->where("d.id = ?", $parent);
+                break;
+            case 'server-software':
+                $select->where("s.id = ?", $parent);
+                break;
+            case 'domain':
+                $select->where("s.id = ?", $parent);
+                break;
+            default:
+                throw new Exception("Unknown list type '{$type}'");
+        }
+        return $select;
+    }
+
+    private function _getListAllByType($projectId, $type) {
+        switch ($type) {
+            case 'web-app':
+                $select = $this->getAdapter()->select()
+                    ->from(['t' => 'tasks'], ['*'])
+                    ->join(['w' => 'web_apps'], 't.object_id = w.id', [])
+                    ->join(['d' => 'domains'], 'w.domain_id = d.id', [])
+                    ->join(['s' => 'servers'], "d.server_id = s.id AND s.project_id = $projectId", [])
+                    ->where("t.type = 'web-app'");
+                break;
+            case 'server':
+                $select = $selectServers = $this->getAdapter()->select()
+                    ->from(['t' => 'tasks'], ['*'])
+                    ->join(['s' => 'servers'], "s.project_id = $projectId AND s.id = t.object_id", [])
+                    ->where("t.type = 'server'");
+                break;
+            case 'server-software':
+                $select = $this->getAdapter()->select()
+                    ->from(['t' => 'tasks'], ['*'])
+                    ->join(['s' => 'servers'], "s.project_id = $projectId", [])
+                    ->join(['ss' => 'servers_software'], 'ss.server_id = s.id AND ss.id = t.object_id', [])
+                    ->where("t.type = 'server-software'");
+                break;
+            case 'domain':
+                $select = $this->getAdapter()->select()
+                    ->from(['t' => 'tasks'], ['*'])
+                    ->join(['s' => 'servers'], "s.project_id = $projectId", [])
+                    ->join(['d' => 'domains'], 'd.server_id = s.id AND d.id = t.object_id', [])
+                    ->where("t.type = 'domain'");
+                break;
+            case 'project':
+                $select = $this->getAdapter()->select()
+                    ->from(['t' => 'tasks'], ['*'])
+                    ->where("t.type = 'project'")->where("t.object_id = $projectId");
+                break;
+            default:
+                throw new Exception("Unknown list type '{$type}'");
+        }
+        return $select;
+    }
+
+    private function _getListAll($projectId) {
+        return $this->getAdapter()->select()->union(
+            [
+                $this->_getListAllByType($projectId, 'web-app'),
+                $this->_getListAllByType($projectId, 'server-software'),
+                $this->_getListAllByType($projectId, 'server'),
+                $this->_getListAllByType($projectId, 'project'),
+            ]
+        );
     }
 
     public function getObjectsPairsList($type, $parentId) {

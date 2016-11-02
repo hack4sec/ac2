@@ -69,13 +69,13 @@ class WebAppsController extends Zend_Controller_Action
     }
 
     public function ajaxListAction() {
-        if ($this->_getParam('domain_id')) {
-            $this->view->paginator = $this->_model->getListPaginator(
-                $this->_getParam('domain_id'),
-                $this->_getParam('search'),
-                $this->_getParam('page', 1)
-            );
-        }
+        $this->view->paginator = $this->_model->getListPaginator(
+            $this->_getParam('project_id'),
+            $this->_getParam('parent'),
+            $this->_getParam('domain_id'),
+            $this->_getParam('search'),
+            $this->_getParam('page', 1)
+        );
         $this->_helper->layout->disableLayout();
     }
 

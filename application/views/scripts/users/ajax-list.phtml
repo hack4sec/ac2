@@ -1,6 +1,7 @@
 <?if ($this->paginator):?>
-
-<?foreach ($this->paginator as $user):?>
+<?$Users = new Users()?>
+<?foreach ($this->paginator as $userRow):?>
+        <?$user = $Users->get($userRow['id'])?>
     <!--Item Begin--->
     <div class="project clear" id="userRow<?=$user['id']?>">
         <div class="clear info-block">

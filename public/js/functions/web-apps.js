@@ -24,6 +24,10 @@ function webAppsFilterServerChange(server_id) {
             $('#filterDomain').append(option)
         }
     })
+    if (!app_navigation) {
+        webAppsListFilter(1)
+    }
+
 }
 
 
@@ -32,11 +36,7 @@ function setDomainIdToWebAppAddLink(domain_id) {
 }
 
 function webAppsListFilter(page) {
-    if (!parseInt($('#filterServer').val())) {
-        alert(_t('L_SELECT_SERVER_FIRST'));
-        return false;
-    }
-    $.post("/web-apps/ajax-list/page/" + page, $( "#filterForm" ).serialize(), function (htmlData) {
+    $.post("/web-apps/ajax-list/project_id/" + projectId + "/page/" + page, $( "#filterForm" ).serialize(), function (htmlData) {
         $('#content').html(htmlData)
     } );
 }
@@ -115,9 +115,6 @@ function sendWebAppAddForm() {
 }
 
 function goWebAppsListLink() {
-    if ($('#filterDomain').val() == "0") {
-        return alert(_t('L_SELECT_DOMAIN_FIRST'))
-    }
     var filterData = []
     filterData[filterData.length] = $('#filterServer').val()
     filterData[filterData.length] = $('#filterDomain').val()
