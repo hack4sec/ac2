@@ -10,6 +10,7 @@
 class Projects extends Common
 {
     protected $_name = 'projects';
+    protected $_taskType = 'project';
 
     public function getList($order = "id") {
         return $this->fetchAll(null, "$order DESC");

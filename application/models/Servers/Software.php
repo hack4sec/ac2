@@ -11,6 +11,7 @@ class Servers_Software extends Common
 {
     protected $_name = 'servers_software';
     protected $_rowClass = 'Servers_Software_Row';
+    protected $_taskType = 'server-software';
 
     public function getCountByProjectId($id) {
         return $this->getAdapter()->fetchOne(

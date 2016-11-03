@@ -10,6 +10,7 @@
 class Servers extends Common {
     protected $_name = 'servers';
     protected $_rowClass = 'Server';
+    protected $_taskType = 'server';
 
     public function getListPaginator($projectId, $search, $page) {
         $select = $this->getAdapter()->select()

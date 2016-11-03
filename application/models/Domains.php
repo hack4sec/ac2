@@ -10,6 +10,7 @@
 class Domains extends Common {
     protected $_name = 'domains';
     protected $_rowClass = 'Domain';
+    protected $_taskType = 'domain';
 
     public function getCountByProjectId($id) {
         return $this->getAdapter()->fetchOne(

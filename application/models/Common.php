@@ -15,6 +15,29 @@ class Common extends Zend_Db_Table_Abstract {
     public function add($data) {
         $row = $this->createRow($data + ['updated' => time(), 'when_add' => time()]);
         $row->save();
+
+        if (isset($this->_taskType)) {
+            $TaskTemplates = new TasksTemplates();
+            $templates = $TaskTemplates->getListByType($this->_taskType);
+
+            if ($templates) {
+                $Tasks = new Tasks();
+
+                foreach ($templates as $template) {
+                    $Tasks->createRow(
+                        [
+                            'object_id' => $row->id,
+                            'type' => $this->_taskType,
+                            'name' => $template->name,
+                            'description' => $template->description,
+                            'done' => 0,
+                            'status' => 2,
+                        ]
+                    )->save();
+                }
+            }
+        }
+
         return $row;
     }
 

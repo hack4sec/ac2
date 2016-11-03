@@ -11,6 +11,7 @@ class WebApps extends Common
 {
     protected $_name = 'web_apps';
     protected $_rowClass = 'WebApp';
+    protected $_taskType = 'web-app';
 
     public function getCountByProjectId($id) {
         return $this->getAdapter()->fetchOne(

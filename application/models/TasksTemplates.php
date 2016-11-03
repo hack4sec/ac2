@@ -41,4 +41,8 @@ class TasksTemplates extends Common {
             "SELECT COUNT(id) FROM tasks_templates WHERE project_id = $id"
         );
     }
+
+    public function getListByType($type) {
+        return $this->fetchAll("type = '$type'");
+    }
 } 
