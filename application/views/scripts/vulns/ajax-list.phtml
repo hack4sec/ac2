@@ -9,6 +9,9 @@
                 <tr>
                     <td class="vulnsRowTableName">
                         <a id="vulnLink<?=$vuln['id']?>" href="#vuln-view-<?=$vuln['id']?>" class="tittle">
+                            <?if (!$this->hasObject):?>
+                                <?=$vuln->getParentsTextImplementation(!$this->hasType, !$this->hasParent, !$this->hasObject)?>
+                            <?endif?>
                             [<?=$this->translate($this->types[$vuln['vuln_type_id']])?>] <?=$vuln['name']?>
                         </a>
                     </td>

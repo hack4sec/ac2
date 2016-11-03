@@ -312,7 +312,7 @@ legend{
     font-size: 16px;
     color: #33577b;
     text-decoration: none;
-    width: 280px;
+    width: 680px;
     float: left;
     display: block;
     line-height: 20px;
@@ -324,7 +324,7 @@ legend{
 .project .info{
     font-size: 16px;
     color: #aaa;
-    width: calc(100% - 300px);
+    width: calc(100% - 700px);
     float: right;
     display: block;
     margin: 0;

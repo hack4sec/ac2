@@ -23,6 +23,9 @@
                     </td>
                     <td class="webAppsRowTableName" title="<?=$webApp['vendor_site']?>">
                         <a id="webAppLink<?=$webApp['id']?>" class="tittle cursor" href="#webapp-view-<?=$webApp['id']?>">
+                            <?if (!$this->hasObject):?>
+                                <?=$webApp->getParentsTextImplementation(!$this->hasParent, !$this->hasObject)?>
+                            <?endif?>
                             <?=$webApp['name']?>
                         </a>
                     </td>

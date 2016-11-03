@@ -7,7 +7,7 @@
  * @copyright (c) Anton Kuzmin <http://anton-kuzmin.ru> (ru) <http://anton-kuzmin.pro> (en)
  * @author Anton Kuzmin
  */
-class VulnsController extends Zend_Controller_Action
+class VulnsController extends CommonController
 {
     public function init()
     {
@@ -68,6 +68,10 @@ class VulnsController extends Zend_Controller_Action
             $this->_getParam('search'),
             $this->_getParam('page', 1)
         );
+
+        $this->view->hasType = (bool)$this->_getParam('type');
+        $this->view->hasParent = (bool)$this->_getParam('parent');
+        $this->view->hasObject = (bool)$this->_getParam('object_id');
 
         $this->view->risks = (new RiskLevels())->getListCssClasses();
         $this->view->types = (new Vulns_Types())->getFullList();

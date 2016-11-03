@@ -7,7 +7,7 @@
  * @copyright (c) Anton Kuzmin <http://anton-kuzmin.ru> (ru) <http://anton-kuzmin.pro> (en)
  * @author Anton Kuzmin
  */
-class DomainsController extends Zend_Controller_Action {
+class DomainsController extends CommonController {
     public function init() {
         parent::init();
         $this->_model = new Domains();
@@ -77,7 +77,7 @@ class DomainsController extends Zend_Controller_Action {
             $this->_getParam('search'),
             $this->_getParam('page', 1)
         );
-
+        $this->view->hasServer = (bool)$this->_getParam('server_id');
         $this->view->serversList = (new Servers())->getFullList($this->_getParam('project_id'));
         $this->_helper->layout->disableLayout();
     }

@@ -7,7 +7,7 @@
  * @copyright (c) Anton Kuzmin <http://anton-kuzmin.ru> (ru) <http://anton-kuzmin.pro> (en)
  * @author Anton Kuzmin
  */
-class VisualController extends Zend_Controller_Action
+class VisualController extends CommonController
 {
     public function indexAction() {
         $projectId = $this->_getParam('project_id');

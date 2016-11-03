@@ -21,4 +21,15 @@ class Domain extends Zend_Db_Table_Row
              ORDER BY rl.sort DESC
              LIMIT 1");
     }
+
+    public function getParentsTextImplementation($isServerNeed) {
+        $text = "";
+
+        if ($isServerNeed) {
+            $server = Zend_Registry::get('mainModels')['servers']->get($this->server_id);
+            $text .= "[{$server->name}]";
+        }
+
+        return $text;
+    }
 }

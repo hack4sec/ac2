@@ -18,6 +18,9 @@
                 </td>
                 <td class="usersRowTableName">
                     <a id="userLink<?=$user['id']?>" href="#user-view-<?=$user['id']?>" class="tittle">
+                        <?if (!$this->hasGroup):?>
+                            <?=$user->getParentsTextImplementation(!$this->hasType, !$this->hasParent, !$this->hasObject, !$this->hasGroup)?>
+                        <?endif?>
                         <?=$user['login']?>
                     </a>
                 </td>

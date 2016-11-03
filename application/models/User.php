@@ -55,4 +55,50 @@ class User extends Zend_Db_Table_Row
     public function getGroup() {
         return (new Users_Groups())->get($this->group_id);
     }
+
+
+    public function getParentsTextImplementation($isTypeNeed, $isParentNeed, $isObjectNeed, $isGroupNeed) {
+        $text = "";
+        $group = $this->getGroup();
+        $type = $group->type;
+
+        if ($isTypeNeed) {
+            $text .= "[{$type}]";
+        }
+
+        if ($type == 'web-app' && $isParentNeed) {
+            $webApp = Zend_Registry::get('mainModels')['webApps']->get($group->object_id);
+            $domain = Zend_Registry::get('mainModels')['domains']->get($webApp->domain_id);
+            $server = Zend_Registry::get('mainModels')['servers']->get($domain->server_id);
+            $text .= "[{$server->name}]";
+            $text .= "[{$domain->name}]";
+        } elseif ($type == 'server-software' && $isParentNeed) {
+            $spo = Zend_Registry::get('mainModels')['serversSoftware']->get($group->object_id);
+            $server = Zend_Registry::get('mainModels')['servers']->get($spo->server_id);
+            $text .= "[{$server->name}]";
+        }
+
+        if ($isObjectNeed) {
+            switch ($type) {
+                case 'web-app':
+                    $webApp = Zend_Registry::get('mainModels')['webApps']->get($group->object_id);
+                    $text .= "[{$webApp->name}]";
+                    break;
+                case 'server':
+                    $server = Zend_Registry::get('mainModels')['servers']->get($group->object_id);
+                    $text .= "[{$server->name}]";
+                    break;
+                case 'server-software':
+                    $spo = Zend_Registry::get('mainModels')['serversSoftware']->get($group->object_id);
+                    $text .= "[{$spo->name}]";
+                    break;
+            }
+        }
+
+        if ($isGroupNeed) {
+            $text .= "[{$this->getGroup()->name}]";
+        }
+
+        return $text;
+    }
 }

@@ -17,6 +17,9 @@
                     </td>
                     <td class="spoRowTableName" title="<?=$spo['vendor_site']?>">
                         <a id="spoLink<?=$spo['id']?>" href="#spo-view-<?=$spo['id']?>" class="tittle">
+                            <?if (!$this->hasServer):?>
+                                <?=$spo->getParentsTextImplementation(!$this->hasServer)?>
+                            <?endif?>
                             <?=$spo['name']?>
                             (<?=$spo['proto']?>/<?=$spo['port']?>)
                         </a>

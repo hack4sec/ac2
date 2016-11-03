@@ -10,6 +10,7 @@
 class Vulns extends Common
 {
     protected $_name = 'vulns';
+    protected $_rowClass = 'Vuln';
 
     public function add($data) {
         $data['sort'] = (new RiskLevels())->get($data['risk_level_id'])->sort;

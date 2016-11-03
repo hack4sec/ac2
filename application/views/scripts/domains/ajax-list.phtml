@@ -9,6 +9,9 @@
                 <?if ($domain['checked']):?>
                     <span class="fa fa-check-circle checkedTableIcon"  title="<?=$this->translate('L_CHECKED');?>"></span>
                 <?endif?>
+                <?if (!$this->hasServer):?>
+                    <?=$domain->getParentsTextImplementation(!$this->hasServer)?>
+                <?endif?>
                 <?=$domain['name']?>
             </a>
             <?if (strlen($domain['comment']) > Zend_Registry::get('config')->str_tables_limits->comments):?>

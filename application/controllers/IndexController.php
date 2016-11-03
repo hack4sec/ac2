@@ -7,7 +7,7 @@
  * @copyright (c) Anton Kuzmin <http://anton-kuzmin.ru> (ru) <http://anton-kuzmin.pro> (en)
  * @author Anton Kuzmin
  */
-class IndexController extends Zend_Controller_Action
+class IndexController extends CommonController
 {
 
     public function init()

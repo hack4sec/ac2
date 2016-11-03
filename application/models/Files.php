@@ -9,6 +9,7 @@
  */
 class Files extends Common {
     protected $_name = 'files';
+    protected $_rowClass = 'File';
 
     public function getListPaginator($projectId, $type, $parent, $objectId, $search, $page) {
         if (!$type) {

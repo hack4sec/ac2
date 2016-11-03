@@ -7,7 +7,7 @@
  * @copyright (c) Anton Kuzmin <http://anton-kuzmin.ru> (ru) <http://anton-kuzmin.pro> (en)
  * @author Anton Kuzmin
  */
-class NotesController extends Zend_Controller_Action {
+class NotesController extends CommonController {
     public function init() {
         parent::init();
         $this->_model = new Notes();

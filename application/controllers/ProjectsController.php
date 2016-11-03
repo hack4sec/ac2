@@ -7,7 +7,7 @@
  * @copyright (c) Anton Kuzmin <http://anton-kuzmin.ru> (ru) <http://anton-kuzmin.pro> (en)
  * @author Anton Kuzmin
  */
-class ProjectsController extends Zend_Controller_Action {
+class ProjectsController extends CommonController {
     public function init() {
         parent::init();
         $this->_model = new Projects();

@@ -25,6 +25,7 @@ if (isset($_SERVER['HTTP_HOST']) and $_SERVER['HTTP_HOST'] == 'ac2t') {
 set_include_path(implode(PATH_SEPARATOR, array(
     realpath(APPLICATION_PATH . '/../library'),
     realpath(APPLICATION_PATH . '/models'),
+    realpath(APPLICATION_PATH . '/classes'),
     realpath(APPLICATION_PATH . '/views'),
     get_include_path(),
 )));

@@ -9,6 +9,7 @@
  */
 class Tasks extends Common {
     protected $_name = 'tasks';
+    protected $_rowClass = 'Task';
 
     public function exists($objectId, $type, $name) {
         return (bool)$this->fetchRow(

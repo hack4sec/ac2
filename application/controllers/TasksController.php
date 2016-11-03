@@ -7,7 +7,7 @@
  * @copyright (c) Anton Kuzmin <http://anton-kuzmin.ru> (ru) <http://anton-kuzmin.pro> (en)
  * @author Anton Kuzmin
  */
-class TasksController extends Zend_Controller_Action {
+class TasksController extends CommonController {
     public function init() {
         parent::init();
         $this->_model = new Tasks();
@@ -67,6 +67,10 @@ class TasksController extends Zend_Controller_Action {
             $this->_getParam('search'),
             $this->_getParam('page', 1)
         );
+
+        $this->view->hasType = (bool)$this->_getParam('type');
+        $this->view->hasParent = (bool)$this->_getParam('parent');
+        $this->view->hasObject = (bool)$this->_getParam('object_id');
 
         $this->view->cssClasses = (new TasksStatuses())->getListCssClasses();
         $this->_helper->layout->disableLayout();

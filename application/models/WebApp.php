@@ -19,4 +19,21 @@ class WebApp extends Zend_Db_Table_Row
              ORDER BY rl.sort DESC
              LIMIT 1");
     }
+
+    public function getParentsTextImplementation($isParentNeed, $isObjectNeed) {
+        $text = "";
+
+        if ($isParentNeed) {
+            $domain = Zend_Registry::get('mainModels')['domains']->get($this->domain_id);
+            $server = Zend_Registry::get('mainModels')['servers']->get($domain->server_id);
+            $text .= "[{$server->name}]";
+        }
+
+        if ($isObjectNeed) {
+            $domain = Zend_Registry::get('mainModels')['domains']->get($this->domain_id);
+            $text .= "[{$domain->name}]";
+        }
+
+        return $text;
+    }
 }

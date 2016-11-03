@@ -7,7 +7,7 @@
  * @copyright (c) Anton Kuzmin <http://anton-kuzmin.ru> (ru) <http://anton-kuzmin.pro> (en)
  * @author Anton Kuzmin
  */
-class WebAppsController extends Zend_Controller_Action
+class WebAppsController extends CommonController
 {
     public function init()
     {
@@ -71,11 +71,15 @@ class WebAppsController extends Zend_Controller_Action
     public function ajaxListAction() {
         $this->view->paginator = $this->_model->getListPaginator(
             $this->_getParam('project_id'),
-            $this->_getParam('parent'),
+            $this->_getParam('server_id'),
             $this->_getParam('domain_id'),
             $this->_getParam('search'),
             $this->_getParam('page', 1)
         );
+
+        $this->view->hasParent = (bool)$this->_getParam('server_id');
+        $this->view->hasObject = (bool)$this->_getParam('domain_id');
+
         $this->_helper->layout->disableLayout();
     }
 
