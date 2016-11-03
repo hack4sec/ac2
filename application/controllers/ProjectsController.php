@@ -81,6 +81,7 @@ class ProjectsController extends Zend_Controller_Action {
         $this->view->vulnsCount   = (new Vulns())->getCountByProjectId($this->_getParam('project_id'));
         $this->view->filesCount   = (new Files())->getCountByProjectId($this->_getParam('project_id'));
         $this->view->tasksCount   = (new Tasks())->getCountByProjectId($this->_getParam('project_id'));
+        $this->view->tasksTemplatesCount   = (new TasksTemplates())->getCountByProjectId($this->_getParam('project_id'));
         $this->view->usersCount   = (new Users())->getCountByProjectId($this->_getParam('project_id'));
 
         $this->view->projectId = $this->_getParam('project_id');

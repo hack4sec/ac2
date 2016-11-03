@@ -1,0 +1,25 @@
+<form action="/tasks-templates/add/" method="POST" id="taskTemplateAddForm">
+    <?=$this->element->project_id?>
+    <?=$this->element->type?>
+    <table>
+        <tr>
+            <td><?=$this->element->name->getLabel()?></td>
+            <td><?=$this->element->name?></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <?=$this->element->description->getLabel()?>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <?=$this->element->description?>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <?=$this->element->button?>
+            </td>
+        </tr>
+    </table>
+</form>

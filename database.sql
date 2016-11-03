@@ -603,3 +603,19 @@ ALTER TABLE `web_apps`
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+CREATE TABLE `tasks_templates` (
+  `id` int(11) NOT NULL,
+  `project_id` mediumint(9) NOT NULL,
+  `type` enum('server','server-software','domain','web-app') NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `when_add` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+ALTER TABLE `tasks_templates`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `project_id` (`project_id`);
+
+ALTER TABLE `tasks_templates`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;

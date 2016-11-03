@@ -201,4 +201,7 @@ return [
     'L_VULN_XXE' => 'Внешние сущности XML (XXE)',
     'L_VULN_UNV_REDIRECTS' => 'Ошибка проверки перенаправления',
     'L_VULN_INF_DISC' => 'Раскрытие информации',
+    'L_TASKS_TEMPLATES' => 'Шаблоны задач',
+    'L_ADD_TASK_TEMPLATE' => 'Добавить шаблон задачи',
+    'L_TASK_TEMPLATE_YET_EXISTS' => 'Шаблон с таким именем уже существует',
 ];

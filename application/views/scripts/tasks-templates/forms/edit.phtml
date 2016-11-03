@@ -1,0 +1,26 @@
+<form action="/tasks-templates/edit/" method="POST" id="taskTemplateEditForm">
+    <?=$this->element->id?>
+    <?=$this->element->project_id?>
+    <?=$this->element->type?>
+    <table>
+        <tr>
+            <td><?=$this->element->name->getLabel()?></td>
+            <td><?=$this->element->name?></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <?=$this->element->description->getLabel()?>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <?=$this->element->description?>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <?=$this->element->button?>
+            </td>
+        </tr>
+    </table>
+</form>

@@ -1,0 +1,16 @@
+<div class="clear info-block">
+    <a id="taskLink<?=$this->task['id']?>" href="#task-view-<?=$this->task['id']?>" class="tittle"><?=$this->task['name']?></a>
+    <?if (strlen($this->task['description']) > Zend_Registry::get('config')->str_tables_limits->comments):?>
+        <p class="info" title="<?=htmlspecialchars($this->task['description'], ENT_QUOTES)?>">
+            <?=mb_substr($this->task['description'], 0, Zend_Registry::get('config')->str_tables_limits->comments)?>...
+        </p>
+    <?else:?>
+        <p class="info"><?=$this->task['description']?></p>
+    <?endif?>
+</div>
+<div class="ico-block clear">
+    <a id="editTask<?=$this->task['id']?>" class="icon-edit icon change" href="#" onclick="openTaskTemplateEditForm(<?=$this->task['id']?>);return false;">
+        <p><?=$this->translate('L_CHANGE');?><span></span></p>
+    </a>
+</div>
+<a id="deleteTask<?=$this->task['id']?>" class="icon-cross icon close" onclick="taskTemplateDelete(<?=$this->task['id']?>, '<?=$this->task['name']?>');return false;"></a>

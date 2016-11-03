@@ -188,6 +188,19 @@ function hashNavigation() {
 
         }
 
+        if (controller == 'tasktemplates') {
+            openTasksTemplatesList(projectId)
+
+
+            var type = filterData[0]
+            if (type) {
+                $('#filterType').val(filterData[0]).triggerHandler('change')
+            }
+
+            //tasksListFilter(1);
+
+        }
+
         if (controller == 'user') {
             openUsersList(projectId)
 
