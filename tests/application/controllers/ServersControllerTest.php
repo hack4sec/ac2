@@ -287,13 +287,13 @@ class ServersControllerTests extends Tests_CommonControllerTestCase
              WHERE os.id = servers.os_id AND servers.id=1 ORDER BY checked DESC, name ASC LIMIT 0,8",
             "SELECT servers.name, comment, os.name as os_name FROM servers, os
              WHERE os.id = servers.os_id AND servers.id=1 ORDER BY checked DESC, name ASC LIMIT 8,8",
-            'project_id'
+            'tmpparam' // Здесь должен быть project_id, но он уже подставляется в родительском методе т.к. обязателен
         );
     }
 
     public function testAjaxListSearch() {
         $this->_testAjaxListSearch(
-            'project_id',
+            'tmpparam', // Здесь должен быть project_id, но он уже подставляется в родительском методе т.к. обязателен
             'server 2',
             'server 1'
         );

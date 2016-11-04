@@ -189,7 +189,7 @@ class VulnsControllerTest extends Tests_CommonControllerTestCase
      * @dataProvider testColorsOfVulnsProvider
      */
     public function testColorsOfVulns($data) {
-        $this->_go('ajax-list', "/type/{$data['type']}/object_id/1");
+        $this->_go('ajax-list', "/type/{$data['type']}/object_id/1/project_id/1/");
 
         $this->assertEquals(substr_count($this->getResponse()->getBody(), 'rclass1'), 1);
         $this->assertEquals(substr_count($this->getResponse()->getBody(), 'rclass2'), 1);
@@ -200,13 +200,13 @@ class VulnsControllerTest extends Tests_CommonControllerTestCase
             [
                 [
                     'controller' => 'server-software',
-                    'url' => "/server-software/ajax-list/server_id/1/page/1",
+                    'url' => "/server-software/ajax-list/server_id/1/page/1/project_id/1/",
                 ],
             ],
             [
                 [
                     'controller' => 'web-apps',
-                    'url' => "/web-apps/ajax-list/server_id/1/domain_id/1/page/1",
+                    'url' => "/web-apps/ajax-list/server_id/1/domain_id/1/page/1/project_id/1/",
                 ],
             ],
         ];
@@ -217,7 +217,6 @@ class VulnsControllerTest extends Tests_CommonControllerTestCase
      */
     public function testColorsOfVulnsObjects($data) {
         $this->_db->query("UPDATE vulns SET object_id = 2 WHERE id IN(2, 4)");
-
 
         $this->dispatch($data['url']);
         $this->assertController($data['controller']);

@@ -30,7 +30,7 @@ class Vulns extends Common
 
         $select->order("sort DESC");
         if (strlen($search)) {
-            $select->where("name LIKE ? OR description LIKE ?", "%$search%", "%$search%");
+            $select->where("v.name LIKE ? OR v.description LIKE ?", "%$search%", "%$search%");
         }
         $paginator = Zend_Paginator::factory(
             $select

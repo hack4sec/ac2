@@ -55,7 +55,7 @@ abstract class Tests_CommonControllerTestCase extends Zend_Test_PHPUnit_Controll
         $this->_addObjectsByCount(10);
 
         $this->dispatch(
-            "/{$this->_controller}/ajax-list/" .
+            "/{$this->_controller}/ajax-list/project_id/1/" .
             (strlen($additionalParams) ? "$additionalParams/" : "") .
             "$paramName/1/page/1/search/"
         );
@@ -68,7 +68,7 @@ abstract class Tests_CommonControllerTestCase extends Zend_Test_PHPUnit_Controll
         $this->resetRequest()->resetResponse();
 
         $this->dispatch(
-            "/{$this->_controller}/ajax-list/" .
+            "/{$this->_controller}/ajax-list/project_id/1/" .
             (strlen($additionalParams) ? "$additionalParams/" : "") .
             "$paramName/1/page/1/search/$search"
         );
@@ -87,7 +87,7 @@ abstract class Tests_CommonControllerTestCase extends Zend_Test_PHPUnit_Controll
         $db = Zend_Db_Table_Abstract::getDefaultAdapter();
 
         $this->dispatch(
-            "/{$this->_controller}/ajax-list/" .
+            "/{$this->_controller}/ajax-list/project_id/1/" .
             (strlen($additionalParams) ? "$additionalParams/" : "") .
             "$paramName/1/page/1/search/"
         );
@@ -103,7 +103,7 @@ abstract class Tests_CommonControllerTestCase extends Zend_Test_PHPUnit_Controll
         $this->resetRequest()->resetResponse();
 
         $this->dispatch(
-            "/{$this->_controller}/ajax-list/" .
+            "/{$this->_controller}/ajax-list/project_id/1/" .
             (strlen($additionalParams) ? "$additionalParams/" : "") .
             "$paramName/1/page/2/search/"
         );

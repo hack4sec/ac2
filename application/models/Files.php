@@ -22,7 +22,7 @@ class Files extends Common {
             $select = $this->_getListByObjectId($projectId, $type, $objectId);
         }
         if (strlen($search)) {
-            $select->where("f.name LIKE ? OR f.description LIKE ?", "%$search%", "%$search%");
+            $select->where("f.name LIKE ? OR f.comment LIKE ?", "%$search%", "%$search%");
         }
         $select->order("name ASC");
 
@@ -65,36 +65,36 @@ class Files extends Common {
         switch ($type) {
             case 'web-app':
                 $select = $this->getAdapter()->select()
-                    ->from(['t' => 'files'], ['*'])
-                    ->join(['w' => 'web_apps'], 't.object_id = w.id', [])
+                    ->from(['f' => 'files'], ['*'])
+                    ->join(['w' => 'web_apps'], 'f.object_id = w.id', [])
                     ->join(['d' => 'domains'], 'w.domain_id = d.id', [])
                     ->join(['s' => 'servers'], "d.server_id = s.id AND s.project_id = $projectId", [])
-                    ->where("t.type = 'web-app'");
+                    ->where("f.type = 'web-app'");
                 break;
             case 'server':
                 $select = $selectServers = $this->getAdapter()->select()
-                    ->from(['t' => 'files'], ['*'])
-                    ->join(['s' => 'servers'], "s.project_id = $projectId AND s.id = t.object_id", [])
-                    ->where("t.type = 'server'");
+                    ->from(['f' => 'files'], ['*'])
+                    ->join(['s' => 'servers'], "s.project_id = $projectId AND s.id = f.object_id", [])
+                    ->where("f.type = 'server'");
                 break;
             case 'server-software':
                 $select = $this->getAdapter()->select()
-                    ->from(['t' => 'files'], ['*'])
+                    ->from(['f' => 'files'], ['*'])
                     ->join(['s' => 'servers'], "s.project_id = $projectId", [])
-                    ->join(['ss' => 'servers_software'], 'ss.server_id = s.id AND ss.id = t.object_id', [])
-                    ->where("t.type = 'server-software'");
+                    ->join(['ss' => 'servers_software'], 'ss.server_id = s.id AND ss.id = f.object_id', [])
+                    ->where("f.type = 'server-software'");
                 break;
             case 'domain':
                 $select = $this->getAdapter()->select()
-                    ->from(['t' => 'tasks'], ['*'])
+                    ->from(['f' => 'tasks'], ['*'])
                     ->join(['s' => 'servers'], "s.project_id = $projectId", [])
-                    ->join(['d' => 'domains'], 'd.server_id = s.id AND d.id = t.object_id', [])
-                    ->where("t.type = 'domain'");
+                    ->join(['d' => 'domains'], 'd.server_id = s.id AND d.id = f.object_id', [])
+                    ->where("f.type = 'domain'");
                 break;
             case 'project':
                 $select = $this->getAdapter()->select()
-                    ->from(['t' => 'files'], ['*'])
-                    ->where("t.type = 'project'")->where("t.object_id = $projectId");
+                    ->from(['f' => 'files'], ['*'])
+                    ->where("f.type = 'project'")->where("f.object_id = $projectId");
                 break;
             default:
                 throw new Exception("Unknown list type '{$type}'");
