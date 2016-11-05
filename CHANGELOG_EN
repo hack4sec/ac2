@@ -2,6 +2,8 @@ DEV:
     New:
         On load pairs (hash/pass) result page now show count of hashes found in projects
         OS "Unknown OS" added
+        Added tasks templates (see docs)
+        All objects in lists display without concrete filters
 
     Fixed:
         In import users list process, in menu their count is not updated
