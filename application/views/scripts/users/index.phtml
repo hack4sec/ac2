@@ -37,7 +37,7 @@
             <div>
                 <label><?=$this->translate('L_USER_TYPE')?></label>
                 <select id="filterType" name="type" onchange="usersFilterTypeChange(this.value)">
-                    <option value="0">-------</option>
+                    <option value="0"><?=$this->translate('L_ALL')?></option>
                     <option value="server"><?=$this->translate('L_SERVER')?></option>
                     <option value="web-app"><?=$this->translate('L_WEB_APPS');?></option>
                     <option value="server-software"><?=$this->translate('L_SPO');?></option>
@@ -46,19 +46,19 @@
             <div id="parentDiv">
                 <label><?=$this->translate('L_PARENT')?></label>
                 <select id="filterParent" name="parent" onchange="usersFilterParentChange(this.value)">
-                    <option value="0">-------</option>
+                    <option value="0"><?=$this->translate('L_ALL')?></option>
                 </select>
             </div>
             <div id="objectDiv">
                 <label><?=$this->translate('L_OBJECT')?></label>
                 <select id="filterObject" name="object_id" onchange="usersFilterObjectChange(this.value)">
-                    <option value="0">-------</option>
+                    <option value="0"><?=$this->translate('L_ALL')?></option>
                 </select>
             </div>
             <div id="groupDiv">
                 <label><?=$this->translate('L_GROUP')?></label>
                 <select id="filterGroup" name="group_id" onchange="usersFilterGroupChange(this.value);if (!app_navigation) {goUsersListLink(1)}">
-                    <option value="0">-------</option>
+                    <option value="0"><?=$this->translate('L_ALL')?></option>
                 </select>
             </div>
         </div>

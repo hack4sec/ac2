@@ -204,4 +204,5 @@ return [
     'L_TASKS_TEMPLATES' => 'Шаблоны задач',
     'L_ADD_TASK_TEMPLATE' => 'Добавить шаблон задачи',
     'L_TASK_TEMPLATE_YET_EXISTS' => 'Шаблон с таким именем уже существует',
+    'L_ALL' => '--- Все ---',
 ];

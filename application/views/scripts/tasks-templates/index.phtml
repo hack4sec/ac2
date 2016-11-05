@@ -11,7 +11,7 @@
             <div>
                 <label><?=$this->translate('L_TASK_TYPE')?></label>
                 <select id="filterType" name="type" onchange="tasksTemplatesFilterTypeChange(this.value);">
-                    <option value="0">-------</option>
+                    <option value="0"><?=$this->translate('L_ALL')?></option>
                     <option value="server"><?=$this->translate('L_SERVER')?></option>
                     <option value="domain"><?=$this->translate('L_DOMAIN')?></option>
                     <option value="web-app"><?=$this->translate('L_WEB_APPS');?></option>

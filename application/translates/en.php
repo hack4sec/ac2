@@ -203,4 +203,5 @@ return [
     'L_TASKS_TEMPLATES' => 'Tasks templates',
     'L_ADD_TASK_TEMPLATE' => 'Add task template',
     'L_TASK_TEMPLATE_YET_EXISTS' => 'Template with this name already exists',
+    'L_ALL' => '--- All ---',
 ];

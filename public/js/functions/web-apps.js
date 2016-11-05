@@ -14,7 +14,7 @@ function webAppsFilterServerChange(server_id) {
 
         var option = document.createElement('option')
         option.value = 0
-        option.innerHTML = '-------'
+        option.innerHTML = _t('L_ALL')
         $('#filterDomain').append(option)
 
         for (i in data) {

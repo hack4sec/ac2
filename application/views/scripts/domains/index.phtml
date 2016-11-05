@@ -26,7 +26,7 @@
             <div>
                 <label><?=$this->translate('L_SERVER')?></label>
                 <select id="filterServer" name="server_id" onchange="setServerIdToLinks(this.value);;if (!app_navigation) {goDomainsListLink(1)}">
-                    <option value="0">-------</option>
+                    <option value="0"><?=$this->translate('L_ALL')?></option>
                     <?foreach ($this->servers as $server):?>
                         <option value="<?=$server['id']?>"><?=$server['name']?></option>
                     <?endforeach;?>

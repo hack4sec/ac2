@@ -16,7 +16,7 @@
             <div>
                 <label><?=$this->translate('L_SERVER')?></label>
                 <select id="filterServer" name="server_id" onchange="webAppsFilterServerChange(this.value)">
-                    <option value="0">-------</option>
+                    <option value="0"><?=$this->translate('L_ALL')?></option>
                     <?foreach ($this->servers as $server):?>
                         <option value="<?=$server['id']?>"><?=$server['name']?></option>
                     <?endforeach;?>
@@ -26,7 +26,7 @@
             <div>
                 <label><?=$this->translate('L_DOMAIN')?></label>
                 <select id="filterDomain" name="domain_id" onchange="setDomainIdToWebAppAddLink(this.value);if (!app_navigation) {goWebAppsListLink(1)}">
-                    <option value="0">-------</option>
+                    <option value="0"><?=$this->translate('L_ALL')?></option>
                 </select>
             </div>
         </div>

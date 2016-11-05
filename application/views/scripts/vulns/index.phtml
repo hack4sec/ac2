@@ -16,7 +16,7 @@
             <div>
                 <label><?=$this->translate('L_VULN_TYPE')?></label>
                 <select id="filterType" name="type" onchange="vulnsFilterTypeChange(this.value)">
-                    <option value="0">-------</option>
+                    <option value="0"><?=$this->translate('L_ALL')?></option>
                     <option value="web-app"><?=$this->translate('L_WEB_APPS');?></option>
                     <option value="server-software"><?=$this->translate('L_SPO');?></option>
                 </select>
@@ -24,13 +24,13 @@
             <div>
                 <label><?=$this->translate('L_PARENT')?></label>
                 <select id="filterParent" name="parent" onchange="vulnsFilterParentChange(this.value)">
-                    <option value="0">-------</option>
+                    <option value="0"><?=$this->translate('L_ALL')?></option>
                 </select>
             </div>
             <div>
                 <label><?=$this->translate('L_OBJECT')?></label>
                 <select id="filterObject" name="object_id" onchange="vulnsFilterObjectChange(this.value);;if (!app_navigation) {goVulnsListLink(1)}">
-                    <option value="0">-------</option>
+                    <option value="0"><?=$this->translate('L_ALL')?></option>
                 </select>
             </div>
         </div>

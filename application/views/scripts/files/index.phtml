@@ -16,7 +16,7 @@
             <div>
                 <label>Тип файла</label>
                 <select id="filterType" name="type" onchange="filesFilterTypeChange(this.value);">
-                    <option value="0">-------</option>
+                    <option value="0"><?=$this->translate('L_ALL')?></option>
                     <option value="project"><?=$this->translate('L_PROJECT')?></option>
                     <option value="server"><?=$this->translate('L_SERVER')?></option>
                     <option value="domain"><?=$this->translate('L_DOMAIN')?></option>
@@ -27,13 +27,13 @@
             <div id="parentDiv">
                 <label><?=$this->translate('L_PARENT')?></label>
                 <select id="filterParent" name="parent" onchange="filesFilterParentChange(this.value)">
-                    <option value="0">-------</option>
+                    <option value="0"><?=$this->translate('L_ALL')?></option>
                 </select>
             </div>
             <div id="objectDiv">
                 <label><?=$this->translate('L_OBJECT')?></label>
                 <select id="filterObject" name="object_id" onchange="filesFilterObjectChange(this.value);if (!app_navigation) {goFilesListLink(1)}">
-                    <option value="0">-------</option>
+                    <option value="0"><?=$this->translate('L_ALL')?></option>
                 </select>
             </div>
         </div>

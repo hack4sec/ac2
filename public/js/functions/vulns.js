@@ -16,7 +16,7 @@ function vulnsFilterTypeChange(type) {
         $('#filterParent').html('')
         var option = document.createElement('option')
         option.value = 0
-        option.innerHTML = '-------'
+        option.innerHTML = _t('L_ALL')
         $('#filterParent').append(option)
 
         for (i in data) {
@@ -29,7 +29,7 @@ function vulnsFilterTypeChange(type) {
         $('#filterObject').html('')
         var option = document.createElement('option')
         option.value = 0
-        option.innerHTML = '-------'
+        option.innerHTML = _t('L_ALL')
         $('#filterObject').append(option)
     })
     if (!app_navigation) {
@@ -50,7 +50,7 @@ function vulnsFilterParentChange(parent) {
         $('#filterObject').html('')
         var option = document.createElement('option')
         option.value = 0
-        option.innerHTML = '-------'
+        option.innerHTML = _t('L_ALL')
         $('#filterObject').append(option)
 
         for (i in data) {

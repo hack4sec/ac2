@@ -23,7 +23,7 @@ function tasksFilterTypeChange(type) {
             $('#filterParent').html('')
             var option = document.createElement('option')
             option.value = 0
-            option.innerHTML = '-------'
+            option.innerHTML = _t('L_ALL')
             $('#filterParent').append(option)
 
             for (i in data) {
@@ -36,7 +36,7 @@ function tasksFilterTypeChange(type) {
             $('#filterObject').html('')
             var option = document.createElement('option')
             option.value = 0
-            option.innerHTML = '-------'
+            option.innerHTML = _t('L_ALL')
             $('#filterObject').append(option)
         })
         if (!app_navigation) {
@@ -63,7 +63,7 @@ function tasksFilterParentChange(parent) {
         $('#filterObject').html('')
         var option = document.createElement('option')
         option.value = 0
-        option.innerHTML = '-------'
+        option.innerHTML = _t('L_ALL')
         $('#filterObject').append(option)
 
         for (i in data) {
@@ -117,7 +117,7 @@ function tasksFilterProjectChange(project_id) {
 
     var option = document.createElement('option')
     option.value = 0
-    option.innerHTML = '-------'
+    option.innerHTML = _t('L_ALL')
     $('#filterType').append(option)
 
     var data = {'web-app': _t('L_WEB_APPS'), 'server-software': _t('L_SPO')}

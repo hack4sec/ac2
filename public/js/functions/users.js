@@ -24,7 +24,7 @@ function usersFilterTypeChange(type) {
             $('#filterParent').html('')
             var option = document.createElement('option')
             option.value = 0
-            option.innerHTML = '-------'
+            option.innerHTML = _t('L_ALL')
             $('#filterParent').append(option)
 
             for (i in data) {
@@ -37,13 +37,13 @@ function usersFilterTypeChange(type) {
             $('#filterObject').html('')
             var option = document.createElement('option')
             option.value = 0
-            option.innerHTML = '-------'
+            option.innerHTML = _t('L_ALL')
             $('#filterObject').append(option)
 
             $('#filterGroup').html('')
             var option = document.createElement('option')
             option.value = 0
-            option.innerHTML = '-------'
+            option.innerHTML = _t('L_ALL')
             $('#filterGroup').append(option)
         })
         if (!app_navigation) {
@@ -70,13 +70,13 @@ function usersFilterParentChange(parent) {
         $('#filterObject').html('')
         var option = document.createElement('option')
         option.value = 0
-        option.innerHTML = '-------'
+        option.innerHTML = _t('L_ALL')
         $('#filterObject').append(option)
 
         $('#filterGroup').html('')
         var option = document.createElement('option')
         option.value = 0
-        option.innerHTML = '-------'
+        option.innerHTML = _t('L_ALL')
         $('#filterGroup').append(option)
 
         for (i in data) {
@@ -117,7 +117,7 @@ function usersFilterObjectChange(object_id) {
         $('#filterGroup').html('')
         var option = document.createElement('option')
         option.value = 0
-        option.innerHTML = '-------'
+        option.innerHTML = _t('L_ALL')
         $('#filterGroup').append(option)
 
         for (i in data) {
