@@ -22,3 +22,8 @@ TRUNCATE TABLE `web_apps`;
 INSERT INTO `web_apps` (`id`, `domain_id`, `name`, `url`, `version`, `version_unknown`, `version_old`, `vendor_site`, `need_auth`, `url_rewrite`, `ghost`, `checked`, `comment`, `updated`) VALUES
 (NULL, 1, 'WebApp1', '/', '', 0, 0, '', 0, 0, 0, 0, 'testcomment1', 0),
 (NULL, 1, 'WebApp2', '/a/', '', 1, 0, '', 0, 0, 0, 0, 'testcomment2', 0);
+
+TRUNCATE TABLE `tasks`;
+TRUNCATE TABLE `tasks_templates`;
+INSERT INTO `tasks_templates` (`id`, `project_id`, `type`, `name`, `description`, `when_add`) VALUES
+(NULL, 1, 'domain', 'test task', 'test task description', 0)

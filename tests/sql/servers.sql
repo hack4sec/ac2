@@ -46,3 +46,7 @@ TRUNCATE TABLE `files`;
 INSERT INTO `files` (`id`, `hash`, `name`, `object_id`, `type`, `comment`, `updated`, `when_add`) VALUES
   (NULL, '11111111111111111111111111111111', 'file1.txt', 1, 'server', 'file comment 1', 0, 0),
   (NULL, '22222222222222222222222222222222', 'file2.txt', 1, 'server', 'file comment 2', 0, 0);
+
+TRUNCATE TABLE `tasks_templates`;
+INSERT INTO `tasks_templates` (`id`, `project_id`, `type`, `name`, `description`, `when_add`) VALUES
+(NULL, 1, 'server', 'test task', 'test task description', 0)

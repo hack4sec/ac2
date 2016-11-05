@@ -432,6 +432,76 @@ class UsersControllerTest extends Tests_CommonControllerTestCase
         );
     }
 
+    public function testAjaxListWoGroup() {
+        $this->_testAjaxList(
+            "SELECT u.login, u.email, h.password
+             FROM users u, hashes h
+             WHERE u.id=1 AND h.user_id = u.id AND u.hash_id = h.id ORDER BY vip DESC, login ASC LIMIT 0,8",
+            "SELECT u.login, u.email, h.password
+             FROM users u, hashes h
+             WHERE u.id=1 AND h.user_id = u.id AND u.hash_id = h.id AND u.group_id = 1
+             ORDER BY vip DESC, login ASC LIMIT 8,8",
+            'tmpparam',
+            'type/server/object_id/1'
+        );
+        $this->assertContains("[Group1]", $this->getResponse()->getBody());
+    }
+
+    public function testAjaxListWoObject() {
+        $this->_testAjaxList(
+            "SELECT u.login, u.email, h.password
+             FROM users u, users_groups g, hashes h
+             WHERE u.group_id = g.id AND g.type = 'server-software' AND h.user_id = u.id AND u.hash_id = h.id ORDER BY vip DESC, login ASC LIMIT 0,8",
+            "SELECT u.login, u.email, h.password
+             FROM users u, users_groups g, hashes h
+             WHERE u.group_id = g.id AND g.type = 'server-software' AND u.id=1 AND h.user_id = u.id AND u.hash_id = h.id AND u.group_id = 1
+             ORDER BY vip DESC, login ASC LIMIT 8,8",
+            'tmpparam',
+            'type/server-software'
+        );
+        $this->assertContains("[server 1]", $this->getResponse()->getBody());
+    }
+
+    public function testAjaxListWoObjectWServer() {
+        $this->_testAjaxList(
+            "SELECT u.login, u.email, h.password
+             FROM users u, users_groups g, hashes h
+             WHERE u.group_id = g.id AND g.type = 'server-software' AND h.user_id = u.id AND u.hash_id = h.id ORDER BY vip DESC, login ASC LIMIT 0,8",
+            "SELECT u.login, u.email, h.password
+             FROM users u, users_groups g, hashes h
+             WHERE u.group_id = g.id AND g.type = 'server-software' AND u.id=1 AND h.user_id = u.id AND u.hash_id = h.id AND u.group_id = 1
+             ORDER BY vip DESC, login ASC LIMIT 8,8",
+            'tmpparam',
+            'type/web-app/server_id/1'
+        );
+        $this->assertContains("[domain 1]", $this->getResponse()->getBody());
+    }
+
+    public function testAjaxListWoType() {
+        $testSql = "SELECT u.login, u.email, u.vip FROM `users` AS `u`
+ INNER JOIN `users_groups` AS `ug` ON ug.id = u.group_id
+ INNER JOIN `web_apps` AS `w` ON ug.object_id = w.id
+ INNER JOIN `domains` AS `d` ON w.domain_id = d.id
+ INNER JOIN `servers` AS `s` ON d.server_id = s.id AND s.project_id = 1 WHERE (ug.type = 'web-app') 
+ UNION 
+ SELECT u.login, u.email, u.vip FROM `users` AS `u`
+ INNER JOIN `users_groups` AS `ug` ON ug.id = u.group_id
+ INNER JOIN `servers` AS `s` ON s.project_id = 1
+ INNER JOIN `servers_software` AS `ss` ON ss.server_id = s.id AND ss.id = ug.object_id WHERE (ug.type = 'server-software') 
+ UNION 
+ SELECT u.login, u.email, u.vip FROM `users` AS `u`
+ INNER JOIN `users_groups` AS `ug` ON ug.id = u.group_id
+ INNER JOIN `servers` AS `s` ON s.project_id = 1 AND s.id = ug.object_id WHERE (ug.type = 'server') ORDER BY `vip` DESC, `login` ASC";
+        $this->_testAjaxList(
+            "$testSql LIMIT 0,8",
+            "$testSql LIMIT 8,8",
+            'tmpparam',
+            'type/0'
+        );
+        $this->assertContains("[server 1]", $this->getResponse()->getBody());
+        $this->assertContains("[server]", $this->getResponse()->getBody());
+    }
+
     public function testOneInList() {
         $this->_testOneInList(
             "SELECT u.login, u.email, h.password

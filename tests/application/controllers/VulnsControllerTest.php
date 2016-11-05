@@ -257,6 +257,45 @@ class VulnsControllerTest extends Tests_CommonControllerTestCase
         );
     }
 
+    public function testAjaxListWoObject() {
+        $this->_testAjaxList(
+            "SELECT name, description, exploit_link FROM vulns WHERE `type`='server-software' AND object_id=1 ORDER BY sort DESC LIMIT 0,8",
+            "SELECT name, description, exploit_link FROM vulns WHERE `type`='server-software' AND object_id=1 ORDER BY sort DESC LIMIT 8,8",
+            'tmpparam',
+            'type/server-software'
+        );
+        $this->assertContains("[server 1]", $this->getResponse()->getBody());
+    }
+
+    public function testAjaxListWoObjectWServer() {
+        $this->_testAjaxList(
+            "SELECT name, description, exploit_link FROM vulns WHERE `type`='web-app' AND object_id=1 ORDER BY sort DESC LIMIT 0,8",
+            "SELECT name, description, exploit_link FROM vulns WHERE `type`='web-app' AND object_id=1 ORDER BY sort DESC LIMIT 8,8",
+            'tmpparam',
+            'type/web-app/server_id/1'
+        );
+        $this->assertContains("[domain 1]", $this->getResponse()->getBody());
+    }
+
+    public function testAjaxListWoType() {
+        $testSql = "SELECT `v`.* FROM `vulns` AS `v`
+ INNER JOIN `web_apps` AS `w` ON v.object_id = w.id
+ INNER JOIN `domains` AS `d` ON w.domain_id = d.id
+ INNER JOIN `servers` AS `s` ON d.server_id = s.id AND s.project_id = 1 WHERE (v.type = 'web-app') UNION SELECT `v`.* FROM `vulns` AS `v`
+ INNER JOIN `servers` AS `s` ON s.project_id = 1
+ INNER JOIN `servers_software` AS `ss` ON ss.server_id = s.id AND ss.id = v.object_id WHERE (v.type = 'server-software') ORDER BY `sort` DESC";
+        $this->_testAjaxList(
+            "$testSql LIMIT 0,8",
+            "$testSql LIMIT 8,8",
+            'tmpparam',
+            'type/0'
+        );
+        $this->assertContains("[server 1]", $this->getResponse()->getBody());
+        $this->assertContains("[server-software]", $this->getResponse()->getBody());
+        $this->assertContains("[domain 1]", $this->getResponse()->getBody());
+        $this->assertContains("[web-app]", $this->getResponse()->getBody());
+    }
+
     public function testOneInList() {
         $this->_testOneInList("SELECT name, description, exploit_link FROM vulns WHERE id=1");
     }

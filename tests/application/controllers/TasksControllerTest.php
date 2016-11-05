@@ -240,6 +240,50 @@ class TasksControllerTest extends Tests_CommonControllerTestCase
         );
     }
 
+    public function testAjaxListWoObject() {
+        $this->_testAjaxList(
+            "SELECT name, description FROM tasks WHERE `type`='server-software' AND object_id=1 ORDER BY name ASC LIMIT 0,8",
+            "SELECT name, description FROM tasks WHERE `type`='server-software' AND object_id=1 ORDER BY name ASC LIMIT 8,8",
+            'tmpparam',
+            'type/server-software'
+        );
+        $this->assertContains("[server 1]", $this->getResponse()->getBody());
+    }
+
+    public function testAjaxListWoObjectWServer() {
+        $this->_testAjaxList(
+            "SELECT name, description FROM tasks WHERE `type`='web-app' AND object_id=1 ORDER BY name ASC LIMIT 0,8",
+            "SELECT name, description FROM tasks WHERE `type`='web-app' AND object_id=1 ORDER BY name ASC LIMIT 8,8",
+            'tmpparam',
+            'type/web-app/server_id/1'
+        );
+        $this->assertContains("[domain 1]", $this->getResponse()->getBody());
+    }
+
+    public function testAjaxListWoType() {
+        $testSql = "SELECT `f`.name, `f`.description FROM `tasks` AS `f`
+ INNER JOIN `web_apps` AS `w` ON f.object_id = w.id
+ INNER JOIN `domains` AS `d` ON w.domain_id = d.id
+ INNER JOIN `servers` AS `s` ON d.server_id = s.id AND s.project_id = 1 WHERE (f.type = 'web-app') 
+ UNION 
+ SELECT `f`.`name`, `f`.`description` FROM `tasks` AS `f`
+ INNER JOIN `servers` AS `s` ON s.project_id = 1
+ INNER JOIN `servers_software` AS `ss` ON ss.server_id = s.id AND ss.id = f.object_id WHERE (f.type = 'server-software') 
+ UNION 
+ SELECT `f`.`name`, `f`.`description` FROM `tasks` AS `f`
+ INNER JOIN `servers` AS `s` ON s.project_id = 1 AND s.id = f.object_id WHERE (f.type = 'server') 
+ UNION 
+ SELECT `f`.`name`, `f`.`description` FROM `tasks` AS `f` WHERE (f.type = 'project') AND (f.object_id = 1) ORDER BY `name` ASC ";
+        $this->_testAjaxList(
+            "$testSql LIMIT 0,8",
+            "$testSql LIMIT 8,8",
+            'tmpparam',
+            'type/0'
+        );
+        $this->assertContains("[server 1]", $this->getResponse()->getBody());
+        $this->assertContains("[server]", $this->getResponse()->getBody());
+    }
+
     public function testOneInList() {
         $this->_testOneInList("SELECT name, description FROM tasks WHERE id=1", "server_id");
     }

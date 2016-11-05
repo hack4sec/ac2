@@ -64,3 +64,6 @@ INSERT INTO `vulns` (`id`, `type`, `vuln_type_id`, `object_id`, `risk_level_id`,
        (NULL, 'server-software', 3, 1, 1, 'Vuln1', 'About1', 'Link1', 0, 0),
        (NULL, 'server-software', 3, 1, 1, 'Vuln2', 'About2', 'Link2', 0, 0);
 
+TRUNCATE TABLE `tasks_templates`;
+INSERT INTO `tasks_templates` (`id`, `project_id`, `type`, `name`, `description`, `when_add`) VALUES
+(NULL, 1, 'server-software', 'test task', 'test task description', 0)

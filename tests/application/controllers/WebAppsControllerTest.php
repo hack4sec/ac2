@@ -50,6 +50,8 @@ class WebAppsControllerTest extends Tests_CommonControllerTestCase
     public function testAddWebAppGood() {
         $this->assertEquals($this->_db->fetchOne("SELECT COUNT(id) FROM web_apps"), 2);
 
+        $oldTasksCount = $this->_db->fetchOne("SELECT COUNT(id) FROM tasks");
+
         $postData = [
             'name' => 'WebApp3',
             'url' => '/',
@@ -90,6 +92,20 @@ class WebAppsControllerTest extends Tests_CommonControllerTestCase
         );
 
         $this->assertEquals($this->_db->fetchOne("SELECT COUNT(id) FROM web_apps"), 3);
+
+        $this->assertEquals($this->_db->fetchOne("SELECT COUNT(id) FROM tasks"), $oldTasksCount+1);
+        $this->assertEquals(
+            $this->_db->fetchRow(
+                "SELECT type, name, description, status, object_id FROM tasks ORDER BY id DESC LIMIT 1"
+            ),
+            [
+                'type' => 'web-app',
+                'name' => 'test task',
+                'description' => 'test task description',
+                'status' => '2',
+                'object_id' => '3',
+            ]
+        );
     }
 
     public function testEditWebAppFailBlankName() {

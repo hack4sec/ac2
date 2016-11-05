@@ -13,7 +13,7 @@ defined('APPLICATION_PATH')
     || define('APPLICATION_PATH', realpath(dirname(__FILE__) . '/../application'));
 
 // Define application environment
-if (isset($_SERVER['HTTP_HOST']) and $_SERVER['HTTP_HOST'] == 'ac2t') {
+if (isset($_SERVER['HTTP_HOST']) and $_SERVER['HTTP_HOST'] == 'ac2_test') {
     defined('APPLICATION_ENV')
     || define('APPLICATION_ENV', (getenv('APPLICATION_ENV') ? getenv('APPLICATION_ENV') : 'testing'));
 } else {

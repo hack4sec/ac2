@@ -48,6 +48,8 @@ class ServerSoftwareControllerTest extends Tests_CommonControllerTestCase
     public function testAddSpoGood() {
         $this->assertEquals($this->_db->fetchOne("SELECT COUNT(id) FROM servers_software"), 2);
 
+        $oldTasksCount = $this->_db->fetchOne("SELECT COUNT(id) FROM tasks");
+
         $postData = [
             'name' => 'Test',
             'server_id' => '1',
@@ -87,6 +89,20 @@ class ServerSoftwareControllerTest extends Tests_CommonControllerTestCase
                     'ghost' => '0',
                     'checked' => '0',
                 ]
+        );
+
+        $this->assertEquals($this->_db->fetchOne("SELECT COUNT(id) FROM tasks"), $oldTasksCount+1);
+        $this->assertEquals(
+            $this->_db->fetchRow(
+                "SELECT type, name, description, status, object_id FROM tasks ORDER BY id DESC LIMIT 1"
+            ),
+            [
+                'type' => 'server-software',
+                'name' => 'test task',
+                'description' => 'test task description',
+                'status' => '2',
+                'object_id' => '3',
+            ]
         );
     }
 
@@ -174,6 +190,15 @@ class ServerSoftwareControllerTest extends Tests_CommonControllerTestCase
             "SELECT name, comment FROM servers_software ORDER BY name ASC LIMIT 8,8",
             'server_id'
         );
+    }
+
+    public function testAjaxListWoServer() {
+        $this->_testAjaxList(
+            "SELECT name, comment FROM servers_software ORDER BY name ASC LIMIT 0,8",
+            "SELECT name, comment FROM servers_software ORDER BY name ASC LIMIT 8,8",
+            'tmpparam'
+        );
+        $this->assertContains("[server 1]", $this->getResponse()->getBody());
     }
 
     public function testAjaxListSearch() {

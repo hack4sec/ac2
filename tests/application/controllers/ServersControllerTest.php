@@ -116,6 +116,8 @@ class ServersControllerTests extends Tests_CommonControllerTestCase
     public function testAddServerGood() {
         $this->assertEquals($this->_db->fetchOne("SELECT COUNT(id) FROM servers"), 2);
 
+        $oldTasksCount = $this->_db->fetchOne("SELECT COUNT(id) FROM tasks");
+
         $postData = [
             'name' => 'test server 3',
             'ip' => '3.3.3.3',
@@ -139,6 +141,20 @@ class ServersControllerTests extends Tests_CommonControllerTestCase
                 'comment' => 'test comment 3',
                 'os_id' => '1',
                 'ip' => '3.3.3.3',
+            ]
+        );
+
+        $this->assertEquals($this->_db->fetchOne("SELECT COUNT(id) FROM tasks"), $oldTasksCount+1);
+        $this->assertEquals(
+            $this->_db->fetchRow(
+                "SELECT type, name, description, status, object_id FROM tasks ORDER BY id DESC LIMIT 1"
+            ),
+            [
+                'type' => 'server',
+                'name' => 'test task',
+                'description' => 'test task description',
+                'status' => '2',
+                'object_id' => '3',
             ]
         );
     }

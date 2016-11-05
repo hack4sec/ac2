@@ -46,6 +46,8 @@ class DomainsControllerTest extends Tests_CommonControllerTestCase
     public function testAddDomainGood() {
         $this->assertEquals($this->_db->fetchOne("SELECT COUNT(id) FROM domains"), 2);
 
+        $oldTasksCount = $this->_db->fetchOne("SELECT COUNT(id) FROM tasks");
+
         $this->_go('add', '', ['name' => 'domain 3', 'server_id' => '1', 'comment' => 'testcomment',]);
 
         $this->assertEquals("", $this->getResponse()->getBody());
@@ -61,6 +63,20 @@ class DomainsControllerTest extends Tests_CommonControllerTestCase
                 'name' => 'domain 3',
                 'comment' => 'testcomment',
                 'server_id' => '1'
+            ]
+        );
+
+        $this->assertEquals($this->_db->fetchOne("SELECT COUNT(id) FROM tasks"), $oldTasksCount+1);
+        $this->assertEquals(
+            $this->_db->fetchRow(
+                "SELECT type, name, description, status, object_id FROM tasks ORDER BY id DESC LIMIT 1"
+            ),
+            [
+                'type' => 'domain',
+                'name' => 'test task',
+                'description' => 'test task description',
+                'status' => '2',
+                'object_id' => '3',
             ]
         );
     }
@@ -133,7 +149,14 @@ class DomainsControllerTest extends Tests_CommonControllerTestCase
             'server_id'
         );
     }
-
+    public function testAjaxListWoServer() {
+        $this->_testAjaxList(
+            "SELECT name, comment FROM domains ORDER BY name ASC LIMIT 0,8",
+            "SELECT name, comment FROM domains ORDER BY name ASC LIMIT 8,8",
+            'tmpparam'
+        );
+        $this->assertContains("[server 1]", $this->getResponse()->getBody());
+    }
     public function testAjaxListSearch() {
         $this->_testAjaxListSearch(
             'server_id',
