@@ -1,3 +1,5 @@
+Team R.I.P. All releases transfered to https://github.com/AntonKuzminRussia
+
 # Analytical Center 2
 Analytical Center (AC) — it`s web-application for collect, save and analyze pen-test information.
 
